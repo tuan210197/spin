@@ -2132,14 +2132,58 @@ export class FourthPrizeComponent implements AfterViewInit {
     this.resetRaffle();
     this.finalWinner = this.randomObject(this.winner);
     this.winner = [
-      {
-        code: "V1094600", name: "Bùi Văn Phấn 裴文芬"
-      },
       { code: "V1091169", name: "Hoàng Công Việt 黃功越" },
       { code: "V1008756", name: "Lục Văn Đức 陸文德" },
       { code: "V1005865", name: "Nguyễn Thị Hiên 阮氏宣" },
       { code: "V3206727", name: "Vũ Thị Tuyết 武氏雪" },
-      { code: "V1078778", name: "Lý Thị Thương 李氏商" }
+      { code: "V1073729", name: "Cao Văn Tâm 高文心" },
+      { code: "V3209270", name: "Hoàng Văn Hàn 黃文韓" },
+      { code: "V1077650", name: "Vi Thị Hương 韋氏香" },
+      { code: "V1037991", name: "Lê Văn Long 黎文龍" },
+      { code: "V0987642", name: "Đặng Quang Sáng 鄧光亮" },
+      { code: "V3205337", name: "Lường Thị Đại 良氏代" },
+      { code: "V3207410", name: "Lê Thị Hợp 黎氏和" },
+      { code: "V0959953", name: "Dương Thị Như Quỳnh 楊氏如瓊" },
+      { code: "V3205190", name: "Phạm Thị Quỳnh 范氏瓊" },
+      { code: "V1810363", name: "Bùi Thị Hiệu 裴氏效" },
+      { code: "V1093014", name: "Hoàng Quốc Triệu 阮越雄" },
+      { code: "V1096219", name: "Vừ Mí Chá 適美長" },
+      { code: "V1005847", name: "Hoàng Văn Chuẩn 黃文准" },
+      { code: "V1099637", name: "Phạm Thị Út 范氏小" },
+      { code: "V0910491", name: "Dương Thị Hồng Trang 楊氏紅狀" },
+      { code: "V1082539", name: "Leo Văn Hải 廖文海" },
+      { code: "V0906795", name: "Thân Thị Son 申氏山" },
+      { code: "V1800078", name: "Ong Xuân Hùng 汪春雄" },
+      { code: "V1075566", name: "Nguyễn Văn Hà 阮文何" },
+      { code: "V1093536", name: "Hoàng Thị Quy 黃氏花" },
+      { code: "V1025244", name: "Trương Công Việt 張公越" },
+      { code: "V1079816", name: "Nguyễn Thị Loan 阮氏灣" },
+      { code: "V3209618", name: "Hoàng Văn Tâm 黃文心" },
+      { code: "V1067864", name: "Hoàng Thanh Phong 黃青風" },
+      { code: "V0971474", name: "Đào Ngọc An 陶玉安" },
+      { code: "V3203145", name: "Phạm Văn Công 范文功" },
+      { code: "V0933824", name: "Đậu Thị Tâm 豆氏心" },
+      { code: "V1098881", name: "Nguyễn Xuân Bảo 阮春寶" },
+      { code: "V1092094", name: "Nông Văn Tuất 農文戌" },
+      { code: "V1097518", name: "Bàn Thị Huệ 攀氏慧" },
+      { code: "V1033357", name: "Bùi Thị Anh 裴氏英" },
+      { code: "V0905704", name: "Đặng Thị Thái 鄧氏泰" },
+      { code: "V3201488", name: "La Văn Thắng 羅文勝" },
+      { code: "V0987336", name: "Vũ Thị Tám 武氏八" },
+      { code: "V1007816", name: "Hà Thị Dung 何氏蓉" },
+      { code: "V1079525", name: "Nông Thị Minh Ngọc 農氏明玉" },
+      { code: "V0998069", name: "Phạm Thị Thoa 範氏釵" },
+      { code: "V1098450", name: "Hoàng Thị Hiền 黃氏賢" },
+      { code: "V1007925", name: "Hoàng Thị Hòa 黃氏和" },
+      { code: "V0928101", name: "Thân Văn Mạnh 申文孟" },
+      { code: "V1087300", name: "Lâm Văn Lịch 林文歷" },
+      { code: "V0992498", name: "Đỗ Thị Phương 杜世芳" },
+      { code: "V1087926", name: "Lương Văn Định 良文定" },
+      { code: "V1097557", name: "Nguyễn Hữu Hải 阮友海" },
+      { code: "V0979219", name: "Nguyễn Thị Huyền 阮氏玄" },
+      { code: "V1042769", name: "Hoàng Văn Nhân 黃文仁" },
+      { code: "V0900267", name: "Nghiêm Xuân Hưng 顏春興" },
+      { code: "V1083448", name: "Nguyễn Thị Nhung 阮氏絨" },
     ];
     // Đưa người trúng vào cuối danh sách
     this.sortParticipants();
@@ -2205,26 +2249,12 @@ export class FourthPrizeComponent implements AfterViewInit {
 
     setTimeout(() => {
       this.launchConfetti();
-      this.showImg();
     }, 5000);
 
 
   }
 
-  showImg() {
-    debugger
-    this.isImageVisible = true;
-    this.isImageFading = false;
 
-    setTimeout(() => {
-      this.isImageFading = true;
-    }, 3000);
-    setTimeout(() => {
-      this.isImageVisible = false;
-      this.isImageFading = false;
-
-    }, 3000);
-  }
   easeOutQuad(t: number): number {
     return t * (2 - t); // Hàm easing cho giảm tốc
   }

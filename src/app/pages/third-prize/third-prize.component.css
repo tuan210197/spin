@@ -2,7 +2,7 @@
   display: flex;
   position: fixed;
   justify-content: flex-end;
-  background: url('http://localhost:4200/banner2.png');
+  background: url('/third.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -10,50 +10,56 @@
   align-items: center;
   overflow: hidden;
   width: 100%;
-  height: 90vh; /* Chiều cao 100% màn hình */
-  background-color: #f5f5f5; /* Màu nền (tuỳ chỉnh) */
-  padding-right: 20px; /* Tạo khoảng trống bên phải */
-  box-sizing: border-box; /* Đảm bảo padding không làm thay đổi kích thước */
-  /* pointer-events: none; Cho phép các sự kiện chuột đi qua */
+  height: 90vh;
+  /* Chiều cao 100% màn hình */
+  background-color: #f5f5f5;
+  /* Màu nền (tuỳ chỉnh) */
+  padding-right: 20px;
+  /* Tạo khoảng trống bên phải */
+  box-sizing: border-box;
+  /* Đảm bảo padding không làm thay đổi kích thước */
+  pointer-events: all;
+  /*Cho phép các sự kiện chuột đi qua */
 }
 
-  
-  .btn {
-    display: inline-block;
-    background: linear-gradient(45deg, #ff6b6b, #f76d2b);
-    color: white;
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -50%;
-    width: 200%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: skewX(-30deg);
-    transition: 0.5s;
-    pointer-events: none;
-  }
-  
-  .btn:hover::before {
-    left: 100%;
-  }
-  
-  .btn:hover {
-    transform: scale(1.05);
-  }
-  
+
+.btn {
+  display: inline-block;
+  background: linear-gradient(45deg, #ff6b6b, #f76d2b);
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  z-index: 10;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: skewX(-30deg);
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
 
 
 
@@ -65,11 +71,11 @@
   justify-content: center;
   align-items: center;
   /* height: 100vh; */
-  bottom: 20%;
+  top: 50%;
   left: 48%;
 }
 
-.name{ 
+.name {
   position: fixed;
   justify-content: center;
   align-items: center;
@@ -78,36 +84,351 @@
   left: 35%;
   font-size: 60px;
   font-weight: bold;
-  color: #fff;
+  color: #ffffff;
   text-align: center;
 
 }
 
-.card-content2 {
+
+
+
+.title {
+  text-align: center;
+}
+
+mat-row:hover,
+tr:hover {
+  background-color: #d3d3d3;
+  /* Màu nền khi di chuột */
+  transition: background-color 0.3s;
+  /* Hiệu ứng mượt */
+}
+
+.mat-header-cell {
+  background-color: #007bff;
+  /* Màu nền */
+  color: white;
+  /* Màu chữ */
+  font-weight: bold;
+  /* Đậm */
+  text-align: center;
+  /* Căn giữa */
+  padding: 8px;
+  /* Khoảng cách bên trong */
+  border: 1px solid #ddd;
+  /* Đường viền */
+}
+
+
+.fan-container {
+  position: absolute;
+  height: 100vh;
+  top: 25%;
+  left: 100px;
+}
+
+.fan {
+  width: 150px;
+  height: 150px;
+  animation: spin-clockwise 30s linear infinite;
+
+}
+
+/* Animation quay quạt theo chiều kim đồng hồ */
+@keyframes spin-clockwise {
+  0% {
+    transform: rotate(0deg);
+    /* Bắt đầu từ 0 độ */
+  }
+
+  100% {
+    transform: rotate(360deg);
+    /* Quay 360 độ theo chiều kim đồng hồ */
+  }
+
+
+}
+
+.fan-container2 {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  top: 10%;
+  left: 300px;
+}
+
+.fan2 {
+  width: 200px;
+  height: 200px;
+  animation: spin-clockwise2 20s linear infinite;
+  /* Áp dụng hiệu ứng quay theo chiều kim đồng hồ */
+}
+
+.fan-container3 {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  top: 20%;
+  left: 10%;
+}
+
+.fan3 {
+  width: 170px;
+  height: 170px;
+  animation: spin-clockwise2 20s linear infinite;
+  /* Áp dụng hiệu ứng quay theo chiều kim đồng hồ */
+}
+
+
+/* Animation quay quạt theo chiều kim đồng hồ */
+@keyframes spin-clockwise2 {
+  0% {
+    transform: rotate(0deg);
+    /* Bắt đầu từ 0 độ */
+  }
+
+  100% {
+    transform: rotate(-360deg);
+    /* Quay 360 độ theo chiều kim đồng hồ */
+  }
+
+}
+
+
+/* Đèn lồng */
+.lantern {
+  position: absolute;
+  top: 0;
+  right: 0%;
+  transform-origin: top center;
+  /* Đặt điểm quay tại đỉnh của đèn lồng */
+  animation: sway 5s ease-in-out infinite;
+  /* Áp dụng hiệu ứng lắc lư */
+}
+
+/* Ảnh đèn lồng */
+.lantern img {
+  width: 400px;
+  /* Đặt kích thước đèn lồng */
+  height: auto;
+}
+
+/* Hiệu ứng lắc lư */
+@keyframes sway {
+  0% {
+    transform: rotate(10deg) translateX(-20px);
+    /* Bắt đầu nghiêng và di chuyển sang trái */
+  }
+
+  50% {
+    transform: rotate(-10deg) translateX(20px);
+    /* Nghiêng và di chuyển sang phải */
+  }
+
+  100% {
+    transform: rotate(10deg) translateX(-20px);
+    /* Quay lại vị trí ban đầu */
+  }
+}
+
+.lantern2 {
+  position: absolute;
+  top: 0;
+  transform-origin: top center;
+  /* Đặt điểm quay tại đỉnh của đèn lồng */
+  animation: sway 5s ease-in-out infinite;
+  /* Áp dụng hiệu ứng lắc lư */
+}
+
+/* Ảnh đèn lồng */
+.lantern2 img {
+  width: 300px;
+  /* Đặt kích thước đèn lồng */
+  height: auto;
+}
+
+.lantern2 {
+  position: absolute;
+  top: 0;
+  right: 15%;
+  transform-origin: top center;
+  /* Đặt điểm quay tại đỉnh của đèn lồng */
+  animation: sway 5s ease-in-out infinite;
+  /* Áp dụng hiệu ứng lắc lư */
+}
+
+
+/* Đèn lồng */
+.gold1 {
+  position: absolute;
+  bottom: -3%;
+  right: 20%;
+  transform-origin: top center;
+  /* Đặt điểm quay tại đỉnh của đèn lồng */
+  animation: swinggold 5s ease-in-out infinite;
+  /* Áp dụng hiệu ứng lắc lư */
+}
+
+/* Ảnh đèn lồng */
+.gold1 img {
+  width: 150px;
+  /* Đặt kích thước đèn lồng */
+  height: auto;
+}
+
+/* Đèn lồng */
+.gold2 {
+  position: absolute;
+  bottom: -2%;
+  right: 10%;
+  transform-origin: top center;
+  /* Đặt điểm quay tại đỉnh của đèn lồng */
+  animation: swinggold 5s ease-in-out infinite;
+  /* Áp dụng hiệu ứng lắc lư */
+}
+
+/* Ảnh đèn lồng */
+.gold2 img {
+  width: 200px;
+  /* Đặt kích thước đèn lồng */
+  height: auto;
+}
+
+
+.gold3 {
+  position: absolute;
+  bottom: -13%;
+  left: 10%;
+  transform-origin: top center;
+}
+
+.gold3 img {
+  width: 350px;
+  height: auto;
+}
+
+.gold4 {
+  position: absolute;
+  bottom: 2%;
+  right: 30%;
+  transform-origin: top center;
+
+}
+
+.gold4 img {
+  width: 350px;
+  height: auto;
+}
+
+.gold5 {
+  position: absolute;
+  bottom: -5%;
+  left: 35%;
+  transform-origin: top center;
+
+}
+
+.gold5 img {
+  width: 350px;
+  height: auto;
+}
+
+
+
+@keyframes swinggold {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(2deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+  }
+
+  75% {
+    transform: rotate(-2deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.content1 {
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  top: 20%;
+  left: 47.5%;
+
+}
+
+
+
+.raffle-box {
+  height: 70px;
+  /* Hiển thị 1 dòng */
+  overflow: hidden;
+  position: relative;
+  border: none;
+
   position: fixed;
   justify-content: center;
   align-items: center;
   /* height: 100vh; */
   top: 30%;
-  left: 38%;
+  left: 30%;
+}
+
+.names {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.1s linear;
+  /* Đảm bảo mượt */
+}
+
+.name-item {
+  /* height: 100px; */
+  line-height: 50px;
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 35px;
 }
 
 
 
-.title{
-text-align: center;
+.container2 {
+  position: absolute;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  /* pointer-events: all; */
+  /* Cho phép các sự kiện chuột đi qua */
+
 }
 
-mat-row:hover, tr:hover {
-background-color: #d3d3d3; /* Màu nền khi di chuột */
-transition: background-color 0.3s; /* Hiệu ứng mượt */
+.imgs {
+  width: 350px;
+  height: 350px;
+  position: absolute;
+  bottom: 5%;
+  left: 25%;
+  transition: opacity 2s ease-in-out;
 }
 
-.mat-header-cell {
-  background-color: #007bff;  /* Màu nền */
-  color: white;               /* Màu chữ */
-  font-weight: bold;          /* Đậm */
-  text-align: center;          /* Căn giữa */
-  padding: 8px;                /* Khoảng cách bên trong */
-  border: 1px solid #ddd;      /* Đường viền */
+.imgs2 {
+  width: 350px;
+  height: 350px;
+  position: absolute;
+  bottom: 5%;
+  right: 25%;
+  transition: opacity 2s ease-in-out;
 }
