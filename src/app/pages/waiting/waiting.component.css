@@ -1,0 +1,293 @@
+
+
+.container-fluid {
+  /* display: flex; */
+  /* position: fixed; */
+  justify-content: flex-end;
+  background: url('/banner3.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+   height: 90vh; /*Chiều cao 100% màn hình */
+  background-color: #f5f5f5; /* Màu nền (tuỳ chỉnh) */
+  padding-right: 20px; /* Tạo khoảng trống bên phải */
+  box-sizing: border-box; /* Đảm bảo padding không làm thay đổi kích thước */
+  pointer-events: none; /* Cho phép các sự kiện chuột đi qua */
+}
+.container2 {
+  position: absolute;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+ 
+}
+
+
+.fan-container {
+  position: absolute;
+  height: 100vh;
+  top: 25%;
+  left: 100px;
+}
+
+.fan {
+  width: 150px;
+  height: 150px;
+  animation: spin-clockwise 30s linear infinite;
+
+}
+
+
+/* Animation quay quạt theo chiều kim đồng hồ */
+@keyframes spin-clockwise {
+  0% {
+    transform: rotate(0deg);
+    /* Bắt đầu từ 0 độ */
+  }
+
+  100% {
+    transform: rotate(360deg);
+    /* Quay 360 độ theo chiều kim đồng hồ */
+  }
+
+
+}
+
+.fan-container2 {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  top: 10%;
+  left: 300px;
+}
+
+.fan2 {
+  width: 200px;
+  height: 200px;
+  animation: spin-clockwise2 20s linear infinite;
+  /* Áp dụng hiệu ứng quay theo chiều kim đồng hồ */
+}
+
+
+/* Đèn lồng */
+.fan3 {
+  position: absolute;
+  top: 20%;
+  left: 12%;
+  transform-origin: top center;
+
+}
+
+/* Ảnh đèn lồng */
+.fan3 img {
+  width: 250px;
+  animation: spin-clockwise3 15s linear infinite;
+  height: auto;
+}
+
+/* Animation quay quạt theo chiều kim đồng hồ */
+@keyframes spin-clockwise2 {
+  0% {
+    transform: rotate(0deg);
+    /* Bắt đầu từ 0 độ */
+  }
+
+  100% {
+    transform: rotate(360deg);
+    /* Quay 360 độ theo chiều kim đồng hồ */
+  }
+}
+/* Animation quay quạt theo chiều kim đồng hồ */
+@keyframes spin-clockwise3 {
+  0% {
+    transform: rotate(0deg);
+    /* Bắt đầu từ 0 độ */
+  }
+
+  100% {
+    transform: rotate(-360deg);
+    /* Quay 360 độ theo chiều kim đồng hồ */
+  }
+
+}
+
+/* Đèn lồng */
+.lantern {
+  position: absolute;
+  top: 0;
+  right: 0%;
+  transform-origin: top center;
+  /* Đặt điểm quay tại đỉnh của đèn lồng */
+  animation: sway 5s ease-in-out infinite;
+  /* Áp dụng hiệu ứng lắc lư */
+}
+
+/* Ảnh đèn lồng */
+.lantern img {
+  width: 400px;
+  /* Đặt kích thước đèn lồng */
+  height: auto;
+}
+
+/* Hiệu ứng lắc lư */
+@keyframes sway {
+  0% {
+    transform: rotate(10deg) translateX(-20px);
+    /* Bắt đầu nghiêng và di chuyển sang trái */
+  }
+
+  50% {
+    transform: rotate(-10deg) translateX(20px);
+    /* Nghiêng và di chuyển sang phải */
+  }
+
+  100% {
+    transform: rotate(10deg) translateX(-20px);
+    /* Quay lại vị trí ban đầu */
+  }
+}
+
+.lantern2 {
+  position: absolute;
+  top: 0;
+  transform-origin: top center;
+  /* Đặt điểm quay tại đỉnh của đèn lồng */
+  animation: sway 5s ease-in-out infinite;
+  /* Áp dụng hiệu ứng lắc lư */
+}
+
+/* Ảnh đèn lồng */
+.lantern2 img {
+  width: 300px;
+  /* Đặt kích thước đèn lồng */
+  height: auto;
+}
+
+.lantern2 {
+  position: absolute;
+  top: 0;
+  right: 15%;
+  transform-origin: top center;
+  /* Đặt điểm quay tại đỉnh của đèn lồng */
+  animation: sway 5s ease-in-out infinite;
+  /* Áp dụng hiệu ứng lắc lư */
+}
+
+
+
+
+
+
+@keyframes swinggold {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(4deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+  }
+
+  75% {
+    transform: rotate(-4deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+
+.snake {
+  position: absolute;
+  top: 39%;
+  right: 44%;
+  transform-origin: top center;
+  /* Đặt điểm quay tại đỉnh của đèn lồng */
+  /* animation: swinggold 5s ease-in-out infinite; Áp dụng hiệu ứng lắc lư */
+}
+
+.snake img {
+  width: 350px;
+  /* Đặt kích thước đèn lồng */
+  height: auto;
+}
+
+.snake2 {
+  position: absolute;
+  top: 30%;
+  right: 45.5%;
+  transform-origin: top center;
+  /* Đặt điểm quay tại đỉnh của đèn lồng */
+  animation: snake 3s ease-in-out infinite;
+}
+
+.snake2 img {
+  width: 330px;
+  /* Đặt kích thước đèn lồng */
+  height: auto;
+}
+
+@keyframes snake {
+  /* 0% { transform: rotate(0deg); }
+      25% { transform: rotate(3deg); }
+      50% { transform: rotate(0deg); }
+      75% { transform: rotate(-3deg); }
+      100% { transform: rotate(0deg); } */
+
+  0% {
+    transform: rotate(5deg) translateX(-10px);
+    /* Bắt đầu nghiêng và di chuyển sang trái */
+  }
+
+  50% {
+    transform: rotate(-5deg) translateX(10px);
+    /* Nghiêng và di chuyển sang phải */
+  }
+
+  100% {
+    transform: rotate(5deg) translateX(-10px);
+    /* Quay lại vị trí ban đầu */
+  }
+}
+
+
+
+/* sao */
+.sparkle-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 2px white;
+  animation: sparkle 2s infinite ease-in-out;
+  opacity: 0;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

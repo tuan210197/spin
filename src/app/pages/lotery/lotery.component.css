@@ -1,0 +1,351 @@
+.container-fluid {
+  display: flex;
+  position: fixed;
+  justify-content: flex-end;
+  background: url('/banner2.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: 90vh; /* Chiều cao 100% màn hình */
+  background-color: #f5f5f5; /* Màu nền (tuỳ chỉnh) */
+  padding-right: 20px; /* Tạo khoảng trống bên phải */
+  box-sizing: border-box; /* Đảm bảo padding không làm thay đổi kích thước */
+  pointer-events: none; /* Cho phép các sự kiện chuột đi qua */
+}
+
+/* css button */
+/* From Uiverse.io by KhaledMatalkah */ 
+@keyframes glowing-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+
+  70% {
+    box-shadow: 0 0 0 30px rgba(255, 255, 255, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.button {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(to right, #FFB900, #FF7730);
+  border: none;
+  border-radius: 60px;
+  color: white;
+  padding: 10px 20px;
+  font-size: 38px;
+  text-transform: uppercase;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  animation: glowing-pulse 2s infinite;
+  height: 120px;
+  width: 120px;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 60px;
+  box-shadow: 0 0 20px #FF7730;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.button:hover::before {
+  opacity: 1;
+}
+
+
+/* end css button */
+
+.fan-container {
+  position: absolute;
+  height: 100vh;
+  top: 25%;
+  left: 100px;
+}
+
+.fan {
+  width: 150px;
+  height: 150px;
+  animation: spin-clockwise 30s linear infinite;
+
+}
+
+/* Animation quay quạt theo chiều kim đồng hồ */
+@keyframes spin-clockwise {
+  0% {
+    transform: rotate(0deg);
+    /* Bắt đầu từ 0 độ */
+  }
+
+  100% {
+    transform: rotate(360deg);
+    /* Quay 360 độ theo chiều kim đồng hồ */
+  }
+
+
+}
+
+.fan-container2 {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  top: 10%;
+  left: 300px;
+}
+
+.fan2 {
+  width: 200px;
+  height: 200px;
+  animation: spin-clockwise2 20s linear infinite;
+  /* Áp dụng hiệu ứng quay theo chiều kim đồng hồ */
+}
+.fan-container3 {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  top: 20%;
+  left: 10%;
+}
+
+.fan3 {
+  width: 170px;
+  height: 170px;
+  animation: spin-clockwise2 20s linear infinite;
+  /* Áp dụng hiệu ứng quay theo chiều kim đồng hồ */
+}
+
+
+/* Animation quay quạt theo chiều kim đồng hồ */
+@keyframes spin-clockwise2 {
+  0% {
+    transform: rotate(0deg);
+    /* Bắt đầu từ 0 độ */
+  }
+
+  100% {
+    transform: rotate(-360deg);
+    /* Quay 360 độ theo chiều kim đồng hồ */
+  }
+
+}
+
+
+/* Đèn lồng */
+.lantern {
+  position: absolute;
+  top: 0;
+  right: 0%;
+  transform-origin: top center;
+  /* Đặt điểm quay tại đỉnh của đèn lồng */
+  animation: sway 5s ease-in-out infinite;
+  /* Áp dụng hiệu ứng lắc lư */
+}
+
+/* Ảnh đèn lồng */
+.lantern img {
+  width: 400px;
+  /* Đặt kích thước đèn lồng */
+  height: auto;
+}
+
+/* Hiệu ứng lắc lư */
+@keyframes sway {
+  0% {
+    transform: rotate(10deg) translateX(-20px);
+    /* Bắt đầu nghiêng và di chuyển sang trái */
+  }
+
+  50% {
+    transform: rotate(-10deg) translateX(20px);
+    /* Nghiêng và di chuyển sang phải */
+  }
+
+  100% {
+    transform: rotate(10deg) translateX(-20px);
+    /* Quay lại vị trí ban đầu */
+  }
+}
+
+.lantern2 {
+  position: absolute;
+  top: 0;
+  transform-origin: top center;
+  /* Đặt điểm quay tại đỉnh của đèn lồng */
+  animation: sway 5s ease-in-out infinite;
+  /* Áp dụng hiệu ứng lắc lư */
+}
+
+/* Ảnh đèn lồng */
+.lantern2 img {
+  width: 300px;
+  /* Đặt kích thước đèn lồng */
+  height: auto;
+}
+
+.lantern2 {
+  position: absolute;
+  top: 0;
+  right: 15%;
+  transform-origin: top center;
+  /* Đặt điểm quay tại đỉnh của đèn lồng */
+  animation: sway 5s ease-in-out infinite;
+  /* Áp dụng hiệu ứng lắc lư */
+}
+
+
+/* Đèn lồng */
+.gold1 {
+  position: absolute;
+  bottom: -3%;
+  right: 20%;
+  transform-origin: top center;
+  /* Đặt điểm quay tại đỉnh của đèn lồng */
+  animation: swinggold 5s ease-in-out infinite;
+  /* Áp dụng hiệu ứng lắc lư */
+}
+
+/* Ảnh đèn lồng */
+.gold1 img {
+  width: 150px;
+  /* Đặt kích thước đèn lồng */
+  height: auto;
+}
+
+/* Đèn lồng */
+.gold2 {
+  position: absolute;
+  bottom: -2%;
+  right: 10%;
+  transform-origin: top center;
+  /* Đặt điểm quay tại đỉnh của đèn lồng */
+  animation: swinggold 5s ease-in-out infinite;
+  /* Áp dụng hiệu ứng lắc lư */
+}
+
+/* Ảnh đèn lồng */
+.gold2 img {
+  width: 200px;
+  /* Đặt kích thước đèn lồng */
+  height: auto;
+}
+
+
+.gold3 {
+  position: absolute;
+  bottom: -13%;
+  left: 10%;
+  transform-origin: top center;
+}
+.gold3 img {
+  width: 350px;
+  height: auto;
+}
+.gold4 {
+  position: absolute;
+  bottom: 2%;
+  right: 30%;
+  transform-origin: top center;
+ 
+}
+
+.gold4 img {
+  width: 350px;
+  height: auto;
+}
+.gold5 {
+  position: absolute;
+  bottom: -5%;
+  left: 35%;
+  transform-origin: top center;
+ 
+}
+
+.gold5 img {
+  width: 350px;
+  height: auto;
+}
+
+
+
+@keyframes swinggold {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(2deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+  }
+
+  75% {
+    transform: rotate(-2deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.content1 {
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  top: 20%;
+  left: 43%;
+
+}
+
+.content2 {
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  top: 50%;
+  left: 45%;
+
+}
+
+h1 {
+  color: white;
+  font-size: 180px;
+  font-weight: bold;
+}
+
+
+.imgs {
+  width: 350px;
+  height: 350px;
+  position: absolute;
+  bottom: 5%;
+  left: 25%;
+  transition: opacity 2s ease-in-out;
+}
+
+.imgs2 {
+  width: 350px;
+  height: 350px;
+  position: absolute;
+  bottom: 5%;
+  right: 25%;
+  transition: opacity 2s ease-in-out;
+}

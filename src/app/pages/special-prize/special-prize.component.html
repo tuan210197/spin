@@ -1,0 +1,96 @@
+<div class="container-fluid">
+
+    <div class="name">
+      <p id="winner">Who will be the winner?</p>
+    </div>
+  
+    <div class="card-content">
+      <button class="btn" id="pickWinner" (click)="pickWinner()">SPIN</button>
+    </div>
+  
+    <div>
+      <div class="fan-container3">
+          <img src="/2.png" alt="Fan" class="fan3">
+      </div>
+
+      <div class="fan-container">
+          <img src="/2.png" alt="Fan" class="fan">
+      </div>
+      <div class="fan-container2">
+          <img src="/2.png" alt="Fan" class="fan2">
+      </div>
+
+      <div class="lantern">
+          <img src="/1.png" class="lantern-img" />
+      </div>
+      <div class="lantern2">
+          <img src="/1.png" class="lantern-img" />
+      </div>
+      <!-- <div class="gold1">
+          <img src="/gold.png">
+      </div>
+      <div class="gold2">
+          <img src="/gold.png">
+      </div> -->
+
+      <!-- <div class="gold3">
+          <img src="/3.gif">
+      </div>
+      <div class="gold4">
+          <img src="/4.gif">
+      </div>
+      <div class="gold5">
+          <img src="/2.gif">
+      </div> -->
+
+
+      <!-- <div class="dragon-container">
+          <img src="dragon.gif" alt="Flying Dragon" class="dragon">
+      </div> -->
+
+
+  </div>
+  
+    <div class="card-content2">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+        <!-- Cột số thứ tự -->
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef [style.background-color]="color"> # </th>
+          <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+        </ng-container>
+  
+        <!-- Cột tên người trúng -->
+        <ng-container matColumnDef="vietnam">
+          <th mat-header-cell *matHeaderCellDef [style.background-color]="color"> Winner </th>
+          <td mat-cell *matCellDef="let element ">{{ element }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="china">
+          <th mat-header-cell *matHeaderCellDef [style.background-color]="color">Winner</th>
+          <td mat-cell *matCellDef="let element">{{ element }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="code">
+          <th mat-header-cell *matHeaderCellDef [style.background-color]="color">Code</th>
+          <td mat-cell *matCellDef="let element">{{ element }}</td>
+        </ng-container>
+  
+        <!-- Cột Action -->
+        <ng-container matColumnDef="actions">
+          <th *matHeaderCellDef  [style.background-color]="color"> Action </th>
+          <td *matCellDef="let element">
+            <mat-icon class="action-icon" (click)="delete()">delete</mat-icon>
+          </td>
+        </ng-container>
+  
+        <!-- Header và Row -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [length]="dataSource.data.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  
+    </div>
+  
+  
+  </div>

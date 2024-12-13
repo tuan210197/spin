@@ -1,0 +1,22 @@
+.mat-mdc-tab-group.custom-tabs {
+  width: 100vw; /* Chiều rộng khớp toàn màn hình */
+  height: 100vh; /* Chiều cao khớp toàn màn hình */
+  overflow: hidden; /* Loại bỏ thanh cuộn */
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-mdc-tab-body-wrapper {
+  flex: 1; /* Tự động điều chỉnh kích thước để lấp đầy vùng */
+  display: flex;
+  justify-content: center; /* Canh giữa nội dung */
+  align-items: center; /* Canh giữa nội dung */
+}
+
+.mat-mdc-tab-label-container {
+  flex-shrink: 0; /* Không thu nhỏ vùng tab */
+}
+
+.mat-mdc-tab-label {
+  font-size: 16px; /* Tuỳ chỉnh kích thước chữ (nếu cần) */
+}
