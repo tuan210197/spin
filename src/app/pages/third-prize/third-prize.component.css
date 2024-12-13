@@ -71,7 +71,7 @@
   justify-content: center;
   align-items: center;
   /* height: 100vh; */
-  top: 50%;
+  top: 60%;
   left: 48%;
 }
 
@@ -382,7 +382,7 @@ tr:hover {
   justify-content: center;
   align-items: center;
   /* height: 100vh; */
-  top: 30%;
+  top: 40%;
   left: 30%;
 }
 
@@ -419,7 +419,7 @@ tr:hover {
   width: 350px;
   height: 350px;
   position: absolute;
-  bottom: 5%;
+  bottom: 0%;
   left: 25%;
   transition: opacity 2s ease-in-out;
 }
@@ -428,7 +428,7 @@ tr:hover {
   width: 350px;
   height: 350px;
   position: absolute;
-  bottom: 5%;
+  bottom: 0%;
   right: 25%;
   transition: opacity 2s ease-in-out;
 }

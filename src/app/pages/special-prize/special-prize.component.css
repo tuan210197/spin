@@ -2,7 +2,7 @@
   display: flex;
   position: fixed;
   justify-content: flex-end;
-  background: url('/special.png');
+  background: url('/7.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -71,7 +71,7 @@
   justify-content: center;
   align-items: center;
   /* height: 100vh; */
-  top: 50%;
+  top: 60%;
   left: 48%;
 }
 
@@ -382,7 +382,7 @@ tr:hover {
   justify-content: center;
   align-items: center;
   /* height: 100vh; */
-  top: 30%;
+  top: 40%;
   left: 30%;
 }
 

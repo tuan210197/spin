@@ -71,7 +71,7 @@
   justify-content: center;
   align-items: center;
   /* height: 100vh; */
-  top: 50%;
+  top: 60%;
   left: 48%;
 }
 
@@ -382,7 +382,7 @@ tr:hover {
   justify-content: center;
   align-items: center;
   /* height: 100vh; */
-  top: 30%;
+  top: 40%;
   left: 30%;
 }
 
@@ -416,19 +416,19 @@ tr:hover {
 }
 
 .imgs {
-  width: 350px;
-  height: 350px;
+  width: 250px;
+  height: 250px;
   position: absolute;
-  bottom: 5%;
-  left: 25%;
+  bottom: 0%;
+  left: 33%;
   transition: opacity 2s ease-in-out;
 }
 
 .imgs2 {
-  width: 350px;
-  height: 350px;
+  width: 250px;
+  height: 250px;
   position: absolute;
-  bottom: 5%;
-  right: 25%;
+  bottom: 0%;
+  right: 33%;
   transition: opacity 2s ease-in-out;
 }

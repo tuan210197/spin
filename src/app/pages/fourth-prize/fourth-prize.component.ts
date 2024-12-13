@@ -2130,13 +2130,9 @@ export class FourthPrizeComponent implements AfterViewInit {
     }
     this.isRaffleRunning = true;
     this.resetRaffle();
-    this.finalWinner = this.randomObject(this.winner);
+    
     this.winner = [
-      { code: "V1091169", name: "Hoàng Công Việt 黃功越" },
-      { code: "V1008756", name: "Lục Văn Đức 陸文德" },
-      { code: "V1005865", name: "Nguyễn Thị Hiên 阮氏宣" },
-      { code: "V3206727", name: "Vũ Thị Tuyết 武氏雪" },
-      { code: "V1073729", name: "Cao Văn Tâm 高文心" },
+    
       { code: "V3209270", name: "Hoàng Văn Hàn 黃文韓" },
       { code: "V1077650", name: "Vi Thị Hương 韋氏香" },
       { code: "V1037991", name: "Lê Văn Long 黎文龍" },
@@ -2169,22 +2165,11 @@ export class FourthPrizeComponent implements AfterViewInit {
       { code: "V1033357", name: "Bùi Thị Anh 裴氏英" },
       { code: "V0905704", name: "Đặng Thị Thái 鄧氏泰" },
       { code: "V3201488", name: "La Văn Thắng 羅文勝" },
-      { code: "V0987336", name: "Vũ Thị Tám 武氏八" },
-      { code: "V1007816", name: "Hà Thị Dung 何氏蓉" },
-      { code: "V1079525", name: "Nông Thị Minh Ngọc 農氏明玉" },
-      { code: "V0998069", name: "Phạm Thị Thoa 範氏釵" },
-      { code: "V1098450", name: "Hoàng Thị Hiền 黃氏賢" },
-      { code: "V1007925", name: "Hoàng Thị Hòa 黃氏和" },
-      { code: "V0928101", name: "Thân Văn Mạnh 申文孟" },
-      { code: "V1087300", name: "Lâm Văn Lịch 林文歷" },
-      { code: "V0992498", name: "Đỗ Thị Phương 杜世芳" },
-      { code: "V1087926", name: "Lương Văn Định 良文定" },
-      { code: "V1097557", name: "Nguyễn Hữu Hải 阮友海" },
-      { code: "V0979219", name: "Nguyễn Thị Huyền 阮氏玄" },
-      { code: "V1042769", name: "Hoàng Văn Nhân 黃文仁" },
-      { code: "V0900267", name: "Nghiêm Xuân Hưng 顏春興" },
-      { code: "V1083448", name: "Nguyễn Thị Nhung 阮氏絨" },
+
     ];
+    
+    this.finalWinner = this.randomObject(this.winner);
+    console.log(this.finalWinner)
     // Đưa người trúng vào cuối danh sách
     this.sortParticipants();
     // Bắt đầu hiệu ứng quay
