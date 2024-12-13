@@ -9,8 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class ShareService {
 
-  private apiUrl = '/api/project'; // Replace with your API URL
+  private apiUrl = 'localhost:4200/'; // Replace with your API URL
 
   constructor(private http: HttpClient, private router: Router) { }
+
+
+  
 
 }

@@ -1,9 +1,0 @@
-<div class="raffle-box">
-  <div class="names" [style.transform]="transformStyle" [style.transition]="'transform 0.1s linear'">
-    <div *ngFor="let participant of participants" class="name-item">
-      {{ participant.name +' '+ participant.code}}
-    </div>
-  </div>
-</div>
-
-<button (click)="startRaffle()" [disabled]="isRaffleRunning">Start Raffle</button>

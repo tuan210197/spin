@@ -1,0 +1,40 @@
+<div class="tab-container">
+    <mat-tab-group (selectedTabChange)="onTabChange($event)" class="custom-tabs">
+
+        <mat-tab label="WELCOME">
+            <app-waiting></app-waiting>
+
+        </mat-tab>
+        <mat-tab label="CONGRATULATION PRIZE">
+            <app-lotery></app-lotery>
+
+        </mat-tab>
+        <mat-tab label="FOURTH PRIZE">
+            <div class="tab-content">
+                <app-fourth-prize></app-fourth-prize>
+            </div>
+        </mat-tab>
+<!-- 
+        <mat-tab label="THIRD PRIZE">
+            <div class="tab-content">
+                <app-third-prize></app-third-prize>
+            </div>
+
+        </mat-tab>
+        <mat-tab label="SECOND PRIZE">
+            <div class="tab-content">
+                <app-second-prize></app-second-prize>
+            </div>
+        </mat-tab>
+        <mat-tab label="FIRST PRIZE">
+            <div class="tab-content">
+                <app-first-prize></app-first-prize>
+            </div>
+        </mat-tab>
+        <mat-tab label="SPECIAL PRIZE">
+            <div class="tab-content">
+                <app-special-prize></app-special-prize>
+            </div>
+        </mat-tab> -->
+    </mat-tab-group>
+</div>

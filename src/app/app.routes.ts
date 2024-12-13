@@ -13,6 +13,7 @@ import { SpecialPrizeComponent } from './pages/special-prize/special-prize.compo
 import { AppComponent } from './app.component';
 import { WaitingComponent } from './pages/waiting/waiting.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { SpinComponent } from './pages/spin/spin.component';
 
 
 
@@ -29,7 +30,8 @@ export const routes: Routes = [
     { path: 'lotery', component: LoteryComponent, canActivate: [AuthGuard] },
     { path: 'home', component: AppComponent, canActivate: [AuthGuard] },
     { path: 'wait', component: WaitingComponent, canActivate: [AuthGuard] },
-    { path: 'admin', component: AdminComponent, }
+    { path: 'admin', component: AdminComponent, },
+    { path: 'spin', component: SpinComponent, canActivate: [AuthGuard] }
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

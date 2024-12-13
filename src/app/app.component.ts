@@ -31,7 +31,7 @@ import { WaitingComponent } from "./pages/waiting/waiting.component";
     MatTabsModule,
     SpecialPrizeComponent,
     WaitingComponent,
-    // RouterOutlet
+    RouterOutlet
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
