@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
     debugger
 
     if (isLoggedIn && isLoginPage) {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/spin');
       return false;
     }
 

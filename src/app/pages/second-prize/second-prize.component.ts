@@ -2123,7 +2123,7 @@ export class SecondPrizeComponent implements AfterViewInit{
       { code: "V3210843", name: "Phương Thị Vân 芳氏雲" },
       { code: "V1810439", name: "Nguyễn Văn Mạnh 阮文孟" },
       { code: "V0986442", name: "Lò Văn Thiên 盧文天" },
-      { code: "V1062790", name: "Vũ Văn Tuân 武文尊" }]
+    ]
 
     if (this.isRaffleRunning) {
       return; // Không cho chạy lại khi đang quay
