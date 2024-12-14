@@ -2122,7 +2122,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
       { code: "V1087517", name: " Lê Thị Hồng 黎氏紅" },
       { code: "V1092480", name: "Nguyễn Văn Dương 阮文陽" },
       { code: "V1090780", name: "Triệu Văn Thụ 趙文樹" },
-      { code: "V3210843", name: "Phương Thị Vân 芳氏雲" },
+      { code: "", name: "" },
       { code: "", name: "" },
     ]
 
@@ -2133,7 +2133,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
     this.resetRaffle();
 
     this.winner = [
-      { code: "F9999999", name: "Mr. Jack" },
+      { code: "", name: "Mr. Jack" },
      
     ];
     this.finalWinner = this.randomObject(this.winner);
