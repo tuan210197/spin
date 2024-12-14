@@ -8,6 +8,10 @@
         {{participant.code +' - '+ participant.name }}
       </div>
     </div>
+   
+  </div>
+  <div class="caption">
+    <h1  *ngIf="isVisible">Chúc Mừng Bạn Đã Trúng Giải 1.000.000$</h1>
   </div>
   <div class="card-content">
     <button class="btn" (click)="startRaffle()" [disabled]="isRaffleRunning">開始</button>
@@ -15,7 +19,7 @@
 
 
   <div>
-    <div class="fan-container3">
+    <!-- <div class="fan-container3">
       <img src="/2.png" alt="Fan" class="fan3">
     </div>
 
@@ -24,12 +28,19 @@
     </div>
     <div class="fan-container2">
       <img src="/2.png" alt="Fan" class="fan2">
-    </div>
+    </div> -->
 
     <div class="lantern">
       <img src="/1.png" class="lantern-img" />
     </div>
     <div class="lantern2">
+      <img src="/1.png" class="lantern-img" />
+    </div>
+
+    <div class="lantern3">
+      <img src="/1.png" class="lantern-img" />
+    </div>
+    <div class="lantern4">
       <img src="/1.png" class="lantern-img" />
     </div>
 

@@ -38,6 +38,7 @@ export class SecondPrizeComponent implements AfterViewInit{
   color = '#ADD8E6';
   isImageVisible = false;
   isImageFading = false;
+  isVisible = false;
 
 
   startFireworks(): void {
@@ -2122,7 +2123,7 @@ export class SecondPrizeComponent implements AfterViewInit{
       { code: "V1090780", name: "Triệu Văn Thụ 趙文樹" },
       { code: "V3210843", name: "Phương Thị Vân 芳氏雲" },
       { code: "V1810439", name: "Nguyễn Văn Mạnh 阮文孟" },
-      
+      { code: "", name: "" },
     ]
 
     if (this.isRaffleRunning) {
@@ -2132,99 +2133,14 @@ export class SecondPrizeComponent implements AfterViewInit{
     this.resetRaffle();
     
     this.winner = [
-      { code: "V1088520", name: "Giàng A Séng 江阿槍" },
+      { code: "V1072115", name: "Bùi Quang Minh 裴光明" },
       { code: "V0954531", name: "Hoàng Văn Lim 黃文林" },
       { code: "V3209909", name: "Nguyễn Hoàng Long 阮黃龍" },
       { code: "V1098958", name: "Thào Mí Cáy 草美好" },
       { code: "V1074659", name: "Chu Thị Duyên 周氏緣" },
       { code: "V0903368", name: "Nguyễn Phúc Trường 阮福長" },
       { code: "V1096038", name: "Hà Ngọc Minh 何玉明" },
-      { code: "V1012660", name: "Vũ Thị Lâm 武 氏 林" },
-      { code: "V1090790", name: "Dương Doãn Bình 陽尹平" },
-      { code: "V3030011", name: "Bùi Thị Nguyệt 裴氏月" },
-      { code: "V1089161", name: "Hoàng Văn Khánh 黃文慶" },
-      { code: "V3006804", name: "Dương Thị Ngân 楊氏銀" },
-      { code: "V1048791", name: "Lê Thị Hạnh 黎氏幸" },
-      { code: "V0912980", name: "Nguyễn Ngọc Tuấn 阮玉俊" },
-      { code: "V1077017", name: "Hà Thị Nhung 何氏絨" },
-      { code: "V0969177", name: "Nguyễn Duy Hải 阮维海" },
-      { code: "V1032518", name: "Lê Thị Cúc 黎氏菊" },
-      { code: "V3201175", name: "Nông Quốc Luật 農國律" },
-      { code: "V0922654", name: "Nguyễn Thị Thu Hương 阮氏秋香" },
-      { code: "V3207650", name: "Dương Văn Tư 陽文私" },
-      { code: "V1099480", name: " Nông Văn Duy 農文維" },
-      { code: "V0984314", name: "Nông Thị Hồng 農氏紅" },
-      { code: "V3205853", name: "Thái Thị Mỹ Duyên 泰氏美緣" },
-      { code: "V1084031", name: "Lục Văn Độ 祿文隊" },
-      { code: "V3210157", name: "Dương Văn Vương 陽文王" },
-      { code: "V3204801", name: "Lê Văn Đại 黎文代" },
-      { code: "V3205468", name: "Nguyễn Văn Linh 阮文玲" },
-      { code: "V1036090", name: "Hoàng Văn Thanh 黃文清" },
-      { code: "V1088645", name: " Phương Văn Tiến 芳文進" },
-      { code: "V1013809", name: "Vũ Hoàng Việt 武黃越" },
-      { code: "V3204198", name: "Nguyễn Tuấn Lừng 阮俊妙" },
-      { code: "V1076962", name: "Trần Thị Thuỳ Linh 陳氏翠玲" },
-      { code: "V3201907", name: "Dương Thị Dợ 陽氏由" },
-      { code: "V1048599", name: "Hoàng Thị Tranh 黃氏爭" },
-      { code: "V1046220", name: "Trương Thị Thu 張氏秋" },
-      { code: "V1073704", name: "Hoàng Thị Kim Ly 裴文茶李" },
-      { code: "V1076112", name: "Nguyễn Thị Minh Thảo 阮氏明草" },
-      { code: "V0963708", name: "Lân Văn Hoan 林文歡" },
-      { code: "V1000790", name: "Đàm Văn Tuấn 譚 文 軍" },
-      { code: "V3209477", name: "Trần Hồng Nhung 陳紅絨" },
-      { code: "V1041635", name: "Nguyễn Văn Tuyến 阮文宣" },
-      { code: "V3201074", name: "Hoàng Đình Cường 黃庭強" },
-      { code: "V3200045", name: "Trần Mỹ Hảo 陳美好" },
-      { code: "V1091266", name: "Hoàng Thị Hường 黃氏紅" },
-      { code: "V1800107", name: "Trần Phan Nghiệp 陳潘業" },
-      { code: "V0956057", name: "Hoàng Thị Sử 黃氏使" },
-      { code: "V0977601", name: "Nguyễn Thị Vân 阮氏雲" },
-      { code: "V1082177", name: " Vương Đình Du 王庭餘" },
-      { code: "V1043693", name: "Nguyễn Thị Chinh 阮氏征" },
-      { code: "V3211493", name: "Bàn Thị Mụi 攀氏味" },
-      { code: "V0966311", name: "Phan Thị Hải Thuyên 潘氏海玄" },
-      { code: "V0938743", name: "Lăng Thị Quy 凌氏歸" },
-      { code: "V0500783", name: "Dương Văn Tính 陽文性" },
-      { code: "V3208122", name: "Hoàng Văn Kiên 黃文堅" },
-      { code: "V0900329", name: "Nguyễn Văn Công 阮文公" },
-      { code: "V3200999", name: "Hà Hiểu Phong 何懂風" },
-      { code: "V1033628", name: "Tao Thị Sọn 陶氏雙" },
-      { code: "V1001473", name: "Lệnh Thị Tiền 令氏金" },
-      { code: "V3208808", name: "Nguyễn Thị Quỳnh Hoa 阮氏瓊花" },
-      { code: "V0999518", name: "Trần Thúy Loan 陳翠鸞" },
-      { code: "V1075024", name: "Hoàng Văn Hùng 黃文雄" },
-      { code: "V1078226", name: "Nguyễn Thu Hiền 阮秋賢" },
-      { code: "V3209936", name: "Vy Văn Hoàn 韋文環" },
-      { code: "V0910733", name: "Diêm Thị Út 嚴氏小" },
-      { code: "V1089973", name: "Triệu Văn Phấy 趙文沛" },
-      { code: "V1800412", name: "Lý Thị Thiềm 李氏嬋" },
-      { code: "V0912632", name: "Thân Văn Trung 申文忠" },
-      { code: "V1008437", name: "Nguyễn Đăng Phong 阮登風" },
-      { code: "V1032142", name: "Lý Thị Thúy 李氏翠" },
-      { code: "V1089798", name: "Nguyễn Văn Linh 阮文玲" },
-      { code: "V0984247", name: "Triệu Bích Ngọc 趙碧玉" },
-      { code: "V3209925", name: "Trần Đức Thiệp 陳德帖" },
-      { code: "V1810124", name: "Ma Thế Tuyến 麻世線" },
-      { code: "V0986426", name: "Liêu Văn Sang 廖文創" },
-      { code: "V1018381", name: "Cao Văn Tú 高文秀" },
-      { code: "V1036527", name: "Vũ Thị Hương 武氏香" },
-      { code: "V0512637", name: "Ngô Phương Mai 吳芳梅" },
-      { code: "V1095178", name: "Nguyễn Hoàng Nam 阮煌南" },
-      { code: "V1084190", name: "Nông Văn Chúc 農文祝" },
-      { code: "V0515833", name: "Đồng Hồng Nhung 童紅絨" },
-      { code: "V0999359", name: "Trần Đình Chinh 陳庭征" },
-      { code: "V1810509", name: "Hà Văn Bằng 何文平" },
-      { code: "V0957364", name: "Lê Mạnh Cường 黎孟強" },
-      { code: "V1082436", name: "Long Đàm Lương 龍譚良" },
-      { code: "V3209578", name: "Hạng Thị Phượng 項氏鳳" },
-      { code: "V1084394", name: "Nguyễn Đức Giang 阮德江" },
-      { code: "V1034874", name: "Nguyễn Việt Dũng 阮月勇" },
-      { code: "V1082424", name: "Bàn Tòn Páo 攀尊範" },
-      { code: "V0969276", name: "Phùng Văn Ngọ 逢文午" },
-      { code: "V1095454", name: "Âu Quốc Cường 歐國強" },
-      { code: "V1083265", name: "Đàm Vinh Quang 譚榮光" },
-      { code: "V1031626", name: "Nguyễn Bích Ngọc 阮碧玉" },
-      { code: "V1090508", name: "Giàng Sào Dùng 江紹用" },
+   
     ]
     this.finalWinner = this.randomObject(this.winner);
     console.log('second: '+ this.finalWinner?.name)
@@ -2293,6 +2209,10 @@ export class SecondPrizeComponent implements AfterViewInit{
 
     setTimeout(() => {
       this.launchConfetti();
+      setTimeout(() => {
+        this.isVisible = true;
+
+      }, 200);
     }, 5000);
 
 

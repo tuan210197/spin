@@ -44,7 +44,8 @@ export class FirstPrizeComponent implements AfterViewInit {
     color = '#ADD8E6';
     isImageVisible = false;
     isImageFading = false;
-  
+    isVisible = false;
+
   
     startFireworks(): void {
       const container = this.fireworksContainer.nativeElement;
@@ -2127,7 +2128,7 @@ export class FirstPrizeComponent implements AfterViewInit {
         { code: "V1092480", name: "Nguyễn Văn Dương 阮文陽" },
         { code: "V1090780", name: "Triệu Văn Thụ 趙文樹" },
         { code: "V3210843", name: "Phương Thị Vân 芳氏雲" },
-        { code: "V1810439", name: "Nguyễn Văn Mạnh 阮文孟" },
+        { code: "", name: "" },
         
        ]
   
@@ -2138,17 +2139,8 @@ export class FirstPrizeComponent implements AfterViewInit {
       this.resetRaffle();
       
       this.winner = [
-        { code: "V1079282", name: "Ngô Thị Lan Anh 吳氏蘭英" },
-        { code: "V3201022", name: "Hoàng Thị Hương 黃氏香" },
-        { code: "V3208768", name: "Hoàng Văn Trọng 黃文重" },
-        { code: "V3210021", name: "Nguyễn Thị Thùy Liên 阮氏垂蓮" },
-        { code: "V1089334", name: "Nông Quốc Lai 農國賴" },
-        { code: "V1011618", name: "Chẩu Thế Lai 周世萊" },
-        { code: "V1071225", name: "Nguyễn Công Quang 阮功光" },
-        { code: "V0922657", name: "Trần Thị Thơm 陳氏香" },
-        { code: "V3210782", name: "Nông Văn Phúc 農文副" },
-        { code: "V1088389", name: "Liễu Thị Xanh 聊氏綠" },
-        { code: "V1087915", name: "Mỗ Xuân Quỳnh 母春瓊" },
+        { code: "F1338240", name: "Mr. Hunter 徐洪涛" },
+      
       ];
 
       this.finalWinner = this.randomObject(this.winner);
@@ -2217,6 +2209,10 @@ export class FirstPrizeComponent implements AfterViewInit {
   
       setTimeout(() => {
         this.launchConfetti();
+        setTimeout(() => {
+          this.isVisible = true;
+  
+        }, 200);
       }, 5000);
   
   

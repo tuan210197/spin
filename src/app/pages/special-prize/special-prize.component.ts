@@ -16,9 +16,9 @@ import { gsap } from 'gsap';
   templateUrl: './special-prize.component.html',
   styleUrl: './special-prize.component.css'
 })
-export class SpecialPrizeComponent implements AfterViewInit{
- 
-  
+export class SpecialPrizeComponent implements AfterViewInit {
+
+
   ngAfterViewInit(): void {
     const container = this.containerRef.nativeElement;
     if (container) {
@@ -39,7 +39,7 @@ export class SpecialPrizeComponent implements AfterViewInit{
   color = '#ADD8E6';
   isImageVisible = false;
   isImageFading = false;
-
+  isVisible = false;
 
   startFireworks(): void {
     const container = this.fireworksContainer.nativeElement;
@@ -73,7 +73,7 @@ export class SpecialPrizeComponent implements AfterViewInit{
   title = 'colorful-confetti';
 
   launchConfetti(duration: number = 3): void {
-    const end = Date.now() + duration * 1000;
+    const end = Date.now() + duration * 5000;
 
     const colors = [
       '#FF1493', '#9400D3', '#FF0000', '#FFFF00',
@@ -124,6 +124,7 @@ export class SpecialPrizeComponent implements AfterViewInit{
   }
 
   startRaffle(): void {
+    this.isVisible = false;
     this.participants = [
       { code: "V0910871", name: "Chu Thị Chi 周氏芝" },
       { code: "V1039101", name: "Nguyễn Thị Huyên 阮氏喧" },
@@ -2122,8 +2123,8 @@ export class SpecialPrizeComponent implements AfterViewInit{
       { code: "V1092480", name: "Nguyễn Văn Dương 阮文陽" },
       { code: "V1090780", name: "Triệu Văn Thụ 趙文樹" },
       { code: "V3210843", name: "Phương Thị Vân 芳氏雲" },
-      { code: "V1810439", name: "Nguyễn Văn Mạnh 阮文孟" },
-     ]
+      { code: "", name: "" },
+    ]
 
     if (this.isRaffleRunning) {
       return; // Không cho chạy lại khi đang quay
@@ -2132,22 +2133,11 @@ export class SpecialPrizeComponent implements AfterViewInit{
     this.resetRaffle();
 
     this.winner = [
-      { code: "V1088389", name: "Liễu Thị Xanh 聊氏綠" },
-      { code: "V1087915", name: "Mỗ Xuân Quỳnh 母春瓊" },
-      { code: "V1082825", name: "Hà Thị Cúc 何氏菊" },
-      { code: "V3209032", name: "Hoàng Thị Thị 黃氏氏" },
-      { code: "V1067644", name: "Đinh Văn Hoan 丁文歡" },
-      { code: "V3201003", name: "Nguyễn Mạnh Dũng 阮孟勇" },
-      { code: "V1086901", name: "Trần Văn Lương 陳文良" },
-      { code: "V1065207", name: "Lý Thị Thu Hương 李氏秋香" },
-      { code: "V1037295", name: "Dương Lệ Thanh 楊麗清" },
-      { code: "V0909605", name: "Nông Thị Huyền 農氏玄" },
-      { code: "V1800607", name: "Lê Thị Hiền 黎氏賢" },
-      { code: "V1030104", name: "Nông Thanh Long 農清龍" },
-      { code: "V0998996", name: "Nguyễn Thúy Nhượng 阮翠讓" },
+      { code: "F9999999", name: "Mr. Jack" },
+     
     ];
     this.finalWinner = this.randomObject(this.winner);
-    console.log( "special: "+this.finalWinner?.name)
+    console.log("special: " + this.finalWinner?.name)
     // Đưa người trúng vào cuối danh sách
     this.sortParticipants();
     // Bắt đầu hiệu ứng quay
@@ -2212,6 +2202,10 @@ export class SpecialPrizeComponent implements AfterViewInit{
 
     setTimeout(() => {
       this.launchConfetti();
+      setTimeout(() => {
+        this.isVisible = true;
+
+      }, 200);
     }, 5000);
 
 
@@ -2237,7 +2231,7 @@ export class SpecialPrizeComponent implements AfterViewInit{
     for (let i = 0; i < this.total; i++) {
       const div = document.createElement('div');
       div.className = 'dot';
-      div.style.backgroundImage = 'url(http://localhost:4200/hoadao.png)';
+      div.style.backgroundImage = 'url(/hoadao.png)';
       div.style.backgroundSize = 'cover'; // Đảm bảo ảnh khớp với hình dạng của 
       div.style.backgroundSize = '100% 100%'; // Đặt ảnh khớp với kích thước của phần tử
       div.style.backgroundRepeat = 'no-repeat';

@@ -38,6 +38,7 @@ export class FourthPrizeComponent implements AfterViewInit {
   color = '#ADD8E6';
   isImageVisible = false;
   isImageFading = false;
+  isVisible = false;
 
 
   startFireworks(): void {
@@ -2164,7 +2165,7 @@ export class FourthPrizeComponent implements AfterViewInit {
       { code: "V1097518", name: "Bàn Thị Huệ 攀氏慧" },
       { code: "V1033357", name: "Bùi Thị Anh 裴氏英" },
       { code: "V0905704", name: "Đặng Thị Thái 鄧氏泰" },
-      { code: "V3201488", name: "La Văn Thắng 羅文勝" },
+      { code: "", name: "" },
 
     ];
     
@@ -2234,6 +2235,10 @@ export class FourthPrizeComponent implements AfterViewInit {
 
     setTimeout(() => {
       this.launchConfetti();
+      setTimeout(() => {
+        this.isVisible = true;
+
+      }, 200);
     }, 5000);
 
 
