@@ -2122,7 +2122,7 @@ export class SecondPrizeComponent implements AfterViewInit{
       { code: "V1090780", name: "Triệu Văn Thụ 趙文樹" },
       { code: "V3210843", name: "Phương Thị Vân 芳氏雲" },
       { code: "V1810439", name: "Nguyễn Văn Mạnh 阮文孟" },
-      { code: "V0986442", name: "Lò Văn Thiên 盧文天" },
+      
     ]
 
     if (this.isRaffleRunning) {
@@ -2130,7 +2130,7 @@ export class SecondPrizeComponent implements AfterViewInit{
     }
     this.isRaffleRunning = true;
     this.resetRaffle();
-    this.finalWinner = this.randomObject(this.winner);
+    
     this.winner = [
       { code: "V1088520", name: "Giàng A Séng 江阿槍" },
       { code: "V0954531", name: "Hoàng Văn Lim 黃文林" },
@@ -2226,6 +2226,9 @@ export class SecondPrizeComponent implements AfterViewInit{
       { code: "V1031626", name: "Nguyễn Bích Ngọc 阮碧玉" },
       { code: "V1090508", name: "Giàng Sào Dùng 江紹用" },
     ]
+    this.finalWinner = this.randomObject(this.winner);
+    console.log('second: '+ this.finalWinner?.name)
+
     // Đưa người trúng vào cuối danh sách
     this.sortParticipants();
     // Bắt đầu hiệu ứng quay
@@ -2262,14 +2265,14 @@ export class SecondPrizeComponent implements AfterViewInit{
 
       // Tính toán tiến trình giảm tốc dựa trên easing
       const easedProgress = this.easeOutQuad(t);
-      console.log('eased: ' + easedProgress)
+      // console.log('eased: ' + easedProgress)
       // Xác định index dựa trên tiến trình giảm tốc
       const targetIndex = Math.floor(easedProgress * (totalNames - 1));
 
       // Tính toán offset
       this.currentOffset = targetIndex * this.lineHeight;
       // console.log('lineHeight: '+ this.lineHeight)
-      console.log('targetIndex: ' + targetIndex)
+      // console.log('targetIndex: ' + targetIndex)
       // console.log('ofset: '+this.currentOffset)
       // Cập nhật vị trí bằng CSS transform
       this.transformStyle = `translateY(-${this.currentOffset}px)`;

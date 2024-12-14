@@ -20,7 +20,7 @@ import { SpinComponent } from './pages/spin/spin.component';
 
 export const routes: Routes = [
 
-    { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+    // { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'first', component: FirstPrizeComponent, canActivate: [AuthGuard] },
     { path: 'second', component: SecondPrizeComponent, canActivate: [AuthGuard] },

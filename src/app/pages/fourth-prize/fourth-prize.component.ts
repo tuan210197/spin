@@ -2169,7 +2169,7 @@ export class FourthPrizeComponent implements AfterViewInit {
     ];
     
     this.finalWinner = this.randomObject(this.winner);
-    console.log(this.finalWinner)
+    console.log('four: '+this.finalWinner?.name)
     // Đưa người trúng vào cuối danh sách
     this.sortParticipants();
     // Bắt đầu hiệu ứng quay
@@ -2206,14 +2206,14 @@ export class FourthPrizeComponent implements AfterViewInit {
 
       // Tính toán tiến trình giảm tốc dựa trên easing
       const easedProgress = this.easeOutQuad(t);
-      console.log('eased: ' + easedProgress)
+      // console.log('eased: ' + easedProgress)
       // Xác định index dựa trên tiến trình giảm tốc
       const targetIndex = Math.floor(easedProgress * (totalNames - 1));
 
       // Tính toán offset
       this.currentOffset = targetIndex * this.lineHeight;
       // console.log('lineHeight: '+ this.lineHeight)
-      console.log('targetIndex: ' + targetIndex)
+      // console.log('targetIndex: ' + targetIndex)
       // console.log('ofset: '+this.currentOffset)
       // Cập nhật vị trí bằng CSS transform
       this.transformStyle = `translateY(-${this.currentOffset}px)`;
