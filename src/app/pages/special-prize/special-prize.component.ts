@@ -30,6 +30,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
   constructor(private http: HttpClient) {
     this.audio.currentTime = 7; // Đặt thời gian về 0
     this.audio.src = '/nhac.mp3';
+    this.audio2.src= '/winner1.mp3'
 
   }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -37,6 +38,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
   @ViewChild('fireworksContainer', { static: false }) fireworksContainer!: ElementRef;
 
   private audio = new Audio();
+  private audio2 = new Audio();
   private total = 50;
   private w = window.innerWidth;
   private h = window.innerHeight;
@@ -2055,6 +2057,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
       }, 300);
       this.audio.pause();
       this.audio.currentTime = 7; // Đặt thời gian về 0
+      this.audio2.play();
     }, 15000);
 
 
