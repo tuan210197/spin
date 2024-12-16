@@ -2171,7 +2171,9 @@ export class SecondPrizeComponent implements AfterViewInit{
     const totalNames = this.participants.length; // Tổng số tên cần cuộn qua
     const startTime = Date.now();
     const endTime = startTime + duration;
-    const winnerIndex = this.participants.length - 1;
+    const winnerIndex = this.participants.length + 1;
+    this.isVisible = false;
+
 
 
     const updatePosition = () => {
@@ -2238,7 +2240,7 @@ export class SecondPrizeComponent implements AfterViewInit{
     for (let i = 0; i < this.total; i++) {
       const div = document.createElement('div');
       div.className = 'dot';
-      div.style.backgroundImage = 'url(http://localhost:4200/hoadao.png)';
+      div.style.backgroundImage = 'url(/hoadao.png)';
       div.style.backgroundSize = 'cover'; // Đảm bảo ảnh khớp với hình dạng của 
       div.style.backgroundSize = '100% 100%'; // Đặt ảnh khớp với kích thước của phần tử
       div.style.backgroundRepeat = 'no-repeat';

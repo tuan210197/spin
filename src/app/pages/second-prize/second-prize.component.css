@@ -75,8 +75,9 @@
   align-items: center;
   margin: auto;
   /* height: 100vh; */
-  top: 60%;
-  left: 45.5%;
+  top: 65%;
+  left: 50%; 
+  transform: translate(-50%,-50%);
 
 }
 
@@ -208,6 +209,8 @@ tr:hover {
   top: 0;
   right: 0%;
   transform-origin: top center;
+  /* transform: translate(-50%,-50%); */
+
   /* Đặt điểm quay tại đỉnh của đèn lồng */
   animation: sway 5s ease-in-out infinite;
   /* Áp dụng hiệu ứng lắc lư */
@@ -249,8 +252,8 @@ tr:hover {
 
 /* Ảnh đèn lồng */
 .lantern2 img {
-  width: 300px;
-  /* Đặt kích thước đèn lồng */
+  max-width: 100%;
+  width: 200px;
   height: auto;
 }
 
@@ -363,16 +366,17 @@ tr:hover {
     transform: rotate(0deg);
   }
 }
-
+/* 
 .content1 {
   position: fixed;
   justify-content: center;
   align-items: center;
   height: 100vh;
   top: 20%;
-  left: 47.5%;
+  left: 50%; 
+  transform: translate(-50%,-50%);
 
-}
+} */
 
 
 
@@ -388,7 +392,8 @@ tr:hover {
   align-items: center;
   /* height: 100vh; */
   top: 40%;
-  left: 25%;
+  left: 50%; 
+  transform: translate(-50%,-50%);
 }
 
 .names {
@@ -423,11 +428,13 @@ tr:hover {
 }
 
 .imgs {
-  width: 350px;
-  height: 350px;
+  max-width: 100%;
+  /* width: 350px; */
+  height: auto;
   position: absolute;
   bottom: 5%;
   left: 25%;
+  transform: translate(-50%,-50%);
   transition: opacity 2s ease-in-out;
 }
 
@@ -440,35 +447,18 @@ tr:hover {
   transition: opacity 2s ease-in-out;
 }
 
-.caption {
-
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  top: 20%;
-  left: 47.5%;
-}
-
 .caption h1 {
-  /* Hiển thị 1 dòng */
-  /* overflow: hidden;
-  position: relative; */
   border: none;
   color: #ffffff;
   position: fixed;
   top: 47%;
-  left: 30%;
+  left: 50%; 
+  transform: translate(-50%,-50%);
   font-size: 50px;
   font-weight: bold;
   text-align: center;
-  /* background: linear-gradient(99deg,#ffffff, #87cefa,#6a5acd);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
-  /* animation: grandientAnimation 3s ease infinite, bounceEffect 1s ease infinite; */
 
 }
-
 @keyframes grandientAnimation {
   0% {transform: translateY(0) }
   50% {transform: translateY(10px) }

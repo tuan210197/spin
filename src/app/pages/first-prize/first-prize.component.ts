@@ -2140,6 +2140,7 @@ export class FirstPrizeComponent implements AfterViewInit {
       
       this.winner = [
         { code: "F1338240", name: "Mr. Hunter 徐洪涛" },
+
       
       ];
 
@@ -2167,11 +2168,12 @@ export class FirstPrizeComponent implements AfterViewInit {
       }
     }
     runAnimation(): void {
-      const duration = 5000; // Tổng thời gian quay (15 giây)
+      const duration = 15000; // Tổng thời gian quay (15 giây)
       const totalNames = this.participants.length; // Tổng số tên cần cuộn qua
       const startTime = Date.now();
       const endTime = startTime + duration;
-      const winnerIndex = this.participants.length - 1;
+      const winnerIndex = this.participants.length + 1;
+      this.isVisible = false;
   
   
       const updatePosition = () => {
@@ -2213,7 +2215,7 @@ export class FirstPrizeComponent implements AfterViewInit {
           this.isVisible = true;
   
         }, 200);
-      }, 5000);
+      }, 15000);
   
   
     }
@@ -2238,7 +2240,7 @@ export class FirstPrizeComponent implements AfterViewInit {
       for (let i = 0; i < this.total; i++) {
         const div = document.createElement('div');
         div.className = 'dot';
-        div.style.backgroundImage = 'url(http://localhost:4200/hoadao.png)';
+        div.style.backgroundImage = 'url(/hoadao.png)';
         div.style.backgroundSize = 'cover'; // Đảm bảo ảnh khớp với hình dạng của 
         div.style.backgroundSize = '100% 100%'; // Đặt ảnh khớp với kích thước của phần tử
         div.style.backgroundRepeat = 'no-repeat';

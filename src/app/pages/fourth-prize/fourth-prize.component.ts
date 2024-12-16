@@ -124,6 +124,7 @@ export class FourthPrizeComponent implements AfterViewInit {
   }
 
   startRaffle(): void {
+    this.isVisible = false;
     this.participants = [
       { code: "V0910871", name: "Chu Thị Chi 周氏芝" },
       { code: "V1039101", name: "Nguyễn Thị Huyên 阮氏喧" },
@@ -2122,9 +2123,9 @@ export class FourthPrizeComponent implements AfterViewInit {
       { code: "V1092480", name: "Nguyễn Văn Dương 阮文陽" },
       { code: "V1090780", name: "Triệu Văn Thụ 趙文樹" },
       { code: "V3210843", name: "Phương Thị Vân 芳氏雲" },
-      { code: "V1810439", name: "Nguyễn Văn Mạnh 阮文孟" },
-      { code: "V0986442", name: "Lò Văn Thiên 盧文天" },
-      { code: "V1062790", name: "Vũ Văn Tuân 武文尊" }]
+      { code: "", name: "" },
+      
+     ]
 
     if (this.isRaffleRunning) {
       return; // Không cho chạy lại khi đang quay
@@ -2133,46 +2134,36 @@ export class FourthPrizeComponent implements AfterViewInit {
     this.resetRaffle();
     
     this.winner = [
-    
-      { code: "V3209270", name: "Hoàng Văn Hàn 黃文韓" },
-      { code: "V1077650", name: "Vi Thị Hương 韋氏香" },
-      { code: "V1037991", name: "Lê Văn Long 黎文龍" },
-      { code: "V0987642", name: "Đặng Quang Sáng 鄧光亮" },
-      { code: "V3205337", name: "Lường Thị Đại 良氏代" },
-      { code: "V3207410", name: "Lê Thị Hợp 黎氏和" },
-      { code: "V0959953", name: "Dương Thị Như Quỳnh 楊氏如瓊" },
-      { code: "V3205190", name: "Phạm Thị Quỳnh 范氏瓊" },
-      { code: "V1810363", name: "Bùi Thị Hiệu 裴氏效" },
-      { code: "V1093014", name: "Hoàng Quốc Triệu 阮越雄" },
-      { code: "V1096219", name: "Vừ Mí Chá 適美長" },
-      { code: "V1005847", name: "Hoàng Văn Chuẩn 黃文准" },
-      { code: "V1099637", name: "Phạm Thị Út 范氏小" },
-      { code: "V0910491", name: "Dương Thị Hồng Trang 楊氏紅狀" },
-      { code: "V1082539", name: "Leo Văn Hải 廖文海" },
-      { code: "V0906795", name: "Thân Thị Son 申氏山" },
-      { code: "V1800078", name: "Ong Xuân Hùng 汪春雄" },
-      { code: "V1075566", name: "Nguyễn Văn Hà 阮文何" },
-      { code: "V1093536", name: "Hoàng Thị Quy 黃氏花" },
-      { code: "V1025244", name: "Trương Công Việt 張公越" },
-      { code: "V1079816", name: "Nguyễn Thị Loan 阮氏灣" },
-      { code: "V3209618", name: "Hoàng Văn Tâm 黃文心" },
-      { code: "V1067864", name: "Hoàng Thanh Phong 黃青風" },
-      { code: "V0971474", name: "Đào Ngọc An 陶玉安" },
-      { code: "V3203145", name: "Phạm Văn Công 范文功" },
-      { code: "V0933824", name: "Đậu Thị Tâm 豆氏心" },
-      { code: "V1098881", name: "Nguyễn Xuân Bảo 阮春寶" },
-      { code: "V1092094", name: "Nông Văn Tuất 農文戌" },
-      { code: "V1097518", name: "Bàn Thị Huệ 攀氏慧" },
-      { code: "V1033357", name: "Bùi Thị Anh 裴氏英" },
-      { code: "V0905704", name: "Đặng Thị Thái 鄧氏泰" },
-      { code: "", name: "" },
-
+      { code: "V0924572", name: "Lương Thị Lệ 梁氏麗" },
+      { code: "V0301251", name: "Vũ Thị Phương 武氏方" },
+      { code: "V3207371", name: "Dương Thị Kim Oanh 陽氏金鶯" },
+      { code: "V1016441", name: "Nguyễn Văn Công 阮文功" },
+      { code: "V1082033", name: " Hoàng Ngọc Chiều 黃玉朝" },
+      { code: "V1006965", name: "Trần Văn Chiến 陳文戰" },
+      { code: "V1006865", name: "Nguyễn Thanh Hương 阮青香" },
+      { code: "V1010005", name: "Phạm Ngọc Lâm 范玉林" },
+      { code: "V1055166", name: "Đậu Thị Hà 豆氏霞" },
+      { code: "V1088503", name: "Giàng Văn Quẩy 江文軍" },
+      { code: "V0987130", name: "Nguyễn Đức Thuân 阮德順" },
+      { code: "V3204827", name: "Nông Quốc Việt 農國越" },
+      { code: "V1098461", name: "Lý Mùi Chản 李味真" },
+      { code: "V1810535", name: "Lâm Văn Thủ 林文首" },
+      { code: "V3209050", name: "Bùi Văn Quyền 裴文權" },
+      { code: "V0900343", name: "Nguyễn Thị Thọ 阮氏寿" },
+      { code: "V1052875", name: "Đỗ Thị Nguyệt 杜氏月" },
+      { code: "V1008699", name: "Nguyễn Anh Tuyến 阮英線" },
+      { code: "V1099570", name: "Nguyễn Trọng Tấn 阮重晉" },
+      { code: "V1032339", name: " Nguyễn Tất Đạt 阮必達" },
+      { code: "V3207303", name: "Hoàng Văn Quảng 黃文廣" },
+      { code: "V0952199", name: "Nguyễn Chí Huệ 阮志惠" },
+      { code: "V1090667", name: "Lý Văn Hoàn 李文環" },
+      { code: "V1090679", name: "Lò Văn Sơn 爐文山" },
     ];
-    
+
     this.finalWinner = this.randomObject(this.winner);
-    console.log('four: '+this.finalWinner?.name)
     // Đưa người trúng vào cuối danh sách
     this.sortParticipants();
+    console.log('third: '+this.finalWinner?.name)
     // Bắt đầu hiệu ứng quay
     this.runAnimation();
     // });
@@ -2197,7 +2188,7 @@ export class FourthPrizeComponent implements AfterViewInit {
     const totalNames = this.participants.length; // Tổng số tên cần cuộn qua
     const startTime = Date.now();
     const endTime = startTime + duration;
-    const winnerIndex = this.participants.length - 1;
+    const winnerIndex = this.participants.length + 1;
 
 
     const updatePosition = () => {
@@ -2264,7 +2255,7 @@ export class FourthPrizeComponent implements AfterViewInit {
     for (let i = 0; i < this.total; i++) {
       const div = document.createElement('div');
       div.className = 'dot';
-      div.style.backgroundImage = 'url(http://localhost:4200/hoadao.png)';
+      div.style.backgroundImage = 'url(/hoadao.png)';
       div.style.backgroundSize = 'cover'; // Đảm bảo ảnh khớp với hình dạng của 
       div.style.backgroundSize = '100% 100%'; // Đặt ảnh khớp với kích thước của phần tử
       div.style.backgroundRepeat = 'no-repeat';

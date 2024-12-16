@@ -209,8 +209,9 @@
 
 .snake {
   position: absolute;
-  top: 50%;
-  right: 44%;
+  top: 72.5%;
+  left: 49.5%;
+  transform: translate(-50%,-50%);
   transform-origin: top center;
   /* Đặt điểm quay tại đỉnh của đèn lồng */
   /* animation: swinggold 5s ease-in-out infinite; Áp dụng hiệu ứng lắc lư */
@@ -224,10 +225,10 @@
 
 .snake2 {
   position: absolute;
-  top: 40%;
-  right: 45.5%;
-  transform-origin: top center;
-  /* Đặt điểm quay tại đỉnh của đèn lồng */
+  top: 42%;
+  /* left: 51.5%; */
+  left: 40%; 
+  transform: translate(-50%,-50%);
   animation: snake 3s ease-in-out infinite;
 }
 
