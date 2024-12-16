@@ -30,7 +30,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
   constructor(private http: HttpClient) {
     this.audio.currentTime = 7; // Đặt thời gian về 0
     this.audio.src = '/nhac.mp3';
-    this.audio2.src= '/winner1.mp3'
+    this.audio2.src = '/winner1.mp3'
 
   }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -1973,10 +1973,10 @@ export class SpecialPrizeComponent implements AfterViewInit {
       { code: "V1014451", name: "Đồng Thị Phương Anh 同時芳英" },
       { code: "V1016171", name: "Quàng Thị Phong 鄺氏風" },
       { code: "V1093813", name: "Bế Minh Thân 閉明申" },
+      { code: "021987", name: "Mr. Chris 黃成傑" },
       { code: "V3211070", name: "Bùi Văn Sơn 裴文山" },
+      { code: "F1338240", name: "Mr. Hunter 徐洪涛" },
       { code: "V3209045", name: "Quách Văn Yên 郭文安" },
-      { code: "V1082139", name: " Lã Văn Thiện 呂文善" },
-      { code: "V1089612", name: "Hà Văn Phương 何文芳" },
       { code: "", name: "" },
     ]
 
@@ -1987,7 +1987,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
     this.resetRaffle();
 
     this.winner = [
-      { code: "", name: "Mr. Jack" },
+      { code: "F1338865", name: "Mr. Jack 陳晉賢" },
 
     ];
     this.finalWinner = this.randomObject(this.winner);
@@ -2018,7 +2018,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
     const totalNames = this.participants.length; // Tổng số tên cần cuộn qua
     const startTime = Date.now();
     const endTime = startTime + duration;
-    const winnerIndex = this.participants.length - 1;
+    const winnerIndex = this.participants.length + 1;
     this.isVisible = false;
 
 
