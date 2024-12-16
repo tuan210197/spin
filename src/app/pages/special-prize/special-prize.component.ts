@@ -28,7 +28,8 @@ export class SpecialPrizeComponent implements AfterViewInit {
   }
 
   constructor(private http: HttpClient) {
-    this.audio.src = '';
+    this.audio.currentTime = 7; // Đặt thời gian về 0
+    this.audio.src = '/nhac.mp3';
 
   }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -2044,7 +2045,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
     };
 
     requestAnimationFrame(updatePosition); // Khởi động vòng lặp
-
+    this.audio.play()
 
     setTimeout(() => {
       this.launchConfetti();
@@ -2052,6 +2053,8 @@ export class SpecialPrizeComponent implements AfterViewInit {
         this.isVisible = true;
 
       }, 300);
+      this.audio.pause();
+      this.audio.currentTime = 7; // Đặt thời gian về 0
     }, 15000);
 
 
