@@ -1,24 +1,24 @@
-import { Component , ElementRef, ViewChild } from '@angular/core';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import{MatListModule} from '@angular/material/list';
-import {CommonModule } from '@angular/common';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { CommonModule } from '@angular/common';
 import { Fireworks } from 'fireworks-js';
+import { ShareService } from '../../services/share.service';
 
 
 @Component({
   selector: 'app-lotery',
   standalone: true,
-  imports: [MatTabsModule,MatGridListModule,MatCardModule, MatListModule,MatButtonModule,CommonModule ],
+  imports: [MatTabsModule, MatGridListModule, MatCardModule, MatListModule, MatButtonModule, CommonModule],
   templateUrl: './lotery.component.html',
   styleUrl: './lotery.component.css'
 })
 
 
 export class LoteryComponent {
-
 
   @ViewChild('fireworksContainer', { static: false }) fireworksContainer!: ElementRef;
 
@@ -48,16 +48,16 @@ export class LoteryComponent {
 
     this.fireworks.start();
 
-      setTimeout(() => {
-        this.fireworks.waitStop(); 
-      }, 5000); 
+    setTimeout(() => {
+      this.fireworks.waitStop();
+    }, 5000);
   }
   numbers: string[] = []; // Mảng lưu các số đã được chọn
   availableNumbers: string[] = []; // Danh sách số từ 00-99
   currentNumber: string = '00'; // Số hiện tại đang hiển thị
 
 
-  constructor() {
+  constructor(private share: ShareService) {
     this.availableNumbers = Array.from({ length: 100 }, (_, i) =>
       i.toString().padStart(2, '0')
     );
@@ -84,14 +84,16 @@ export class LoteryComponent {
       clearInterval(interval); // Dừng quay số sau 10 giây
       const randomIndex = Math.floor(Math.random() * this.availableNumbers.length);
       const chosenNumber = this.availableNumbers[randomIndex];
-      
+
       // Cập nhật số chính thức và mảng
       this.currentNumber = chosenNumber;
       console.log(this.currentNumber);
-      this.numbers.push(chosenNumber);
+      this.share.chooseCon(Number(this.currentNumber)).subscribe((data) => { console.log(data); });
+      // this.numbers.push(chosenNumber);
       this.startFireworks();
     }, 5000);
   }
+
 
 }
 

@@ -1,5 +1,3 @@
-
-
 .container-fluid {
   /* display: flex; */
   /* position: fixed; */
@@ -12,19 +10,25 @@
   align-items: center;
   overflow: hidden;
   width: 100%;
-   height: 90vh; /*Chiều cao 100% màn hình */
-  background-color: #f5f5f5; /* Màu nền (tuỳ chỉnh) */
-  padding-right: 20px; /* Tạo khoảng trống bên phải */
-  box-sizing: border-box; /* Đảm bảo padding không làm thay đổi kích thước */
-  pointer-events: none; /* Cho phép các sự kiện chuột đi qua */
+  height: 90vh;
+  /*Chiều cao 100% màn hình */
+  background-color: #f5f5f5;
+  /* Màu nền (tuỳ chỉnh) */
+  padding-right: 20px;
+  /* Tạo khoảng trống bên phải */
+  box-sizing: border-box;
+  /* Đảm bảo padding không làm thay đổi kích thước */
+  pointer-events: none;
+  /* Cho phép các sự kiện chuột đi qua */
 }
+
 .container2 {
   position: absolute;
   justify-content: flex-end;
   width: 100%;
   height: 100%;
   overflow: hidden;
- 
+
 }
 
 
@@ -103,6 +107,7 @@
     /* Quay 360 độ theo chiều kim đồng hồ */
   }
 }
+
 /* Animation quay quạt theo chiều kim đồng hồ */
 @keyframes spin-clockwise3 {
   0% {
@@ -179,11 +184,6 @@
   /* Áp dụng hiệu ứng lắc lư */
 }
 
-
-
-
-
-
 @keyframes swinggold {
   0% {
     transform: rotate(0deg);
@@ -206,58 +206,59 @@
   }
 }
 
+.snake-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+}
 
 .snake {
   position: absolute;
-  top: 72.5%;
-  left: 49.5%;
-  transform: translate(-50%,-50%);
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   transform-origin: top center;
-  /* Đặt điểm quay tại đỉnh của đèn lồng */
-  /* animation: swinggold 5s ease-in-out infinite; Áp dụng hiệu ứng lắc lư */
+
 }
 
-.snake img {
-  width: 350px;
-  /* Đặt kích thước đèn lồng */
+.snake {
+  width: 20%;
   height: auto;
 }
 
 .snake2 {
   position: absolute;
-  top: 42%;
-  /* left: 51.5%; */
-  left: 40%; 
-  transform: translate(-50%,-50%);
+  top: 34.5%;
+
+  left: 38%;
+  transform: translate(-50%, -50%);
   animation: snake 3s ease-in-out infinite;
 }
 
-.snake2 img {
-  width: 330px;
-  /* Đặt kích thước đèn lồng */
+.snake2 {
+  width: 20%;
   height: auto;
 }
 
 @keyframes snake {
-  /* 0% { transform: rotate(0deg); }
-      25% { transform: rotate(3deg); }
-      50% { transform: rotate(0deg); }
-      75% { transform: rotate(-3deg); }
-      100% { transform: rotate(0deg); } */
 
   0% {
     transform: rotate(5deg) translateX(-10px);
-    /* Bắt đầu nghiêng và di chuyển sang trái */
+
   }
 
   50% {
     transform: rotate(-5deg) translateX(10px);
-    /* Nghiêng và di chuyển sang phải */
+
   }
 
   100% {
     transform: rotate(5deg) translateX(-10px);
-    /* Quay lại vị trí ban đầu */
+
   }
 }
 
@@ -283,10 +284,13 @@
 }
 
 @keyframes sparkle {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0;
     transform: scale(0.5);
   }
+
   50% {
     opacity: 1;
     transform: scale(1);

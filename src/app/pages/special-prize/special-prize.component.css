@@ -412,22 +412,6 @@ tr:hover {
 
 
 
-.raffle-box {
-  height: 70px;
-  /* Hiển thị 1 dòng */
-  overflow: hidden;
-  position: relative;
-  border: none;
-
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  /* height: 100vh; */
-  top: 40%;
-  left: 50%; 
-  transform: translate(-50%,-50%);
-}
-
 
 
 .caption h1 {
@@ -453,23 +437,44 @@ tr:hover {
   50% {transform: translateY(-10px);}
 
 }
+.raffle-box {
+  height: 100px;
+  overflow: hidden;
+  position: relative;
+  border: none;
+
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 40%;
+  left: 50%; 
+  transform: translate(-50%,-50%);
+}
+
+
 .names {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   transition: transform 0.1s linear;
-  /* Đảm bảo mượt */
 }
 
 .name-item {
-  /* height: 100px; */
-  line-height: 50px;
+  /* width: 100%; */
+  line-height: 50px; /* thay đổi test*/
   text-align: center;
   font-weight: bold;
   color: #ffffff;
   font-size: 45px;
-  /* -webkit-text-stroke: 1px #fbff27; */
-  /* animation: grandientAnimation 3s ease infinite; */
 }
+
+.name-item.winner {
+  background-color: #ffd700; 
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+} 
 
 
 
@@ -502,3 +507,34 @@ tr:hover {
   right: 25%;
   transition: opacity 2s ease-in-out;
 }
+
+.raffle-box2 {
+  height: 100px;
+  overflow: hidden;
+  position: relative;
+  border: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 40%;
+  left: 50%; 
+  transform: translate(-50%,-50%);
+}
+
+
+.names2 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+
+}
+
+.name-item2 {
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 45px;
+}
+

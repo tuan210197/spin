@@ -3,12 +3,19 @@
   <!-- <div class="container2"> -->
   <div #container2 class="container2"></div>
   <div class="raffle-box">
-    <div class="names" [style.transform]="transformStyle">
+    <div class="names" *ngIf="!showWinnerDiv" [style.transform]="transformStyle">
       <div *ngFor="let participant of participants" class="name-item">
         {{participant.code +' - '+ participant.name }}
       </div>
     </div>
+
   </div>
+  <div class="raffle-box2">
+    <div *ngIf="showWinnerDiv" class="names2">
+      <p class="name-item2">{{ finalWinner?.code +' - ' }} {{ finalWinner?.name }}</p>
+    </div>
+  </div>
+
   <div class="caption">
     <h1  *ngIf="isVisible">Chúc Mừng Bạn Đã Trúng Giải 1.000$</h1>
   </div>

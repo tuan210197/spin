@@ -3,15 +3,22 @@
   <!-- <div class="container2"> -->
   <div #container2 class="container2"></div>
   <div class="raffle-box">
-    <div class="names" [style.transform]="transformStyle">
+    <div class="names" *ngIf="!showWinnerDiv" [style.transform]="transformStyle">
       <div *ngFor="let participant of participants" class="name-item">
         {{participant.code +' - '+ participant.name }}
       </div>
     </div>
-    
+
   </div>
+  <div class="raffle-box2">
+    <div *ngIf="showWinnerDiv" class="names2">
+      <p class="name-item2">{{ finalWinner?.code +' - ' }} {{ finalWinner?.name }}</p>
+    </div>
+  </div>
+
+
   <div class="caption">
-    <h1  *ngIf="isVisible">恭喜您得獎 1.000.000 $</h1>
+    <h1 *ngIf="isVisible">恭喜您得獎 1.000.000 $</h1>
   </div>
   <div class="card-content">
     <button class="btn" (click)="startRaffle()" [disabled]="isRaffleRunning">開始</button>
@@ -19,16 +26,6 @@
 
 
   <div>
-    <!-- <div class="fan-container3">
-      <img src="/2.png" alt="Fan" class="fan3">
-    </div>
-
-    <div class="fan-container">
-      <img src="/2.png" alt="Fan" class="fan">
-    </div>
-    <div class="fan-container2">
-      <img src="/2.png" alt="Fan" class="fan2">
-    </div> -->
 
     <div class="lantern">
       <img src="/1.png" class="lantern-img" />
