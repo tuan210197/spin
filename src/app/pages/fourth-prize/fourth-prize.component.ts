@@ -38,9 +38,11 @@ export class FourthPrizeComponent implements AfterViewInit {
     }
     this.dataSource.paginator = this.paginator;
   }
+  ngOnInit(): void {
+    // this.dataSource.data = this.getData();
+  }
 
-  @ViewChild('paginator', { static: true }) paginator!: MatPaginator;
-  // @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild('container2') containerRef!: ElementRef<HTMLDivElement>;
   @ViewChild('fireworksContainer', { static: false }) fireworksContainer!: ElementRef;
 
@@ -67,7 +69,7 @@ export class FourthPrizeComponent implements AfterViewInit {
   requestId = 0; // Tham chiếu của requestAnimationFrame
   tableVisible = true;
 
-  dataSource = new MatTableDataSource<Four>(this.listWinner);
+  dataSource = new MatTableDataSource<Four>([]);
   displayedColumns: string[] = ['code', 'vn_name', 'bu', 'working_time'];
   // dataSourceWithPageSize = new MatTableDataSource(this.listWinner);
 
@@ -183,7 +185,7 @@ export class FourthPrizeComponent implements AfterViewInit {
 
   }
   async loadTable(): Promise<void> {
-    debugger
+    this.listWinner = [];
     const four: Four = { code: '0', vn_name: '', bu: '', working_time: 'A' };
     try {
       const listWinner = await firstValueFrom(this.share.getListFourA(four));
@@ -260,6 +262,15 @@ export class FourthPrizeComponent implements AfterViewInit {
   }
   private random(min: number, max: number): number {
     return Math.max(min, Math.min(max, min + Math.random() * (max - min)));
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 }

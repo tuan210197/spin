@@ -535,3 +535,7 @@ tr:hover {
 .mat-mdc-header-cell:hover{
   background-color: rgba(0, 0, 0, 0.2); 
 } */
+
+.mat-mdc-paginator{
+  background-color: rgba(0, 0, 0, 0);
+}

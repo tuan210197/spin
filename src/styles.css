@@ -9,3 +9,6 @@ td {
 }
 
 
+:root {
+    --mat-paginator-container-text-color: rgba(0, 0, 0, 0); /* Đặt màu văn bản */
+  }
