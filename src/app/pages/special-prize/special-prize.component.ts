@@ -9,11 +9,9 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
 import { ShareService } from '../../services/share.service';
+import { firstValueFrom } from 'rxjs';
 
-export interface Participant {
-  name: string;
-  code: string;
-}
+
 @Component({
   selector: 'app-special-prize',
   standalone: true,
@@ -30,20 +28,12 @@ export class SpecialPrizeComponent implements AfterViewInit {
     } else {
       console.error('Container element not found!');
     }
-
-  }
-
-  constructor(private http: HttpClient, private share: ShareService) {
-    this.audio.currentTime = 7; // Đặt thời gian về 0
-    this.audio.src = '/nhac.mp3';
-    this.audio2.src = '/winner1.mp3';
   }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild('container2') containerRef!: ElementRef<HTMLDivElement>;
   @ViewChild('fireworksContainer', { static: false }) fireworksContainer!: ElementRef;
 
-  private audio = new Audio();
-  private audio2 = new Audio();
+
   private total = 50;
   private w = window.innerWidth;
   private h = window.innerHeight;
@@ -52,6 +42,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
   isImageVisible = false;
   isImageFading = false;
   isVisible = false;
+  showWinnerDiv: boolean = false; // Trạng thái hiển thị div người chiến thắng
 
   startFireworks(): void {
     const container = this.fireworksContainer.nativeElement;
@@ -85,7 +76,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
   title = 'colorful-confetti';
 
   launchConfetti(duration: number = 3): void {
-    const end = Date.now() + duration * 5000;
+    const end = Date.now() + duration * 1000;
 
     const colors = [
       '#FF1493', '#9400D3', '#FF0000', '#FFFF00',
@@ -120,62 +111,68 @@ export class SpecialPrizeComponent implements AfterViewInit {
 
 
 
- participants: Participant[] = [];
-  winner: { name: string; code: string }[] = [];
+  participants: { name: string; code: string }[] = [];
   finalWinner: { name: string; code: string } | null = null;
   transformStyle: string = '';
   currentOffset: number = 0;
   lineHeight: number = 50; // Chiều cao mỗi dòng
   isRaffleRunning: boolean = false;
   intervalId: any;
-//  hasWinnerDisplayed: boolean = false; // Trạng thái hiển thị người trúng
-
-  showWinnerDiv: boolean = false; // Trạng thái hiển thị div người chiến thắng
+  hasWinnerDisplayed: boolean = false; // Trạng thái hiển thị người trúng
 
 
-  startRaffle(): void {
+  constructor(private http: HttpClient, private share: ShareService) {
+
+  }
+
+  async  startRaffle(): Promise<void> {
     this.participants = [];
-    this.share.getRandom().subscribe({
-
-      next: (data) => {
-        this.participants = Array.isArray(data) ? data.map(
-          (item: any) => ({ name: item.vn_name, code: item.code })) : []; // Gán dữ liệu API vào mảng participants
-      },
-      error: (err) => {
-        console.error('Lỗi khi gọi API:', err);
-      }
-    });
-
+    console.log('Danh sách người tham gia:', this.participants);
+    try {
+      const randomData = await this.share.getRandom().toPromise();
+      this.participants = Array.isArray(randomData)
+        ? randomData.map((item: any) => ({ name: item.vn_name, code: item.code }))
+        : [];
+      console.log(randomData);
+    } catch (err) {
+      console.error('Lỗi khi gọi API getRandom:', err);
+      return; // Dừng lại nếu lỗi xảy ra
+    }
+  
     if (this.isRaffleRunning) {
       return; // Không cho chạy lại khi đang quay
     }
+  
     this.isRaffleRunning = true;
     this.resetRaffle();
-
-    this.share.getSpecial().subscribe({
-      next: (data) => {
-        // Map data từ API vào finalWinner
+  
+    try {
+      const specialData = await firstValueFrom(this.share.getSpecial());
+      if (specialData) {
         this.finalWinner = {
-          name: data.vn_name, // Lấy vn_name từ API
-          code: data.code     // Lấy code từ API
+          name: specialData.vn_name,
+          code: specialData.code
         };
-        // Thêm vào mảng participants
-        this.participants.push(this.finalWinner);
-        this.showWinnerDiv = false;
-        this.runAnimation();
-      },
-      error: (err) => {
-        console.error('Lỗi khi gọi API:', err);
+      } else {
+        console.error('specialData is undefined');
+        return;
       }
-    });
+      console.log('Dữ liệu sau khi map:', this.finalWinner);
+  
+      this.participants.push(this.finalWinner);
+      this.showWinnerDiv = false; // Ẩn div người chiến thắng khi bắt đầu quay
+      this.runAnimation();
+    } catch (err) {
+      console.error('Lỗi khi gọi API getSpecial:', err);
+    }
+  
   }
 
   runAnimation(): void {
-    const duration = 15000; // Tổng thời gian quay (15 giây)
+    const duration = 5000; // Tổng thời gian quay (15 giây)
     const totalNames = this.participants.length; // Tổng số tên cần cuộn qua
     const startTime = Date.now();
     const endTime = startTime + duration;
-    const winnerIndex = this.participants.length + 1;
     this.isVisible = false;
 
 
@@ -190,23 +187,21 @@ export class SpecialPrizeComponent implements AfterViewInit {
 
       // Tính toán offset
       this.currentOffset = targetIndex * this.lineHeight;
-
       this.transformStyle = `translateY(-${this.currentOffset}px)`;
 
       if (currentTime < endTime) {
         requestAnimationFrame(updatePosition);
       } else {
         // Kết thúc và dừng tại người trúng giải
-        this.currentOffset = winnerIndex * this.lineHeight;
+        // this.currentOffset = winnerIndex * this.lineHeight;
         this.transformStyle = `translateY(-${this.currentOffset}px)`;
-        this.isRaffleRunning = false;
         this.isRaffleRunning = false;
         this.showWinnerDiv = true; // Hiện div người chiến thắng sau khi quay xong
       }
     };
 
     requestAnimationFrame(updatePosition); // Khởi động vòng lặp
-    this.audio.play()
+    // this.audio.play()
 
     setTimeout(() => {
       this.launchConfetti();
@@ -214,10 +209,10 @@ export class SpecialPrizeComponent implements AfterViewInit {
         this.isVisible = true;
 
       }, 300);
-      this.audio.pause();
-      this.audio.currentTime = 7; // Đặt thời gian về 0
-      this.audio2.play();
-    }, 15000);
+      // this.audio.pause();
+      // this.audio.currentTime = 7; // Đặt thời gian về 0
+      // this.audio2.play();
+    }, 5000);
 
 
   }
@@ -233,8 +228,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
     this.transformStyle = '';
     this.currentOffset = 0;
     this.finalWinner = null;
-   // this.hasWinnerDisplayed = false; // Reset trạng thái hiển thị
-
+    this.hasWinnerDisplayed = false; // Reset trạng thái hiển thị
   }
 
 
@@ -286,6 +280,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
   private random(min: number, max: number): number {
     return Math.max(min, Math.min(max, min + Math.random() * (max - min)));
   }
+
 
 }
 

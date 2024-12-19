@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild,HostListener   } from '@angular/core';
+import { MatTabGroup } from '@angular/material/tabs';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -34,12 +35,12 @@ import { LoteryComponent } from '../lotery/lotery.component';
   templateUrl: './spin.component.html',
   styleUrl: './spin.component.css'
 })
-export class SpinComponent {
-  // Hàm xử lý khi thay đổi tab
-
+export class SpinComponent    {
   selectedIndex = 0;
   onTabChange(event: any) {
     this.selectedIndex = event.index;
     console.log('Tab changed to: ', this.selectedIndex);
   }
+ 
+
 }

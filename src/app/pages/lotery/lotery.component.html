@@ -16,7 +16,7 @@
             <img src="/1.png" class="lantern-img" />
         </div>
         <div class="lantern2">
-            <img src="/1.png" class="lantern-img" />
+            <img src="/1.png" class="lantern-img2" />
         </div>
 
         <div class="images">
@@ -29,14 +29,28 @@
 
     </div>
 </div>
+<div class="number-container">
+    <div class="column1">
+        <ng-container *ngFor="let item of generatedNumbers; let i = index">
+            <div *ngIf="i % 2 === 0" class="number-box">
+                {{ formatNumber(item.number) }}
+            </div>
+        </ng-container>
+    </div>
+    <div class="column2">
+        <ng-container *ngFor="let item of generatedNumbers; let i = index">
+            <div *ngIf="i % 2 !== 0" class="number-box">
+                {{ formatNumber(item.number) }}
+            </div>
+        </ng-container>
+
+    </div>
+</div>
 
 <div>
     <div class="content1">
         <h1 id="random-display" class="text">{{ currentNumber }}</h1>
     </div>
-    <!-- <div class="content1">
-        <h1 id="random-display" class="text">{{ currentNumber }}</h1>
-    </div> -->
     <div class="content2">
         <div class="button-border">
             <div class="button-base">

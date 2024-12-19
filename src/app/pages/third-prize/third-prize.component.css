@@ -424,8 +424,8 @@ tr:hover {
 }
 
 .imgs {
-  width: 350px;
-  height: 350px;
+  width: 15%;
+  height: auto;
   position: absolute;
   bottom: 0%;
   left: 25%;
@@ -433,8 +433,8 @@ tr:hover {
 }
 
 .imgs2 {
-  width: 350px;
-  height: 350px;
+  width: 15%;
+  height: auto;
   position: absolute;
   bottom: 0%;
   right: 25%;

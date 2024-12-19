@@ -210,7 +210,6 @@
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
-
   align-items: center;
   width: 100%;
   max-width: 100%;
@@ -226,7 +225,7 @@
 }
 
 .snake {
-  width: 20%;
+  width: 30%;
   height: auto;
 }
 

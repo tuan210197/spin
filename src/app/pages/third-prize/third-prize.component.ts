@@ -126,47 +126,49 @@ export class ThirdPrizeComponent implements AfterViewInit{
  
    }
  
-   startRaffle(): void {
+   async  startRaffle(): Promise<void> {
     this.participants = [];
-    this.share.getRandom().subscribe({
-
-      next: (data) => {
-        this.participants = Array.isArray(data) ? data.map(
-          (item: any) => ({ name: item.vn_name, code: item.code })) : []; // Gán dữ liệu API vào mảng participants
-      },
-      error: (err) => {
-        console.error('Lỗi khi gọi API:', err);
-      }
-    });
-
-     if (this.isRaffleRunning) {
-       return; // Không cho chạy lại khi đang quay
-     }
-     this.isRaffleRunning = true;
-     this.resetRaffle();
-     this.share.getThird().subscribe({
-      next: (data) => {
-        // Map data từ API vào finalWinner
+    console.log('Danh sách người tham gia:', this.participants);
+    try {
+      const randomData = await this.share.getRandom().toPromise();
+      this.participants = Array.isArray(randomData)
+        ? randomData.map((item: any) => ({ name: item.vn_name, code: item.code }))
+        : [];
+      console.log(randomData);
+    } catch (err) {
+      console.error('Lỗi khi gọi API getRandom:', err);
+      return; // Dừng lại nếu lỗi xảy ra
+    }
+  
+    if (this.isRaffleRunning) {
+      return; // Không cho chạy lại khi đang quay
+    }
+  
+    this.isRaffleRunning = true;
+    this.resetRaffle();
+  
+    try {
+      const specialData = await this.share.getThird().toPromise();
+      if (specialData) {
         this.finalWinner = {
-          name: data.vn_name, // Lấy vn_name từ API
-          code: data.code     // Lấy code từ API
+          name: specialData.vn_name,
+          code: specialData.code
         };
-        console.log('Dữ liệu sau khi map:', this.finalWinner);
-
-        // Thêm vào mảng participants
-        this.participants.push(this.finalWinner);
-
-      //  this.hasWinnerDisplayed = false;
-        this.showWinnerDiv = false;
-        // Bắt đầu hiệu ứng quay
-        this.runAnimation();
-      },
-      error: (err) => {
-        console.error('Lỗi khi gọi API:', err);
+      } else {
+        console.error('specialData is undefined');
+        return;
       }
-    });
-   }
- 
+      console.log('Dữ liệu sau khi map:', this.finalWinner);
+  
+      this.participants.push(this.finalWinner);
+      this.showWinnerDiv = false; // Ẩn div người chiến thắng khi bắt đầu quay
+      this.runAnimation();
+    } catch (err) {
+      console.error('Lỗi khi gọi API getSpecial:', err);
+    }
+  
+  }
+
  
    runAnimation(): void {
     const duration = 5000; // Tổng thời gian quay (15 giây)
