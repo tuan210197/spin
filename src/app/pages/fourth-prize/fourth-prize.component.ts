@@ -191,7 +191,7 @@ export class FourthPrizeComponent implements AfterViewInit {
     const four: Four = { code: '0', vn_name: '', bu: '', working_time: 'A' };
     try {
       const listWinner = await firstValueFrom(this.share.getListFourA(four));
-
+      console.log(this.listWinner);
       listWinner.forEach(item => this.listWinner.push({
         code: item.code,
         vn_name: item.vn_name,
