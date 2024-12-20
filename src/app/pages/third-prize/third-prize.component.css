@@ -75,7 +75,7 @@
   align-items: center;
   margin: auto;
   /* height: 100vh; */
-  top: 60%;
+  top: 75%;
   left: 50%; 
   transform: translate(-50%,-50%);
 
@@ -493,4 +493,50 @@ tr:hover {
   font-weight: bold;
   color: #ffffff;
   font-size: 45px;
+}
+
+  /* Tạo container cho bảng */
+  .table-container {
+    width: 80%;
+    position: fixed;
+    left: 10%;
+    top: 20%;
+  
+  }
+  
+.mat-mdc-table{
+  background-color: rgba(0, 0, 0, 0);
+}
+.mat-mdc-header-cell{
+  border-bottom-width:0;
+}
+.mat-mdc-cell{
+  border-bottom-width:0;
+}
+.mat-elevation-z8, .mat-mdc-elevation-specific.mat-elevation-z8{
+  box-shadow: none;
+}
+.mat-mdc-row {
+  color:#ffffff;
+  font-size: large;
+  font-weight: bold;
+  height: 40px;
+}
+
+.mat-mdc-header-row{
+  color:#ffffff;
+  font-size: large;
+  font-weight: bold;
+}
+
+.mat-mdc-row:hover {
+  background-color: rgba(0, 0, 0, 0.2); /* Màu nền khi di chuột qua */
+}
+/* 
+.mat-mdc-header-cell:hover{
+  background-color: rgba(0, 0, 0, 0.2); 
+} */
+
+.mat-mdc-paginator{
+  background-color: rgba(0, 0, 0, 0);
 }

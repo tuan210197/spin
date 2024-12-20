@@ -1,5 +1,4 @@
 import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,13 +8,22 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
 import { ShareService } from '../../services/share.service';
+import { firstValueFrom, Observable } from 'rxjs';
+// import { Four } from '../../model/four';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
+interface Four {
+  code: string;
+  vn_name: string;
+  bu: string;
+  working_time: string;
+}
 
 
 @Component({
   selector: 'app-third-prize',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule],
+  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule,],
   templateUrl: './third-prize.component.html',
   styleUrl: './third-prize.component.css'
 })
@@ -28,12 +36,14 @@ export class ThirdPrizeComponent implements AfterViewInit{
      } else {
        console.error('Container element not found!');
      }
+     this.dataSource.paginator = this.paginator;
    }
    @ViewChild(MatPaginator) paginator!: MatPaginator;
    @ViewChild('container2') containerRef!: ElementRef<HTMLDivElement>;
    @ViewChild('fireworksContainer', { static: false }) fireworksContainer!: ElementRef;
  
  
+
    private total = 50;
    private w = window.innerWidth;
    private h = window.innerHeight;
@@ -41,9 +51,24 @@ export class ThirdPrizeComponent implements AfterViewInit{
    color = '#ADD8E6';
    isImageVisible = false;
    isImageFading = false;
-   isVisible = false;
    showWinnerDiv: boolean = false; // Trạng thái hiển thị div người chiến thắng
- 
+   participants: { name: string; code: string }[] = [];
+   listWinner: Four[] = [];
+   winner: { name: string; code: string }[] = [];
+   finalWinner: { name: string; code: string } | null = null;
+   transformStyle: string = '';
+   currentOffset: number = 0;
+   lineHeight: number = 50; // Chiều cao mỗi dòng
+   isRaffleRunning: boolean = true; // Trạng thái quay đang chạy
+   intervalId: any;
+   hasWinnerDisplayed: boolean = false; // Trạng thái hiển thị người trúng
+   requestId = 0; // Tham chiếu của requestAnimationFrame
+   tableVisible = true;
+  dataSource = new MatTableDataSource<Four>([]);
+  displayedColumns: string[] = ['code', 'vn_name', 'bu', 'working_time'];
+
+
+
    startFireworks(): void {
      const container = this.fireworksContainer.nativeElement;
      this.fireworks = new Fireworks(container, {
@@ -108,119 +133,75 @@ export class ThirdPrizeComponent implements AfterViewInit{
  
      frame();
    }
- 
- 
- 
-   participants: { name: string; code: string }[] = [];
-   winner: { name: string; code: string }[] = [];
-   finalWinner: { name: string; code: string } | null = null;
-   transformStyle: string = '';
-   currentOffset: number = 0;
-   lineHeight: number = 50; // Chiều cao mỗi dòng
-   isRaffleRunning: boolean = false;
-   intervalId: any;
-   hasWinnerDisplayed: boolean = false; // Trạng thái hiển thị người trúng
- 
+
  
    constructor(private http: HttpClient, private share: ShareService) {
  
    }
  
-   async  startRaffle(): Promise<void> {
-    this.participants = [];
-    console.log('Danh sách người tham gia:', this.participants);
-    try {
-      const randomData = await this.share.getRandom().toPromise();
-      this.participants = Array.isArray(randomData)
-        ? randomData.map((item: any) => ({ name: item.vn_name, code: item.code }))
-        : [];
-      console.log(randomData);
-    } catch (err) {
-      console.error('Lỗi khi gọi API getRandom:', err);
-      return; // Dừng lại nếu lỗi xảy ra
-    }
-  
+  async startRaffle(): Promise<void> {
+
     if (this.isRaffleRunning) {
-      return; // Không cho chạy lại khi đang quay
-    }
-  
-    this.isRaffleRunning = true;
-    this.resetRaffle();
-  
-    try {
-      const specialData = await this.share.getThird().toPromise();
-      if (specialData) {
-        this.finalWinner = {
-          name: specialData.vn_name,
-          code: specialData.code
-        };
-      } else {
-        console.error('specialData is undefined');
-        return;
+      this.tableVisible = true;
+      this.participants = [];
+      try {
+        const randomData = await this.share.getRandom().toPromise();
+        this.participants = Array.isArray(randomData)
+          ? randomData.map((item: any) => ({ name: item.vn_name, code: item.code }))
+          : [];
+      } catch (err) {
+        console.error('Lỗi khi gọi API getRandom:', err);
+        return; // Dừng lại nếu lỗi xảy ra
       }
-      console.log('Dữ liệu sau khi map:', this.finalWinner);
-  
-      this.participants.push(this.finalWinner);
-      this.showWinnerDiv = false; // Ẩn div người chiến thắng khi bắt đầu quay
-      this.runAnimation();
-    } catch (err) {
-      console.error('Lỗi khi gọi API getSpecial:', err);
-    }
-  
-  }
+      this.resetRaffle();
+      const totalNames = this.participants.length; // Tổng số tên cần cuộn qua
+      let currentIndex = 0;
 
- 
-   runAnimation(): void {
-    const duration = 5000; // Tổng thời gian quay (15 giây)
-    const totalNames = this.participants.length; // Tổng số tên cần cuộn qua
-    const startTime = Date.now();
-    const endTime = startTime + duration;
-    const winnerIndex = this.participants.length + 1;
-    this.isVisible = false;
+      const updatePosition = () => {
+        // Tăng chỉ số vòng quay nhanh hơn
+        currentIndex = (currentIndex + 3) % totalNames; // Tăng mỗi lần 3 bước (điều chỉnh theo ý bạn)
 
-
-    const updatePosition = () => {
-      const currentTime = Date.now();
-      const elapsedTime = currentTime - startTime;
-      const t = Math.min(elapsedTime / duration, 1); // Tỉ lệ thời gian từ 0 -> 1
-
-      // Tính toán tiến trình giảm tốc dựa trên easing
-      const easedProgress = this.easeOutQuad(t);
-      const targetIndex = Math.floor(easedProgress * (totalNames - 1));
-
-      // Tính toán offset
-      this.currentOffset = targetIndex * this.lineHeight;
-
-      this.transformStyle = `translateY(-${this.currentOffset}px)`;
-
-      if (currentTime < endTime) {
-        requestAnimationFrame(updatePosition);
-      } else {
-        // Kết thúc và dừng tại người trúng giải
-        this.currentOffset = winnerIndex * this.lineHeight;
+        // Tính toán offset dựa trên vị trí hiện tại
+        this.currentOffset = currentIndex * this.lineHeight;
         this.transformStyle = `translateY(-${this.currentOffset}px)`;
-        this.isRaffleRunning = false;
-        this.showWinnerDiv = true; // Hiện div người chiến thắng sau khi quay xong
-      }
-    };
 
-    requestAnimationFrame(updatePosition); // Khởi động vòng lặp
-    // this.audio.play()
+        this.requestId = requestAnimationFrame(updatePosition); // Tiếp tục vòng lặp
+      };
 
-    setTimeout(() => {
+      this.requestId = requestAnimationFrame(updatePosition); // Bắt đầu vòng lặp
+      this.isRaffleRunning = false;
+
+      const insert3A = await firstValueFrom(this.share.getThirdA());
+    } else {
+      this.loadTable();
+      cancelAnimationFrame(this.requestId); // Dừng vòng lặp
+      this.resetRaffle();
       this.launchConfetti();
-      setTimeout(() => {
-        this.isVisible = true;
-
-      }, 300);
-      // this.audio.pause();
-      // this.audio.currentTime = 7; // Đặt thời gian về 0
-      // this.audio2.play();
-    }, 5000);
+      this.tableVisible = false;
+      return;
+    }
 
 
   }
+  async loadTable(): Promise<void> {
+    this.listWinner = [];
+    const third: Four = { code: '0', vn_name: '', bu: '', working_time: 'A' };
+    try {
+      const listWinner = await firstValueFrom(this.share.getListThirdA(third));
 
+      listWinner.forEach(item => this.listWinner.push({
+        code: item.code,
+        vn_name: item.vn_name,
+        bu: item.bu,
+        working_time: item.working_time
+      }));
+      console.log(this.listWinner);
+      this.dataSource.data = this.listWinner;
+      // this.paginator.length = this.listWinner.length;
+    } catch (error) {
+      console.error('Lỗi khi gọi API:', error);
+    }
+  }
  
    easeOutQuad(t: number): number {
      return t * (2 - t); // Hàm easing cho giảm tốc
@@ -228,7 +209,7 @@ export class ThirdPrizeComponent implements AfterViewInit{
  
  
    resetRaffle(): void {
-     this.isRaffleRunning = false;
+     this.isRaffleRunning = true;
      this.transformStyle = '';
      this.currentOffset = 0;
      this.finalWinner = null;
@@ -285,6 +266,16 @@ export class ThirdPrizeComponent implements AfterViewInit{
    private random(min: number, max: number): number {
      return Math.max(min, Math.min(max, min + Math.random() * (max - min)));
    }
- 
+
+   applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
  }
+
+
  

@@ -1,26 +1,55 @@
 <div class="container-fluid" #fireworksContainer>
 
-  <!-- <div class="container2"> -->
+ <!-- <div class="container2"> -->
   <div #container2 class="container2"></div>
   <div class="raffle-box">
-    <div class="names" *ngIf="!showWinnerDiv" [style.transform]="transformStyle">
+    <div class="names" [hidden]="!tableVisible" [style.transform]="transformStyle">
       <div *ngFor="let participant of participants" class="name-item">
         {{participant.code +' - '+ participant.name }}
       </div>
     </div>
 
   </div>
-  <div class="raffle-box2">
+  <!-- <div class="raffle-box2">
     <div *ngIf="showWinnerDiv" class="names2">
       <p class="name-item2">{{ finalWinner?.code +' - ' }} {{ finalWinner?.name }}</p>
     </div>
-  </div>
+  </div> -->
 
-  <div class="caption">
-    <h1  *ngIf="isVisible">Chúc Mừng Bạn Đã Trúng Giải 1.000$</h1>
-  </div>
+  <!-- <div class="caption">
+    <h1 *ngIf="isVisible">Chúc Mừng Bạn Đã Trúng Giải 1.000$</h1>
+  </div> -->
   <div class="card-content">
-    <button class="btn" (click)="startRaffle()" [disabled]="isRaffleRunning">開始</button>
+    <!-- *ngIf="!tableVisible" -->
+    <button class="btn"  (click)="startRaffle()">開始</button>
+  </div>
+  <div class="table-container" >
+    <table mat-table [dataSource]="dataSource" *ngIf="!tableVisible" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef> Mã Nhân Viên </th>
+        <td mat-cell *matCellDef="let element"> {{ element.code }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="vn_name">
+        <th mat-header-cell *matHeaderCellDef> Tên Nhân Viên </th>
+        <td mat-cell *matCellDef="let element"> {{ element.vn_name }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="bu">
+        <th mat-header-cell *matHeaderCellDef> BU </th>
+        <td mat-cell *matCellDef="let element"> {{ element.bu }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="working_time">
+        <th mat-header-cell *matHeaderCellDef> Thời Gian Làm Việc </th>
+        <td mat-cell *matCellDef="let element"> {{ element.working_time }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator  [pageSizeOptions]="[5,10]" aria-label="Select page of users"></mat-paginator>
   </div>
 
 

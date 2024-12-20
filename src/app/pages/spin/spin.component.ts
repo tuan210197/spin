@@ -12,6 +12,9 @@ import { WaitingComponent } from '../waiting/waiting.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { SpecialPrizeComponent } from "../special-prize/special-prize.component";
 import { LoteryComponent } from '../lotery/lotery.component';
+import { FourPrizeBComponent } from "../four-prize-b/four-prize-b.component";
+import { ThirdPrizeBComponent } from "../third-prize-b/third-prize-b.component";
+import { SecondPrizeBComponent } from "../second-prize-b/second-prize-b.component";
 
 
 @Component({
@@ -29,11 +32,14 @@ import { LoteryComponent } from '../lotery/lotery.component';
     WaitingComponent,
     MatTabsModule,
     SpecialPrizeComponent,
-    LoteryComponent
-
-  ],
+    LoteryComponent,
+    FourPrizeBComponent,
+    ThirdPrizeBComponent,
+    SecondPrizeBComponent
+],
   templateUrl: './spin.component.html',
-  styleUrl: './spin.component.css'
+  styleUrl: './spin.component.css',
+
 })
 export class SpinComponent    {
   selectedIndex = 0;
@@ -42,5 +48,4 @@ export class SpinComponent    {
     console.log('Tab changed to: ', this.selectedIndex);
   }
  
-
 }

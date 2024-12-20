@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 import { WaitingComponent } from './pages/waiting/waiting.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { SpinComponent } from './pages/spin/spin.component';
-
+import { FourPrizeBComponent } from './pages/four-prize-b/four-prize-b.component';
 
 
 
@@ -26,12 +26,15 @@ export const routes: Routes = [
     { path: 'second', component: SecondPrizeComponent, canActivate: [AuthGuard] },
     { path: 'third', component: ThirdPrizeComponent, canActivate: [AuthGuard] },
     { path: 'four', component: FourthPrizeComponent, canActivate: [AuthGuard] },
+    { path: 'fourb', component: FourPrizeBComponent, canActivate: [AuthGuard] },
+
     { path: 'special', component: SpecialPrizeComponent, canActivate: [AuthGuard] },
     { path: 'lotery', component: LoteryComponent, canActivate: [AuthGuard] },
     { path: 'home', component: AppComponent, canActivate: [AuthGuard] },
     { path: 'wait', component: WaitingComponent, canActivate: [AuthGuard] },
     { path: 'admin', component: AdminComponent, },
     { path: 'spin', component: SpinComponent, canActivate: [AuthGuard] }
+
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
