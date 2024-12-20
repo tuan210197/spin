@@ -1,5 +1,6 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, HostListener } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, HostListener,OnInit, OnDestroy } from '@angular/core';
 import { Fireworks } from 'fireworks-js';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 import { gsap } from 'gsap';
 
@@ -11,14 +12,22 @@ import { CommonModule } from '@angular/common';
   templateUrl: './waiting.component.html',
   styleUrl: './waiting.component.css'
 })
-export class WaitingComponent implements AfterViewInit {
-
+export class WaitingComponent implements AfterViewInit{
+  
   @ViewChild('fireworksContainer', { static: false }) fireworksContainer!: ElementRef;
   @ViewChild('container2') containerRef!: ElementRef<HTMLDivElement>;
+  constructor(){
+    //    // Khởi tạo đối tượng audio
+    // this.audio = new Audio();
+    // this.audio.src = '/tetDongDay.mp3';
+    // this.audio.play();  // Gọi phương thức play()
+    // this.audio.loop = false;  // Đặt thành false để chúng ta tự quản lý việc lặp lại
+
+  }
   private total = 50;
   private w = window.innerWidth;
   private h = window.innerHeight;
-
+// private audio = new Audio();
   fireworks: any;
   ngAfterViewInit(): void {
     this.startFireworks();
@@ -28,9 +37,12 @@ export class WaitingComponent implements AfterViewInit {
       this.initializeFallingEffect(container);
     } else {
       console.error('Container element not found!');
-    }
-
+    };
   }
+
+  audio!: HTMLAudioElement;
+
+ 
   startFireworks(): void {
     const container = this.fireworksContainer.nativeElement;
     this.fireworks = new Fireworks(container, {

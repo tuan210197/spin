@@ -68,6 +68,47 @@ export class SecondPrizeComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<Second>([]);
   displayedColumns: string[] = ['code', 'vn_name', 'bu', 'working_time', 'joins', 'action'];
 
+
+  private audio = new Audio();
+  private audio2 = new Audio();
+  ngOnInit(): void {
+    // Khởi tạo 2 đối tượng Audio
+    this.audio.src = '/nhac.mp3';
+    this.audio2.src = '/winner1.mp3';
+  }
+
+  playAudio1(): void {
+    this.stopAudio(this.audio2); // Dừng audio 2 nếu đang phát
+    this.startAudio(this.audio); // Phát audio 1
+  }
+
+  playAudio2(): void {
+    this.stopAudio(this.audio); // Dừng audio 1 nếu đang phát
+    this.startAudio(this.audio2); // Phát audio 2
+  }
+
+  startAudio(audio: HTMLAudioElement): void {
+    audio.currentTime = 0; // Đặt lại thời gian về đầu
+    audio
+      .play()
+      .then(() => {})
+      .catch((err) => console.error('Error playing audio:', err));
+  }
+
+  stopAudio(audio: HTMLAudioElement): void {
+    if (!audio.paused) {
+      audio.pause(); // Dừng phát nhạc
+      audio.currentTime = 0; // Reset thời gian về đầu
+    }
+  }
+
+  ngOnDestroy(): void {
+    // Dọn dẹp khi component bị hủy
+    this.stopAudio(this.audio);
+    this.stopAudio(this.audio2);
+    this.audio = null!;
+    this.audio2 = null!;
+  }
   startFireworks(): void {
     const container = this.fireworksContainer.nativeElement;
     this.fireworks = new Fireworks(container, {
@@ -135,19 +176,20 @@ export class SecondPrizeComponent implements AfterViewInit {
   constructor(private http: HttpClient, private share: ShareService) { }
 
   async startRaffle(): Promise<void> {
-    debugger
-
+    
 
     const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'A', joins: '' };
     const listWinner = await firstValueFrom(this.share.getListSecond(second));
     console.log(listWinner.length)
     if (listWinner.length == 6) {
       this.loadTable();
-      cancelAnimationFrame(this.requestId); // Dừng vòng lặp
+      // cancelAnimationFrame(this.requestId); // Dừng vòng lặp
+      this.playAudio2();
       return;
     }
 
     if (this.isRaffleRunning) {
+      this.playAudio1();
       this.listWinner = [];
       this.tableVisible = false;
       this.participants = [];
@@ -175,7 +217,7 @@ export class SecondPrizeComponent implements AfterViewInit {
       };
 
       this.requestId = requestAnimationFrame(updatePosition); // Bắt đầu vòng lặp 
-      const insert2A = await firstValueFrom(this.share.getSecondA());
+
       this.isRaffleRunning = false;
       this.showWinnerDiv1 = true
       if (this.showWinnerDiv1) {
@@ -183,18 +225,18 @@ export class SecondPrizeComponent implements AfterViewInit {
       }
 
     } else {
+      this.playAudio2();
+      const insert2A = await firstValueFrom(this.share.getSecondA());
+      const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'A', joins: '' };
+      const listWinner = await firstValueFrom(this.share.getListSecond(second));
       cancelAnimationFrame(this.requestId); // Dừng vòng lặp
       this.isRaffleRunning = true;
       this.showWinnerDiv1 = false
       if (!this.showWinnerDiv1) {
         this.showWinnerDiv2 = true
       }
-      const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'A', joins: '' };
-      const listWinner = await firstValueFrom(this.share.getListSecond(second));
-      // console.log(listWinner.length)
-      // if (listWinner.length == 6) {
-      //   this.loadTable();
-      // }
+
+
       if (listWinner) {
         this.finalWinner = {
           name: listWinner[0].code,
@@ -203,6 +245,7 @@ export class SecondPrizeComponent implements AfterViewInit {
           joins: listWinner[0].joins === 'Y' ? 'Tham Gia' : 'Vắng'
         };
         this.launchConfetti();
+        console.log(listWinner.length)
         return;
       } else {
         console.error('specialData is undefined');
@@ -227,7 +270,7 @@ export class SecondPrizeComponent implements AfterViewInit {
         code: item.code,
         vn_name: item.vn_name,
         bu: item.bu,
-        working_time: item.working_time,
+        working_time: item.working_time === 'A' ? 'Trên 1 Năm' : 'Dưới 1 Năm',
         joins: item.joins === 'Y' ? 'Tham Gia' : 'Vắng'
       }));
       console.log(this.listWinner);

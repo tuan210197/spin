@@ -1,12 +1,11 @@
-.mat-tab-group {
-    transition: opacity 0.3s ease; /* Hiệu ứng mờ dần */
-  }
-  
-  .mat-tab-group.hovered {
-    opacity: 1; /* Sáng lại khi di chuột vào */
-  }
-  
-  .mat-tab-group:not(.hovered) {
-    opacity: 0.5; /* Mờ dần khi di chuột ra ngoài */
-  }
-  
+.tab-container {
+  position: relative;
+}
+
+.tab-header-container {
+  transition: transform 0.3s ease;
+}
+
+.tab-content {
+  transition: opacity 0.3s ease;
+}

@@ -217,17 +217,14 @@
 
 .snake {
   position: absolute;
-  top: 70%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   transform-origin: top center;
-
-}
-
-.snake {
-  width: 30%;
+  width: 35%;
   height: auto;
 }
+
 
 .snake2 {
   position: absolute;

@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
@@ -27,6 +27,8 @@ export class LoteryComponent {
     this.availableNumbers = Array.from({ length: 100 }, (_, i) =>
       i.toString().padStart(2, '0')
     );
+
+
   }
 
   fireworks: any;
@@ -35,6 +37,47 @@ export class LoteryComponent {
   intervalId: any;
   intervalTotal: any;
   generatedNumbers: { number: number }[] = []; // Danh sách số đã quay
+  private audio = new Audio();
+  private audio2 = new Audio();
+  ngOnInit(): void {
+    // Khởi tạo 2 đối tượng Audio
+    this.audio.src = '/nhac.mp3';
+    this.audio2.src = '/winner1.mp3';
+  }
+
+  playAudio1(): void {
+    this.stopAudio(this.audio2); // Dừng audio 2 nếu đang phát
+    this.startAudio(this.audio); // Phát audio 1
+  }
+
+  playAudio2(): void {
+    this.stopAudio(this.audio); // Dừng audio 1 nếu đang phát
+    this.startAudio(this.audio2); // Phát audio 2
+  }
+
+  startAudio(audio: HTMLAudioElement): void {
+    audio.currentTime = 0; // Đặt lại thời gian về đầu
+    audio
+      .play()
+      .then(() => console.log('Audio started'))
+      .catch((err) => console.error('Error playing audio:', err));
+  }
+
+  stopAudio(audio: HTMLAudioElement): void {
+    if (!audio.paused) {
+      audio.pause(); // Dừng phát nhạc
+      audio.currentTime = 0; // Reset thời gian về đầu
+      console.log('Audio stopped');
+    }
+  }
+
+  ngOnDestroy(): void {
+    // Dọn dẹp khi component bị hủy
+    this.stopAudio(this.audio);
+    this.stopAudio(this.audio2);
+    this.audio = null!;
+    this.audio2 = null!;
+  }
 
   startFireworks(): void {
     const container = this.fireworksContainer.nativeElement;
@@ -76,6 +119,7 @@ export class LoteryComponent {
       return;
     }
     if (this.isRunning) {
+      this.playAudio1();
       const displayElement = document.getElementById('random-display');
       if (!displayElement) return;
 
@@ -88,7 +132,9 @@ export class LoteryComponent {
       this.isRunning = false;
     }
     else {
+      this.playAudio2();
       this.isRunning = true;
+
       clearInterval(this.intervalTotal);
       const randomIndex = Math.floor(Math.random() * this.availableNumbers.length);
       const chosenNumber = this.availableNumbers[randomIndex];

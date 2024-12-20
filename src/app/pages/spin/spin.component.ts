@@ -1,4 +1,4 @@
-import { Component, ViewChild,HostListener   } from '@angular/core';
+import { Component, ViewChild, HostListener } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,6 +15,8 @@ import { LoteryComponent } from '../lotery/lotery.component';
 import { FourPrizeBComponent } from "../four-prize-b/four-prize-b.component";
 import { ThirdPrizeBComponent } from "../third-prize-b/third-prize-b.component";
 import { SecondPrizeBComponent } from "../second-prize-b/second-prize-b.component";
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { CommonModule } from '@angular/common';  // Import CommonModule
 
 
 @Component({
@@ -35,17 +37,53 @@ import { SecondPrizeBComponent } from "../second-prize-b/second-prize-b.componen
     LoteryComponent,
     FourPrizeBComponent,
     ThirdPrizeBComponent,
-    SecondPrizeBComponent
-],
+    SecondPrizeBComponent,
+    CommonModule
+  ],
   templateUrl: './spin.component.html',
   styleUrl: './spin.component.css',
-
+  animations: [
+    trigger('slideInOut', [
+      state(
+        'visible',
+        style({
+          transform: 'translateY(0)',
+          opacity: 1,
+        })
+      ),
+      state(
+        'hidden',
+        style({
+          transform: 'translateY(-100%)',
+          opacity: 0,
+        })
+      ),
+      transition('visible <=> hidden', [animate('300ms ease-in-out')]),
+    ]),
+  ],
 })
-export class SpinComponent    {
+export class SpinComponent {
   selectedIndex = 0;
+  isTabHeaderVisible = true;
   onTabChange(event: any) {
     this.selectedIndex = event.index;
     console.log('Tab changed to: ', this.selectedIndex);
   }
- 
+
+  isTabVisible = true; // Trạng thái để kiểm soát việc ẩn hiện tab
+
+
+  // Hiển thị thanh tab khi chuột vào
+  showTab(): void {
+    this.isTabVisible = true;
+  }
+
+  // Ẩn thanh tab khi chuột ra ngoài
+  hideTab(): void {
+    this.isTabVisible = false;
+  }
+
+
+
+
 }

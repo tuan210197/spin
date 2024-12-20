@@ -1,55 +1,92 @@
-<div class="tab-container">
-    <mat-tab-group (selectedTabChange)="onTabChange($event)" class="custom-tabs">
+<!-- <div class="tab-container" (mouseenter)="showTabHeader()" (mouseleave)="hideTabHeader()">
+    <div class="tab-container" [@slideInOut]="isTabHeaderVisible ? 'visible' : 'hidden'">
+        <mat-tab-group (selectedTabChange)="onTabChange($event)" class="custom-tabs">
 
-        <mat-tab label="WELCOME">
-            <app-waiting></app-waiting>
+            <mat-tab label="WELCOME">
+                <app-waiting></app-waiting>
 
-        </mat-tab>
-        <mat-tab label="CONGRATULATION PRIZE">
-            <app-lotery></app-lotery>
+            </mat-tab>
+            <mat-tab label="CONGRATULATION PRIZE">
+                <app-lotery></app-lotery>
 
-        </mat-tab>
-        <mat-tab label="FOURTH PRIZE A">
-            <div class="tab-content">
-                <app-fourth-prize></app-fourth-prize>
-            </div>
-        </mat-tab>
-        <mat-tab label="FOURTH PRIZE B">
-            <div class="tab-content">
-                <app-four-prize-b></app-four-prize-b>
-            </div>
-        </mat-tab>
-        <mat-tab label="THIRD PRIZE A">
-            <div class="tab-content">
-                <app-third-prize></app-third-prize>
-            </div>
+            </mat-tab>
+            <mat-tab label="FOURTH PRIZE A">
+                <div class="tab-content">
+                    <app-fourth-prize></app-fourth-prize>
+                </div>
+            </mat-tab>
+            <mat-tab label="FOURTH PRIZE B">
+                <div class="tab-content">
+                    <app-four-prize-b></app-four-prize-b>
+                </div>
+            </mat-tab>
+            <mat-tab label="THIRD PRIZE A">
+                <div class="tab-content">
+                    <app-third-prize></app-third-prize>
+                </div>
 
-        </mat-tab>
-        <mat-tab label="THIRD PRIZE B">
-            <div class="tab-content">
-                <app-third-prize-b></app-third-prize-b>
-            </div>
+            </mat-tab>
+            <mat-tab label="THIRD PRIZE B">
+                <div class="tab-content">
+                    <app-third-prize-b></app-third-prize-b>
+                </div>
 
-        </mat-tab>
-        <mat-tab label="SECOND PRIZE A">
-            <div class="tab-content">
-                <app-second-prize></app-second-prize>
-            </div>
-        </mat-tab>
-        <mat-tab label="SECOND PRIZE B">
-            <div class="tab-content">
-                <app-second-prize-b></app-second-prize-b>
-            </div>
-        </mat-tab>
-        <mat-tab label="FIRST PRIZE">
-            <div class="tab-content">
-                <app-first-prize></app-first-prize>
-            </div>
-        </mat-tab>
-        <mat-tab label="SPECIAL PRIZE">
-            <div class="tab-content">
-                <app-special-prize></app-special-prize>
-            </div>
-        </mat-tab>
-    </mat-tab-group>
-</div>
+            </mat-tab>
+            <mat-tab label="SECOND PRIZE A">
+                <div class="tab-content">
+                    <app-second-prize></app-second-prize>
+                </div>
+            </mat-tab>
+            <mat-tab label="SECOND PRIZE B">
+                <div class="tab-content">
+                    <app-second-prize-b></app-second-prize-b>
+                </div>
+            </mat-tab>
+            <mat-tab label="FIRST PRIZE">
+                <div class="tab-content">
+                    <app-first-prize></app-first-prize>
+                </div>
+            </mat-tab>
+            <mat-tab label="SPECIAL PRIZE">
+                <div class="tab-content">
+                    <app-special-prize></app-special-prize>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div> -->
+
+<div class="tab-container" (mouseenter)="showTab()" (mouseleave)="hideTab()">
+    <!-- Thanh tiêu đề tabs -->
+    <div class="tab-header-container" [@slideInOut]="isTabVisible ? 'visible' : 'hidden'">
+      <mat-tab-group [(selectedIndex)]="selectedIndex" (selectedTabChange)="onTabChange($event)" class="custom-tabs">
+        <mat-tab label="WELCOME"></mat-tab>
+        <mat-tab label="CONGRATULATION PRIZE"></mat-tab>
+        <mat-tab label="FOURTH PRIZE A"></mat-tab>
+        <mat-tab label="FOURTH PRIZE B"></mat-tab>
+        <mat-tab label="THIRD PRIZE A"></mat-tab>
+        <mat-tab label="THIRD PRIZE B"></mat-tab>
+        <mat-tab label="SECOND PRIZE A"></mat-tab>
+        <mat-tab label="SECOND PRIZE B"></mat-tab>
+        <mat-tab label="FIRST PRIZE"></mat-tab>
+        <mat-tab label="SPECIAL PRIZE"></mat-tab>
+      </mat-tab-group>
+    </div>
+  
+    <!-- Nội dung của tabs -->
+    <div class="tab-content">
+      <ng-container [ngSwitch]="selectedIndex">
+        <app-waiting *ngSwitchCase="0"></app-waiting>
+        <app-lotery *ngSwitchCase="1"></app-lotery>
+        <app-fourth-prize *ngSwitchCase="2"></app-fourth-prize>
+        <app-four-prize-b *ngSwitchCase="3"></app-four-prize-b>
+        <app-third-prize *ngSwitchCase="4"></app-third-prize>
+        <app-third-prize-b *ngSwitchCase="5"></app-third-prize-b>
+        <app-second-prize *ngSwitchCase="6"></app-second-prize>
+        <app-second-prize-b *ngSwitchCase="7"></app-second-prize-b>
+        <app-first-prize *ngSwitchCase="8"></app-first-prize>
+        <app-special-prize *ngSwitchCase="9"></app-special-prize>
+      </ng-container>
+    </div>
+  </div>
+  

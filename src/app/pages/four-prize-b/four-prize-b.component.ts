@@ -37,8 +37,46 @@ export class FourPrizeBComponent implements AfterViewInit {
     }
     this.dataSource.paginator = this.paginator;
   }
+  private audio = new Audio();
+  private audio2 = new Audio();
   ngOnInit(): void {
-    // this.dataSource.data = this.getData();
+    // Khởi tạo 2 đối tượng Audio
+    this.audio.src = '/nhac.mp3';
+    this.audio2.src = '/winner1.mp3';
+  }
+
+  playAudio1(): void {
+    this.stopAudio(this.audio2); // Dừng audio 2 nếu đang phát
+    this.startAudio(this.audio); // Phát audio 1
+  }
+
+  playAudio2(): void {
+    this.stopAudio(this.audio); // Dừng audio 1 nếu đang phát
+    this.startAudio(this.audio2); // Phát audio 2
+  }
+
+  startAudio(audio: HTMLAudioElement): void {
+    audio.currentTime = 0; // Đặt lại thời gian về đầu
+    audio
+      .play()
+      .then(() => console.log('Audio started'))
+      .catch((err) => console.error('Error playing audio:', err));
+  }
+
+  stopAudio(audio: HTMLAudioElement): void {
+    if (!audio.paused) {
+      audio.pause(); // Dừng phát nhạc
+      audio.currentTime = 0; // Reset thời gian về đầu
+      console.log('Audio stopped');
+    }
+  }
+
+  ngOnDestroy(): void {
+    // Dọn dẹp khi component bị hủy
+    this.stopAudio(this.audio);
+    this.stopAudio(this.audio2);
+    this.audio = null!;
+    this.audio2 = null!;
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -143,6 +181,7 @@ export class FourPrizeBComponent implements AfterViewInit {
   async startRaffle(): Promise<void> {
 
     if (this.isRaffleRunning) {
+      this.playAudio1();
       this.tableVisible = true;
       this.participants = [];
       try {
@@ -174,6 +213,7 @@ export class FourPrizeBComponent implements AfterViewInit {
 
       const insert4A = await firstValueFrom(this.share.getFourB());
     } else {
+      this.playAudio2();
       this.loadTable();
       cancelAnimationFrame(this.requestId); // Dừng vòng lặp
       this.resetRaffle();

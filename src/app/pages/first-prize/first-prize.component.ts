@@ -67,6 +67,49 @@ export class FirstPrizeComponent implements AfterViewInit {
   listWinner: First[] = [];
   dataSource = new MatTableDataSource<First>([]);
   displayedColumns: string[] = ['code', 'vn_name', 'bu', 'joins','action'];
+  
+  private audio = new Audio();
+  private audio2 = new Audio();
+  ngOnInit(): void {
+    // Khởi tạo 2 đối tượng Audio
+    this.audio.src = '/nhac.mp3';
+    this.audio2.src = '/winner1.mp3';
+  }
+
+  playAudio1(): void {
+    this.stopAudio(this.audio2); // Dừng audio 2 nếu đang phát
+    this.startAudio(this.audio); // Phát audio 1
+  }
+
+  playAudio2(): void {
+    this.stopAudio(this.audio); // Dừng audio 1 nếu đang phát
+    this.startAudio(this.audio2); // Phát audio 2
+  }
+
+  startAudio(audio: HTMLAudioElement): void {
+    audio.currentTime = 0; // Đặt lại thời gian về đầu
+    audio
+      .play()
+      .then(() => console.log('Audio started'))
+      .catch((err) => console.error('Error playing audio:', err));
+  }
+
+  stopAudio(audio: HTMLAudioElement): void {
+    if (!audio.paused) {
+      audio.pause(); // Dừng phát nhạc
+      audio.currentTime = 0; // Reset thời gian về đầu
+      console.log('Audio stopped');
+    }
+  }
+
+  ngOnDestroy(): void {
+    // Dọn dẹp khi component bị hủy
+    this.stopAudio(this.audio);
+    this.stopAudio(this.audio2);
+    this.audio = null!;
+    this.audio2 = null!;
+  }
+  
   startFireworks(): void {
     const container = this.fireworksContainer.nativeElement;
     this.fireworks = new Fireworks(container, {
@@ -144,11 +187,13 @@ export class FirstPrizeComponent implements AfterViewInit {
     const listWinner2 = await firstValueFrom(this.share.getListFirst());
     if (Array.isArray(listWinner2) && listWinner2.length == 12) {
       this.loadTable();
+      this.playAudio2();
 
       return;
     }
 
     if (this.isRaffleRunning) {
+      this.playAudio1();
       this.tableVisible = false;
       this.participants = [];
       try {
@@ -175,7 +220,6 @@ export class FirstPrizeComponent implements AfterViewInit {
       };
 
       this.requestId = requestAnimationFrame(updatePosition); // Bắt đầu vòng lặp 
-      const insert2A = await firstValueFrom(this.share.getFirst());
       this.isRaffleRunning = false;
       this.showWinnerDiv1 = true
       if (this.showWinnerDiv1) {
@@ -183,16 +227,18 @@ export class FirstPrizeComponent implements AfterViewInit {
       }
 
     } else {
+      this.playAudio2();
+      const insert2A = await firstValueFrom(this.share.getFirst());
+      const listWinner = await firstValueFrom(this.share.getListFirst());
+      const okela = Array.isArray(listWinner) ? listWinner[listWinner.length -1] : null;
+      
       cancelAnimationFrame(this.requestId); // Dừng vòng lặp
       this.isRaffleRunning = true;
       this.showWinnerDiv1 = false
       if (!this.showWinnerDiv1) {
         this.showWinnerDiv2 = true
       }
-      const listWinner = await firstValueFrom(this.share.getListFirst());
-      console.log(listWinner)
 
-      const okela = Array.isArray(listWinner) ? listWinner[listWinner.length -1] : null;
       if (okela) {
         this.finalWinner = {
           name: okela.code,
