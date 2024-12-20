@@ -497,13 +497,12 @@ tr:hover {
 
   /* Tạo container cho bảng */
   .table-container {
-    width: 80%;
+    width: 50%;
     position: fixed;
-    left: 10%;
-    top: 20%;
-  
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
   }
-  
 .mat-mdc-table{
   background-color: rgba(0, 0, 0, 0);
 }

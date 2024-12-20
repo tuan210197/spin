@@ -92,12 +92,15 @@ export class LoteryComponent {
       clearInterval(this.intervalTotal);
       const randomIndex = Math.floor(Math.random() * this.availableNumbers.length);
       const chosenNumber = this.availableNumbers[randomIndex];
-
+      // Xóa số đã chọn khỏi mảng
+      this.availableNumbers.splice(randomIndex, 1);
+      console.log(this.availableNumbers.length)
       // Cập nhật số chính thức và mảng
       this.currentNumber = chosenNumber;
       console.log(this.currentNumber);
       const choose = await this.share.chooseCon(Number(this.currentNumber)).toPromise();
       // this.numbers.push(chosenNumber);
+      this
       this.startFireworks();
       this.saveNumber();
     }

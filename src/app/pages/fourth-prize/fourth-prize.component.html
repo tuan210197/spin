@@ -21,7 +21,7 @@
   </div> -->
   <div class="card-content">
     <!-- *ngIf="!tableVisible" -->
-    <button class="btn"  (click)="startRaffle()">開始</button>
+    <button class="btn" [disabled]="check" (click)="startRaffle()">開始</button>
   </div>
   <div class="table-container" >
     <table mat-table [dataSource]="dataSource" *ngIf="!tableVisible" class="mat-elevation-z8">
@@ -52,7 +52,7 @@
     <mat-paginator  [pageSizeOptions]="[10]" aria-label="Select page of users"></mat-paginator>
   </div>
 
-  <!-- <div>
+  <div>
     <div class="fan-container3">
       <img src="/2.png" alt="Fan" class="fan3">
     </div>
@@ -72,7 +72,7 @@
     </div>
 
   </div>
-  <div class="images">
+  <!-- <div class="images">
     <img class="imgs" src="/thantai.gif" alt="">
 
     <img class="imgs2" src="/thantai.gif" alt="">

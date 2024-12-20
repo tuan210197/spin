@@ -75,9 +75,9 @@
   align-items: center;
   margin: auto;
   /* height: 100vh; */
-  top: 65%;
-  left: 50%; 
-  transform: translate(-50%,-50%);
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
 }
 
@@ -366,6 +366,7 @@ tr:hover {
     transform: rotate(0deg);
   }
 }
+
 /* 
 .content1 {
   position: fixed;
@@ -392,8 +393,8 @@ tr:hover {
   align-items: center;
   /* height: 100vh; */
   top: 40%;
-  left: 50%; 
-  transform: translate(-50%,-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .names {
@@ -434,7 +435,7 @@ tr:hover {
   position: absolute;
   bottom: 5%;
   left: 25%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   transition: opacity 2s ease-in-out;
 }
 
@@ -452,24 +453,43 @@ tr:hover {
   color: #ffffff;
   position: fixed;
   top: 47%;
-  left: 50%; 
-  transform: translate(-50%,-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 50px;
   font-weight: bold;
   text-align: center;
 
 }
+
 @keyframes grandientAnimation {
-  0% {transform: translateY(0) }
-  50% {transform: translateY(10px) }
-  100% {transform: translateY(0)}
+  0% {
+    transform: translateY(0)
   }
+
+  50% {
+    transform: translateY(10px)
+  }
+
+  100% {
+    transform: translateY(0)
+  }
+}
+
 @keyframes bounceEffect {
-  0%, 100% {transform: translateY(0);}
-  50% {transform: translateY(-10px);}
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 
 }
+
 .raffle-box2 {
+  width: 80%;
   height: 100px;
   overflow: hidden;
   position: relative;
@@ -478,8 +498,8 @@ tr:hover {
   justify-content: center;
   align-items: center;
   top: 40%;
-  left: 50%; 
-  transform: translate(-50%,-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 
@@ -500,49 +520,55 @@ tr:hover {
 }
 
 
-    /* Tạo container cho bảng */
-    .table-container {
-      width: 80%;
-      position: fixed;
-      left: 10%;
-      top: 20%;
-    
-    }
-    
-  .mat-mdc-table{
-    background-color: rgba(0, 0, 0, 0);
-  }
-  .mat-mdc-header-cell{
-    border-bottom-width:0;
-  }
-  .mat-mdc-cell{
-    border-bottom-width:0;
-  }
-  .mat-elevation-z8, .mat-mdc-elevation-specific.mat-elevation-z8{
-    box-shadow: none;
-  }
-  .mat-mdc-row {
-    color:#ffffff;
-    font-size: large;
-    font-weight: bold;
-    height: 40px;
-  }
-  
-  .mat-mdc-header-row{
-    color:#ffffff;
-    font-size: large;
-    font-weight: bold;
-  }
-  
-  .mat-mdc-row:hover {
-    background-color: rgba(0, 0, 0, 0.2); /* Màu nền khi di chuột qua */
-  }
-  /* 
+/* Tạo container cho bảng */
+.table-container {
+  width: 50%;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mat-mdc-table {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.mat-mdc-header-cell {
+  border-bottom-width: 0;
+}
+
+.mat-mdc-cell {
+  border-bottom-width: 0;
+}
+
+.mat-elevation-z8,
+.mat-mdc-elevation-specific.mat-elevation-z8 {
+  box-shadow: none;
+}
+
+.mat-mdc-row {
+  color: #ffffff;
+  font-size: large;
+  font-weight: bold;
+  height: 40px;
+}
+
+.mat-mdc-header-row {
+  color: #ffffff;
+  font-size: large;
+  font-weight: bold;
+}
+
+.mat-mdc-row:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  /* Màu nền khi di chuột qua */
+}
+
+/* 
   .mat-mdc-header-cell:hover{
     background-color: rgba(0, 0, 0, 0.2); 
   } */
-  
-  .mat-mdc-paginator{
-    background-color: rgba(0, 0, 0, 0);
-  }
-  
+
+.mat-mdc-paginator {
+  background-color: rgba(0, 0, 0, 0);
+}

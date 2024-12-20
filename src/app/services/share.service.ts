@@ -21,7 +21,10 @@ export class ShareService {
   getSpecial(): Observable<Winner> {
     return this.http.get<Winner>(this.apiUrl + '/special/get');
   }
-
+ getListSpecial(): Observable<First>{
+    return this.http.get<First>(this.apiUrl+'/special/list');
+  }
+  
   getFirst(): Observable<Winner> {
     return this.http.get<Winner>(this.apiUrl + '/first/get');
   }
@@ -29,6 +32,8 @@ export class ShareService {
   getListFirst(): Observable<First>{
     return this.http.get<First>(this.apiUrl+'/first/list');
   }
+  
+ 
   
   getSecond(): Observable<Winner> {
     return this.http.get<Winner>(this.apiUrl + '/second/get');
@@ -82,5 +87,17 @@ export class ShareService {
 
   getListSecond(second: Second): Observable<Second[]> {
     return this.http.post<Second[]>(this.apiUrl + '/second/get-list' , second);
+  }
+
+  // delete service
+
+  onDeleteSecond(second: Second) {
+    return this.http.post(this.apiUrl + '/second/delete',  second)
+  }
+  onDeleteFirst(first: First) {
+    return this.http.post(this.apiUrl + '/first/delete',  first)
+  }
+  onDeleteSpecial(special: First) {
+    return this.http.post(this.apiUrl + '/special/delete',  special)
   }
 }

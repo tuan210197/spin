@@ -70,7 +70,7 @@
     align-items: center;
     margin: auto;
     /* height: 100vh; */
-    top: 75%;
+    top: 80%;
     left: 50%; 
     transform: translate(-50%,-50%);
   
@@ -416,20 +416,20 @@
   }
   
   .imgs {
-    width: 15%;
+    width: 12%;
     height: auto;
     position: absolute;
     bottom: 0%;
-    left: 33%;
+    left: 28%;
     transition: opacity 2s ease-in-out;
   }
   
   .imgs2 {
-    width: 15%;
+    width: 12%;
     height: auto;
     position: absolute;
     bottom: 0%;
-    right: 32%;
+    right: 27%;
     transition: opacity 2s ease-in-out;
   }
   
@@ -490,11 +490,11 @@
   
   /* Tạo container cho bảng */
   .table-container {
-    width: 80%;
+    width: 50%;
     position: fixed;
-    left: 10%;
-    top: 20%;
-  
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
   }
   
   

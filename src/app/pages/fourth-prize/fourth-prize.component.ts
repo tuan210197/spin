@@ -68,6 +68,8 @@ export class FourthPrizeComponent implements AfterViewInit {
   hasWinnerDisplayed: boolean = false; // Trạng thái hiển thị người trúng
   requestId = 0; // Tham chiếu của requestAnimationFrame
   tableVisible = true;
+  check: boolean = false;
+
 
   dataSource = new MatTableDataSource<Four>([]);
   displayedColumns: string[] = ['code', 'vn_name', 'bu', 'working_time'];
@@ -194,9 +196,12 @@ export class FourthPrizeComponent implements AfterViewInit {
         code: item.code,
         vn_name: item.vn_name,
         bu: item.bu,
-        working_time: item.working_time
+        working_time: item.working_time === 'A' ? 'Dưới 1 Năm' : 'Trên 1 Năm'
       }));
       console.log(this.listWinner);
+      if (this.listWinner.length == 68) {
+        this.check = true
+      }
       this.dataSource.data = this.listWinner;
       // this.paginator.length = this.listWinner.length;
     } catch (error) {

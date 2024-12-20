@@ -51,8 +51,11 @@ export class FirstPrizeComponent implements AfterViewInit {
   isImageFading = false;
   isVisible = false;
   showWinnerDiv: boolean = false; //  Trạng thái hiển thị div người chiến thắng
-  participants: { name: string; code: string , bu: string, joins : string}[] = [];
-  finalWinner: { name: string; code: string } | null = null;
+  showWinnerDiv1: boolean = true; // Trạng thái hiển thị div người chiến thắng
+  showWinnerDiv2: boolean = false; // Trạng thái hiển thị div người chiến thắng
+  showWinnerDiv3: boolean = false;
+  participants: { name: string; code: string, bu: string, joins: string }[] = [];
+  finalWinner: { name: string; code: string, bu: string, joins: string } | null = null;
   transformStyle: string = '';
   currentOffset: number = 0;
   lineHeight: number = 50; // Chiều cao mỗi dòng
@@ -60,10 +63,10 @@ export class FirstPrizeComponent implements AfterViewInit {
   intervalId: any;
   hasWinnerDisplayed: boolean = false; // Trạng thái hiển thị người trúng
   requestId = 0; // Tham chiếu của requestAnimationFrame
-  tableVisible = true;
+  tableVisible = false;
   listWinner: First[] = [];
   dataSource = new MatTableDataSource<First>([]);
-  displayedColumns: string[] = ['code', 'vn_name', 'bu', 'joins'];
+  displayedColumns: string[] = ['code', 'vn_name', 'bu', 'joins','action'];
   startFireworks(): void {
     const container = this.fireworksContainer.nativeElement;
     this.fireworks = new Fireworks(container, {
@@ -137,13 +140,21 @@ export class FirstPrizeComponent implements AfterViewInit {
 
   async startRaffle(): Promise<void> {
 
+    // const second: First = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '' };
+    const listWinner2 = await firstValueFrom(this.share.getListFirst());
+    if (Array.isArray(listWinner2) && listWinner2.length == 12) {
+      this.loadTable();
+
+      return;
+    }
+
     if (this.isRaffleRunning) {
-      this.tableVisible = true;
+      this.tableVisible = false;
       this.participants = [];
       try {
         const randomData = await this.share.getRandom().toPromise();
         this.participants = Array.isArray(randomData)
-          ? randomData.map((item: any) => ({ name: item.vn_name, code: item.code, bu: item.bu, joins : item.joins }))
+          ? randomData.map((item: any) => ({ name: item.vn_name, code: item.code, bu: item.bu, joins: item.joins }))
           : [];
       } catch (err) {
         console.error('Lỗi khi gọi API getRandom:', err);
@@ -160,26 +171,55 @@ export class FirstPrizeComponent implements AfterViewInit {
         // Tính toán offset dựa trên vị trí hiện tại
         this.currentOffset = currentIndex * this.lineHeight;
         this.transformStyle = `translateY(-${this.currentOffset}px)`;
-
         this.requestId = requestAnimationFrame(updatePosition); // Tiếp tục vòng lặp
       };
 
-      this.requestId = requestAnimationFrame(updatePosition); // Bắt đầu vòng lặp
+      this.requestId = requestAnimationFrame(updatePosition); // Bắt đầu vòng lặp 
+      const insert2A = await firstValueFrom(this.share.getFirst());
       this.isRaffleRunning = false;
+      this.showWinnerDiv1 = true
+      if (this.showWinnerDiv1) {
+        this.showWinnerDiv2 = false
+      }
 
-      const insert3A = await firstValueFrom(this.share.getFirst());
     } else {
-      this.loadTable();
       cancelAnimationFrame(this.requestId); // Dừng vòng lặp
+      this.isRaffleRunning = true;
+      this.showWinnerDiv1 = false
+      if (!this.showWinnerDiv1) {
+        this.showWinnerDiv2 = true
+      }
+      const listWinner = await firstValueFrom(this.share.getListFirst());
+      console.log(listWinner)
+
+      const okela = Array.isArray(listWinner) ? listWinner[listWinner.length -1] : null;
+      if (okela) {
+        this.finalWinner = {
+          name: okela.code,
+          code: okela.vn_name,
+          bu: okela.bu,
+          joins: okela.joins === 'Y' ? 'Tham Gia' : 'Vắng'
+        };
+        console.log("oke: "+ this.finalWinner.code)
+        this.launchConfetti();
+        return;
+      } else {
+        console.error('specialData is undefined');
+      }
+      // this.loadTable();  
       this.resetRaffle();
-      this.launchConfetti();
+
       this.tableVisible = false;
       return;
     }
   }
   async loadTable(): Promise<void> {
     this.listWinner = [];
-    // const first: First = { code: '0', vn_name: '', bu: '', joins: 'B' };
+    this.showWinnerDiv1 = false
+    this.showWinnerDiv2 = false
+    this.showWinnerDiv3 = true
+    this.tableVisible = true
+    // const second: First = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '' };
     try {
       const listWinner = await firstValueFrom(this.share.getListFirst());
 
@@ -187,7 +227,7 @@ export class FirstPrizeComponent implements AfterViewInit {
         code: item.code,
         vn_name: item.vn_name,
         bu: item.bu,
-        joins: item.joins
+        joins: item.joins === 'Y' ? 'Tham Gia' : 'Vắng'
       }));
       console.log(this.listWinner);
       this.dataSource.data = this.listWinner;
@@ -196,6 +236,7 @@ export class FirstPrizeComponent implements AfterViewInit {
       console.error('Lỗi khi gọi API:', error);
     }
   }
+
 
   easeOutQuad(t: number): number {
     return t * (2 - t); // Hàm easing cho giảm tốc
@@ -260,4 +301,25 @@ export class FirstPrizeComponent implements AfterViewInit {
   private random(min: number, max: number): number {
     return Math.max(min, Math.min(max, min + Math.random() * (max - min)));
   }
+  async onDelete(first: First): Promise<void> {
+      
+      const confirmDelete = confirm('Bạn có chắc chắn muốn xóa người chơi này không?');
+  
+      if (confirmDelete) {
+        await this.share.onDeleteFirst(first).subscribe(
+          () => {
+            console.log('Xóa thành công');
+            // Nếu cần, gọi API để làm mới dữ liệu bảng
+            this.tableVisible = true
+            this.loadTable();
+            this.showWinnerDiv1 = false; // Trạng thái hiển thị div người chiến thắng
+            this.showWinnerDiv2 = false; // Trạng thái hiển thị div người chiến thắng
+            this.isRaffleRunning= true
+          },
+          (error) => {
+            console.error('Lỗi khi xóa:', error);
+          }
+        );
+      }
+    }
 }

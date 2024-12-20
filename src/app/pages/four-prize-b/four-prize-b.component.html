@@ -21,7 +21,7 @@
     </div> -->
     <div class="card-content">
       <!-- *ngIf="!tableVisible" -->
-      <button class="btn"  (click)="startRaffle()">開始</button>
+      <button class="btn" [disabled]="check" (click)="startRaffle()">開始</button>
     </div>
     <div class="table-container" >
       <table mat-table [dataSource]="dataSource" *ngIf="!tableVisible" class="mat-elevation-z8">
@@ -72,11 +72,11 @@
       </div>
   
     </div>
-    <div class="images">
+    <!-- <div class="images">
       <img class="imgs" src="/thantai.gif" alt="">
   
       <img class="imgs2" src="/thantai.gif" alt="">
-    </div> 
+    </div>  -->
   
     <!-- </div> -->
   

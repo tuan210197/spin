@@ -193,7 +193,7 @@ export class ThirdPrizeComponent implements AfterViewInit{
         code: item.code,
         vn_name: item.vn_name,
         bu: item.bu,
-        working_time: item.working_time
+        working_time: item.working_time  === 'A' ? 'Dưới 1 Năm' : 'Trên 1 Năm'
       }));
       console.log(this.listWinner);
       this.dataSource.data = this.listWinner;
