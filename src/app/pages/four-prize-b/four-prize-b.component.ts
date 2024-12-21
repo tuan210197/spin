@@ -106,10 +106,12 @@ export class FourPrizeBComponent implements AfterViewInit {
   requestId = 0; // Tham chiếu của requestAnimationFrame
   tableVisible = true;
   check: boolean = false
+  totalLength = 0;
+  pageSize = 10;
 
   dataSource = new MatTableDataSource<Four>([]);
   // , 'working_time'
-  displayedColumns: string[] = ['code', 'vn_name', 'bu'];
+  displayedColumns: string[] = ['position','code', 'vn_name', 'bu'];
   // dataSourceWithPageSize = new MatTableDataSource(this.listWinner);
 
 
@@ -242,7 +244,14 @@ export class FourPrizeBComponent implements AfterViewInit {
         this.check = true
       }
       this.dataSource.data = this.listWinner;
-      // this.paginator.length = this.listWinner.length;
+      this.totalLength = this.listWinner.length; // Tổng số bản ghi
+
+      // Đặt paginator ở trang cuối cùng
+      const totalPages = Math.ceil(this.totalLength / this.pageSize);
+      if (totalPages > 0) {
+        this.paginator.pageIndex = totalPages - 1; // Trang cuối cùng
+        this.paginator._changePageSize(this.pageSize); // Kích hoạt thay đổi
+      }
     } catch (error) {
       console.error('Lỗi khi gọi API:', error);
     }

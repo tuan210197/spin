@@ -65,8 +65,10 @@ export class ThirdPrizeComponent implements AfterViewInit{
    requestId = 0; // Tham chiếu của requestAnimationFrame
    tableVisible = true;
   dataSource = new MatTableDataSource<Four>([]);
-  // , 'working_time'
-  displayedColumns: string[] = ['code', 'vn_name', 'bu'];
+  displayedColumns: string[] = ['position','code', 'vn_name', 'bu'];
+  totalLength = 0;
+  pageSize = 5;
+
 
   private audio = new Audio();
   private audio2 = new Audio();
@@ -240,8 +242,14 @@ export class ThirdPrizeComponent implements AfterViewInit{
       }));
       console.log(this.listWinner);
       this.dataSource.data = this.listWinner;
-      // this.paginator.length = this.listWinner.length;
-    } catch (error) {
+      this.totalLength = this.listWinner.length; // Tổng số bản ghi
+  
+      // Đặt paginator ở trang cuối cùng
+      const totalPages = Math.ceil(this.totalLength / this.pageSize);
+      if (totalPages > 0) {
+        this.paginator.pageIndex = totalPages - 1; // Trang cuối cùng
+        this.paginator._changePageSize(this.pageSize); // Kích hoạt thay đổi
+      }    } catch (error) {
       console.error('Lỗi khi gọi API:', error);
     }
   }

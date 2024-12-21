@@ -68,7 +68,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
   tableVisible = false;
   listWinner: First[] = [];
   dataSource = new MatTableDataSource<First>([]);
-  displayedColumns: string[] = ['code', 'vn_name', 'bu', 'joins','action'];
+  displayedColumns: string[] = ['position','code', 'vn_name', 'bu', 'joins','action'];
 
   private audio = new Audio();
   private audio2 = new Audio();

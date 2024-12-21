@@ -66,7 +66,7 @@ export class SecondPrizeComponent implements AfterViewInit {
   tableVisible = false;
   requestId = 0; // Tham chiếu của requestAnimationFrame
   dataSource = new MatTableDataSource<Second>([]);
-  displayedColumns: string[] = ['code', 'vn_name', 'bu',  'joins', 'action'];
+  displayedColumns: string[] = ['position','code', 'vn_name', 'bu',  'joins', 'action'];
 
 
   private audio = new Audio();

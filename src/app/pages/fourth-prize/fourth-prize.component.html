@@ -25,7 +25,12 @@
   </div>
   <div class="table-container" >
     <table mat-table [dataSource]="dataSource" *ngIf="!tableVisible" class="mat-elevation-z8">
-
+      <ng-container matColumnDef="position">
+        <mat-header-cell *matHeaderCellDef> Position </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index">
+          {{ i + 1 + paginator.pageIndex * paginator.pageSize }}
+        </mat-cell>
+      </ng-container>
       <ng-container matColumnDef="code">
         <th mat-header-cell *matHeaderCellDef> Mã Nhân Viên </th>
         <td mat-cell *matCellDef="let element"> {{ element.code }} </td>
