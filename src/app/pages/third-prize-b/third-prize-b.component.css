@@ -484,8 +484,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-  
-  
   }
   
   .name-item2 {
@@ -497,7 +495,7 @@
   
     /* Tạo container cho bảng */
     .table-container {
-      width: 50%;
+      width: 60%;
       position: fixed;
       left: 50%;
       top: 50%;

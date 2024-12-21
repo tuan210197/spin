@@ -355,7 +355,7 @@ h1 {
   position: fixed;
   align-items: center;
   top: 40%;
-  left: 60%;
+  left: 65%;
   /* transform: translate(-50%,-50%); */
 
 }
@@ -371,7 +371,7 @@ h1 {
   position: fixed;
   align-items: center;
   top: 40%;
-  right: 60%;
+  right: 65%;
   /* transform: translate(-50%,-50%); */
 
 }

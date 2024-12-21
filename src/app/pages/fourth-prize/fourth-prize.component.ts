@@ -110,7 +110,8 @@ export class FourthPrizeComponent implements AfterViewInit {
 
 
   dataSource = new MatTableDataSource<Four>([]);
-  displayedColumns: string[] = ['code', 'vn_name', 'bu', 'working_time'];
+  // , 'working_time'
+  displayedColumns: string[] = ['code', 'vn_name', 'bu'];
   // dataSourceWithPageSize = new MatTableDataSource(this.listWinner);
 
 
@@ -214,6 +215,7 @@ export class FourthPrizeComponent implements AfterViewInit {
       this.isRaffleRunning = false;
 
       const insert4A = await firstValueFrom(this.share.getFourA());
+      console.log(insert4A)
     } else {
       this.playAudio2();
       this.loadTable();
@@ -238,12 +240,14 @@ export class FourthPrizeComponent implements AfterViewInit {
         bu: item.bu,
         working_time: item.working_time === 'A' ? 'Dưới 1 Năm' : 'Trên 1 Năm'
       }));
+
+      
       console.log(this.listWinner);
       if (this.listWinner.length == 68) {
         this.check = true
       }
       this.dataSource.data = this.listWinner;
-      // this.paginator.length = this.listWinner.length;
+    
     } catch (error) {
       console.error('Lỗi khi gọi API:', error);
     }

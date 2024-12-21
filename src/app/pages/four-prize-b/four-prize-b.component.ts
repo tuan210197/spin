@@ -108,7 +108,8 @@ export class FourPrizeBComponent implements AfterViewInit {
   check: boolean = false
 
   dataSource = new MatTableDataSource<Four>([]);
-  displayedColumns: string[] = ['code', 'vn_name', 'bu', 'working_time'];
+  // , 'working_time'
+  displayedColumns: string[] = ['code', 'vn_name', 'bu'];
   // dataSourceWithPageSize = new MatTableDataSource(this.listWinner);
 
 

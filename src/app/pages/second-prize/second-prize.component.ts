@@ -66,7 +66,7 @@ export class SecondPrizeComponent implements AfterViewInit {
   tableVisible = false;
   requestId = 0; // Tham chiếu của requestAnimationFrame
   dataSource = new MatTableDataSource<Second>([]);
-  displayedColumns: string[] = ['code', 'vn_name', 'bu', 'working_time', 'joins', 'action'];
+  displayedColumns: string[] = ['code', 'vn_name', 'bu',  'joins', 'action'];
 
 
   private audio = new Audio();
@@ -176,12 +176,12 @@ export class SecondPrizeComponent implements AfterViewInit {
   constructor(private http: HttpClient, private share: ShareService) { }
 
   async startRaffle(): Promise<void> {
-    
 
     const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'A', joins: '' };
     const listWinner = await firstValueFrom(this.share.getListSecond(second));
     console.log(listWinner.length)
     if (listWinner.length == 6) {
+      debugger
       this.loadTable();
       // cancelAnimationFrame(this.requestId); // Dừng vòng lặp
       this.playAudio2();
@@ -225,6 +225,7 @@ export class SecondPrizeComponent implements AfterViewInit {
       }
 
     } else {
+      debugger
       this.playAudio2();
       const insert2A = await firstValueFrom(this.share.getSecondA());
       const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'A', joins: '' };

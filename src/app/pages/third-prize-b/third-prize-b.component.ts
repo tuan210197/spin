@@ -65,7 +65,8 @@ export class ThirdPrizeBComponent implements AfterViewInit{
    requestId = 0; // Tham chiếu của requestAnimationFrame
    tableVisible = true;
   dataSource = new MatTableDataSource<Four>([]);
-  displayedColumns: string[] = ['code', 'vn_name', 'bu', 'working_time'];
+  // , 'working_time'
+  displayedColumns: string[] = ['code', 'vn_name', 'bu'];
 
 
   private audio = new Audio();
