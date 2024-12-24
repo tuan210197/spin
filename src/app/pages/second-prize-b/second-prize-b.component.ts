@@ -10,7 +10,8 @@ import { gsap } from 'gsap';
 import { ShareService } from '../../services/share.service';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { firstValueFrom } from 'rxjs';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import Swal from 'sweetalert2';
 
 interface Second {
   code: string;
@@ -18,12 +19,13 @@ interface Second {
   bu: string;
   working_time: string;
   joins: string;
+  receive: number;
 }
 
 @Component({
   selector: 'app-second-prize-b',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule],
+  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule,MatSlideToggleModule],
   templateUrl: './second-prize-b.component.html',
   styleUrl: './second-prize-b.component.css'
 })
@@ -66,8 +68,9 @@ export class SecondPrizeBComponent implements AfterViewInit {
   tableVisible = false;
   requestId = 0; // Tham chiếu của requestAnimationFrame
   dataSource = new MatTableDataSource<Second>([]);
-  displayedColumns: string[] = ['position','code', 'vn_name', 'bu', 'joins', 'action'];
-
+  displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu', 'joins', 'action'];
+  totalLength = 0;
+  pageSize = 6; // Số bản ghi trên mỗi trang
 
   private audio = new Audio();
   private audio2 = new Audio();
@@ -181,10 +184,13 @@ export class SecondPrizeBComponent implements AfterViewInit {
 
   async startRaffle(): Promise<void> {
 
-    const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '' };
+    const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '', receive: 0 };
     const listWinner = await firstValueFrom(this.share.getListSecond(second));
-    console.log(listWinner.length)
-    if (listWinner.length == 6) {
+
+    this.listWinner = Array.isArray(listWinner) ? listWinner : [];
+    const count = this.listWinner.filter((item: any) => item.receive === 1).length;
+    console.log(count);
+    if (count == 6) {
       this.loadTable();
       this.playAudio2();
       return;
@@ -227,7 +233,7 @@ export class SecondPrizeBComponent implements AfterViewInit {
     } else {
       this.playAudio2();
       const insert2A = await firstValueFrom(this.share.getSecondB());
-      const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '' };
+      const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '', receive: 0 };
       const listWinner = await firstValueFrom(this.share.getListSecond(second));
       cancelAnimationFrame(this.requestId); // Dừng vòng lặp
       this.isRaffleRunning = true;
@@ -235,11 +241,6 @@ export class SecondPrizeBComponent implements AfterViewInit {
       if (!this.showWinnerDiv1) {
         this.showWinnerDiv2 = true
       }
-
-      // console.log(listWinner.length)
-      // if (listWinner.length == 6) {
-      //   this.loadTable();
-      // }
       if (listWinner) {
         this.finalWinner = {
           name: listWinner[0].code,
@@ -265,7 +266,7 @@ export class SecondPrizeBComponent implements AfterViewInit {
     this.showWinnerDiv2 = false
     this.showWinnerDiv3 = true
     this.tableVisible = true
-    const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '' };
+    const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '',receive: 0 };
     try {
       const listWinner = await firstValueFrom(this.share.getListSecond(second));
 
@@ -273,12 +274,20 @@ export class SecondPrizeBComponent implements AfterViewInit {
         code: item.code,
         vn_name: item.vn_name,
         bu: item.bu,
-        working_time: item.working_time === 'A' ? 'Trên 1 Năm' : 'Dưới 1 Năm',
-        joins: item.joins === 'Y' ? 'Tham Gia' : 'Vắng'
+        working_time: item.working_time ,
+        joins: item.joins === 'Y' ? 'Tham Gia' : 'Vắng',
+        receive: item.receive
       }));
       console.log(this.listWinner);
       this.dataSource.data = this.listWinner;
-      // this.paginator.length = this.listWinner.length;
+      this.totalLength = this.listWinner.length; // Tổng số bản ghi
+
+      // Đặt paginator ở trang cuối cùng
+      const totalPages = Math.ceil(this.totalLength / this.pageSize);
+      if (totalPages > 0) {
+        this.paginator.pageIndex = totalPages - 1; // Trang cuối cùng
+        this.paginator._changePageSize(this.pageSize); // Kích hoạt thay đổi
+      }
     } catch (error) {
       console.error('Lỗi khi gọi API:', error);
     }
@@ -348,25 +357,56 @@ export class SecondPrizeBComponent implements AfterViewInit {
   private random(min: number, max: number): number {
     return Math.max(min, Math.min(max, min + Math.random() * (max - min)));
   }
-  async onDelete(second: Second): Promise<void> {
-    console.log(second)
-    const confirmDelete = confirm('Bạn có chắc chắn muốn xóa người chơi này không?');
+  async loadTable2(): Promise<void> {
+    this.listWinner = [];
+    this.showWinnerDiv1 = false
+    this.showWinnerDiv2 = false
+    this.showWinnerDiv3 = true
+    this.tableVisible = true
+    try {
+      const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'A', joins: '', receive: 0 };
+      const listWinner = await firstValueFrom(this.share.getListSecond(second));
 
-    if (confirmDelete) {
-      await this.share.onDeleteSecond(second).subscribe(
-        () => {
-          console.log('Xóa thành công');
-          // Nếu cần, gọi API để làm mới dữ liệu bảng
-          this.tableVisible = true
-          this.loadTable();
-          this.showWinnerDiv1 = false; // Trạng thái hiển thị div người chiến thắng
-          this.showWinnerDiv2 = false; // Trạng thái hiển thị div người chiến thắng
-          this.isRaffleRunning = true
-        },
-        (error) => {
-          console.error('Lỗi khi xóa:', error);
-        }
-      );
+      (Array.isArray(listWinner) ? listWinner : []).forEach(item => this.listWinner.push({
+        code: item.code,
+        vn_name: item.vn_name,
+        bu: item.bu,
+        joins: item.joins === 'Y' ? 'Tham Gia' : 'Vắng',
+        receive: item.receive,
+        working_time: item.working_time
+      }));
+      console.log(this.listWinner);
+      this.dataSource.data = this.listWinner;
+    } catch (error) {
+      console.error('Lỗi khi gọi API:', error);
     }
+  }
+  async onToggleChange(element: any, event: any) {
+
+    Swal.fire({
+      title: `Bạn có chắc chắn muốn xóa ${element.vn_name} không?`,
+      text: 'Hành động này sẽ không thể hoàn tác.',
+      icon: 'warning', // Biểu tượng cảnh báo
+      showCancelButton: true, // Hiển thị nút Cancel
+      confirmButtonText: 'Có', // Nút xác nhận
+      cancelButtonText: 'Không', // Nút hủy
+      reverseButtons: true // Đảo ngược thứ tự nút (nút "Có" sẽ ở bên trái)
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        // Nếu người dùng nhấn "Có"
+        Swal.fire('Đã xác nhận!', 'Hành động đã được thực hiện.', 'success');
+        element.status = 0; // Cập nhật giá trị 1 hoặc 0
+        element.receive = event.checked ? 1 : 0;
+        const update = await firstValueFrom(this.share.onToggleChangeSecond(element));
+        this.loadTable2();
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // Nếu người dùng nhấn "Không"
+        Swal.fire('Đã hủy', 'Hành động bị hủy bỏ.', 'error');
+        console.log('User clicked No');
+        this.loadTable();
+      }
+    });
+
+
   }
 }

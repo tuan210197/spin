@@ -91,13 +91,13 @@ export class ShareService {
 
   // delete service
 
-  onDeleteSecond(second: Second) {
-    return this.http.post(this.apiUrl + '/second/delete',  second)
+  onToggleChangeSecond(second: Second) {
+    return this.http.post(this.apiUrl + '/second/update',  second)
   }
-  onDeleteFirst(first: First) {
-    return this.http.post(this.apiUrl + '/first/delete',  first)
+  onToggleChangeFirst(first: First) {
+    return this.http.post(this.apiUrl + '/first/update',  first)
   }
-  onDeleteSpecial(special: First) {
-    return this.http.post(this.apiUrl + '/special/delete',  special)
+  onToggleChangeSpecial(special: First) {
+    return this.http.post(this.apiUrl + '/special/update',  special)
   }
 }

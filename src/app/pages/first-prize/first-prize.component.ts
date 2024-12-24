@@ -10,6 +10,8 @@ import { gsap } from 'gsap';
 import { ShareService } from '../../services/share.service';
 import { firstValueFrom } from 'rxjs';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import Swal from 'sweetalert2';
 
 
 export interface First {
@@ -17,11 +19,12 @@ export interface First {
   code: string;
   joins: string;
   bu: string;
+  receive:number;
 }
 
 @Component({
   selector: 'app-first-prize',
-  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule],
+  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule,MatSlideToggleModule],
   standalone: true,
   templateUrl: './first-prize.component.html',
   styleUrl: './first-prize.component.css'
@@ -66,8 +69,11 @@ export class FirstPrizeComponent implements AfterViewInit {
   tableVisible = false;
   listWinner: First[] = [];
   dataSource = new MatTableDataSource<First>([]);
-  displayedColumns: string[] = ['code', 'vn_name', 'bu', 'joins','action'];
-  
+  displayedColumns: string[] = ['position','code', 'vn_name', 'bu', 'joins','action'];
+  totalLength= 0; // Tổng số bản ghi
+  pageSize = 6; // Số bản ghi trên mỗi trang
+
+
   private audio = new Audio();
   private audio2 = new Audio();
   ngOnInit(): void {
@@ -80,20 +86,17 @@ export class FirstPrizeComponent implements AfterViewInit {
     this.stopAudio(this.audio2); // Dừng audio 2 nếu đang phát
     this.startAudio(this.audio); // Phát audio 1
   }
-
   playAudio2(): void {
     this.stopAudio(this.audio); // Dừng audio 1 nếu đang phát
     this.startAudio(this.audio2); // Phát audio 2
   }
-
   startAudio(audio: HTMLAudioElement): void {
     audio.currentTime = 0; // Đặt lại thời gian về đầu
     audio
       .play()
-      .then(() => console.log('Audio started'))
+      .then(() =>{})
       .catch((err) => console.error('Error playing audio:', err));
   }
-
   stopAudio(audio: HTMLAudioElement): void {
     if (!audio.paused) {
       audio.pause(); // Dừng phát nhạc
@@ -185,10 +188,14 @@ export class FirstPrizeComponent implements AfterViewInit {
 
     // const second: First = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '' };
     const listWinner2 = await firstValueFrom(this.share.getListFirst());
-    if (Array.isArray(listWinner2) && listWinner2.length == 12) {
+
+    this.listWinner = Array.isArray(listWinner2) ? listWinner2 : [];
+
+    const count = this.listWinner.filter((item: any) => item.receive === 1).length;
+
+    if (count == 12) {
       this.loadTable();
       this.playAudio2();
-
       return;
     }
 
@@ -273,11 +280,19 @@ export class FirstPrizeComponent implements AfterViewInit {
         code: item.code,
         vn_name: item.vn_name,
         bu: item.bu,
-        joins: item.joins === 'Y' ? 'Tham Gia' : 'Vắng'
+        joins: item.joins === 'Y' ? 'Tham Gia' : 'Vắng',
+        receive: item.receive,
       }));
       console.log(this.listWinner);
       this.dataSource.data = this.listWinner;
-      // this.paginator.length = this.listWinner.length;
+      this.totalLength = this.listWinner.length; // Tổng số bản ghi
+
+      // Đặt paginator ở trang cuối cùng
+      const totalPages = Math.ceil(this.totalLength / this.pageSize);
+      if (totalPages > 0) {
+        this.paginator.pageIndex = totalPages - 1; // Trang cuối cùng
+        this.paginator._changePageSize(this.pageSize); // Kích hoạt thay đổi
+      }
     } catch (error) {
       console.error('Lỗi khi gọi API:', error);
     }
@@ -347,25 +362,53 @@ export class FirstPrizeComponent implements AfterViewInit {
   private random(min: number, max: number): number {
     return Math.max(min, Math.min(max, min + Math.random() * (max - min)));
   }
-  async onDelete(first: First): Promise<void> {
-      
-      const confirmDelete = confirm('Bạn có chắc chắn muốn xóa người chơi này không?');
-  
-      if (confirmDelete) {
-        await this.share.onDeleteFirst(first).subscribe(
-          () => {
-            console.log('Xóa thành công');
-            // Nếu cần, gọi API để làm mới dữ liệu bảng
-            this.tableVisible = true
-            this.loadTable();
-            this.showWinnerDiv1 = false; // Trạng thái hiển thị div người chiến thắng
-            this.showWinnerDiv2 = false; // Trạng thái hiển thị div người chiến thắng
-            this.isRaffleRunning= true
-          },
-          (error) => {
-            console.error('Lỗi khi xóa:', error);
-          }
-        );
+  async onToggleChange(element: any, event: any) {
+
+    Swal.fire({
+      title: `Bạn có chắc chắn muốn xóa ${element.vn_name} không?`,
+      text: 'Hành động này sẽ không thể hoàn tác.',
+      icon: 'warning', // Biểu tượng cảnh báo
+      showCancelButton: true, // Hiển thị nút Cancel
+      confirmButtonText: 'Có', // Nút xác nhận
+      cancelButtonText: 'Không', // Nút hủy
+      reverseButtons: true // Đảo ngược thứ tự nút (nút "Có" sẽ ở bên trái)
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        // Nếu người dùng nhấn "Có"
+        Swal.fire('Đã xác nhận!', 'Hành động đã được thực hiện.', 'success');
+        element.status = 0; // Cập nhật giá trị 1 hoặc 0
+        element.receive = event.checked ? 1 : 0;
+        const update = await firstValueFrom(this.share.onToggleChangeFirst(element));
+        this.loadTable2();
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // Nếu người dùng nhấn "Không"
+        Swal.fire('Đã hủy', 'Hành động bị hủy bỏ.', 'error');
+        console.log('User clicked No');
+        this.loadTable2();
       }
+    });
+  }
+  async loadTable2(): Promise<void> {
+    this.listWinner = [];
+    this.showWinnerDiv1 = false
+    this.showWinnerDiv2 = false
+    this.showWinnerDiv3 = true
+    this.tableVisible = true
+    try {
+      const listWinner = await firstValueFrom(this.share.getListFirst());
+
+      (Array.isArray(listWinner) ? listWinner : []).forEach(item => this.listWinner.push({
+        code: item.code,
+        vn_name: item.vn_name,
+        bu: item.bu,
+        joins: item.joins === 'Y' ? 'Tham Gia' : 'Vắng',
+        receive: item.receive,
+      }));
+      console.log(this.listWinner);
+      this.dataSource.data = this.listWinner;
+    } catch (error) {
+      console.error('Lỗi khi gọi API:', error);
     }
+  }
+
 }

@@ -3,4 +3,5 @@ export interface First {
     code: string;
     joins: string;
     bu: string;
+    receive: number
   }
