@@ -69,7 +69,7 @@ export class ThirdPrizeComponent implements AfterViewInit {
   displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu'];
   totalLength = 0;
   pageSize = 5;
-
+  visible = true;
 
   private audio = new Audio();
   private audio2 = new Audio();
@@ -198,7 +198,7 @@ export class ThirdPrizeComponent implements AfterViewInit {
       console.log(count);
       if (count == 35) {
         this.loadTable();
-        // console.log(this.tableVisible)
+        this.visible = false;
         this.tableVisible = false;
         this.resetRaffle();
         this.launchConfetti();
@@ -208,6 +208,7 @@ export class ThirdPrizeComponent implements AfterViewInit {
 
 
       if (this.isRaffleRunning) {
+        this.visible = false;
         this.playAudio1();
         this.tableVisible = true;
         this.participants = [];
@@ -240,6 +241,7 @@ export class ThirdPrizeComponent implements AfterViewInit {
 
         const insert3A = await firstValueFrom(this.share.getThirdA());
       } else {
+        this.visible = false;
         this.playAudio2();
         this.loadTable();
         cancelAnimationFrame(this.requestId); // Dừng vòng lặp

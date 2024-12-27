@@ -71,7 +71,7 @@ export class SecondPrizeComponent implements AfterViewInit {
   displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu', 'joins', 'action'];
   totalLength = 0;
   pageSize = 6; // Số bản ghi trên mỗi trang
-
+  visible = true;
   private audio = new Audio();
   private audio2 = new Audio();
   ngOnInit(): void {
@@ -191,8 +191,9 @@ export class SecondPrizeComponent implements AfterViewInit {
       const count = this.listWinner.filter((item: any) => item.receive === 1).length;
       console.log(count)
       if (count == 6) {
-        // debugger
-        this.loadTable();
+      
+        this.visible = false;
+        this.loadTable2();
         this.playAudio2();
         return;
       }
@@ -202,6 +203,7 @@ export class SecondPrizeComponent implements AfterViewInit {
         this.listWinner = [];
         this.tableVisible = false;
         this.participants = [];
+        this.visible = false;
         try {
           const randomData = await this.share.getRandom().toPromise();
           this.participants = Array.isArray(randomData)
@@ -234,6 +236,7 @@ export class SecondPrizeComponent implements AfterViewInit {
         }
 
       } else {
+        this.visible = false;
         this.playAudio2();
         const insert2A = await firstValueFrom(this.share.getSecondA());
         const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'A', joins: '', receive: 0 };

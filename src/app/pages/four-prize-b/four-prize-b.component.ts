@@ -108,7 +108,7 @@ export class FourPrizeBComponent implements AfterViewInit {
   check: boolean = false
   totalLength = 0;
   pageSize = 10;
-
+  visible = true;
   dataSource = new MatTableDataSource<Four>([]);
   // , 'working_time'
   displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu'];
@@ -188,6 +188,7 @@ export class FourPrizeBComponent implements AfterViewInit {
     const count = this.listWinner.filter((item: any) => item.working_time === 'B').length;
 
     if (count == 67) {
+      this.visible = false;
       this.loadTable();
       // console.log(this.tableVisible)
       this.tableVisible = false;
@@ -198,6 +199,7 @@ export class FourPrizeBComponent implements AfterViewInit {
     }
 
     if (this.isRaffleRunning) {
+      this.visible = false;
       this.playAudio1();
       this.tableVisible = true;
       this.participants = [];
@@ -230,6 +232,7 @@ export class FourPrizeBComponent implements AfterViewInit {
 
       const insert4A = await firstValueFrom(this.share.getFourB());
     } else {
+      this.visible = false;
       this.playAudio2();
       this.loadTable();
       cancelAnimationFrame(this.requestId); // Dừng vòng lặp

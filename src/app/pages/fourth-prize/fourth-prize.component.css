@@ -494,7 +494,7 @@ tr:hover {
 
 /* Tạo container cho bảng */
 .table-container {
-  width: 40%;
+  width: 50%;
   position: fixed;
   left: 50%;
   top: 55%;
@@ -516,14 +516,15 @@ tr:hover {
 }
 .mat-mdc-row {
   color:#ffffff;
-  font-size: xx-large;
+  font-size: 3em;
   font-weight: bold;
   height: 40px;
+  line-height: 1.5;
 }
 
 .mat-mdc-header-row{
   color:#ffffff;
-  font-size: xx-large;
+  font-size: 3em;
   font-weight: bold;
 }
 

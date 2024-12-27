@@ -66,7 +66,7 @@ export class ThirdPrizeBComponent implements AfterViewInit {
   requestId = 0; // Tham chiếu của requestAnimationFrame
   tableVisible = true;
   dataSource = new MatTableDataSource<Four>([]);
-  // , 'working_time'
+  visible = true;
   displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu'];
   totalLength = 0;
   pageSize = 5;
@@ -193,6 +193,7 @@ export class ThirdPrizeBComponent implements AfterViewInit {
       
       console.log(count);
       if (count == 35) {
+        this.visible = false;
         this.loadTable();
         this.tableVisible = false;
         this.resetRaffle();
@@ -205,6 +206,7 @@ export class ThirdPrizeBComponent implements AfterViewInit {
       if (this.isRaffleRunning) {
         this.playAudio1()
         this.tableVisible = true;
+        this.visible = false;
         this.participants = [];
         try {
           const randomData = await this.share.getRandom().toPromise();
@@ -235,6 +237,7 @@ export class ThirdPrizeBComponent implements AfterViewInit {
 
         const insert3A = await firstValueFrom(this.share.getThirdB());
       } else {
+        this.visible = false;
         this.playAudio2()
         this.loadTable();
         cancelAnimationFrame(this.requestId); // Dừng vòng lặp

@@ -204,7 +204,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
 
       if (count >= 6) {
         this.playAudio2();
-        this.loadTable();
+        this.loadTable2();
         return;
       }
       if (this.isRaffleRunning) {

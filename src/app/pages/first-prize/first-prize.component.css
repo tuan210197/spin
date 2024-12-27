@@ -514,7 +514,7 @@ tr:hover {
 
 /* Tạo container cho bảng */
 .table-container {
-  width: 40%;
+  width: 50%;
   position: fixed;
   left: 50%;
   top: 50%;
@@ -541,14 +541,14 @@ tr:hover {
 
 .mat-mdc-row {
   color: #ffffff;
-  font-size: x-large;
+  font-size: 3em;
   font-weight: bold;
-
+  line-height: 1.5;
 }
 
 .mat-mdc-header-row {
   color: #ffffff;
-  font-size: x-large;
+  font-size: 3em;
   font-weight: bold;
 }
 
@@ -656,4 +656,8 @@ tr:hover {
   100% {
     transform: scale(1.1) translateY(-10px);
   }
+}
+
+ .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: #49c5b6;
 }

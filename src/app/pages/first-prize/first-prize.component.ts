@@ -72,7 +72,7 @@ export class FirstPrizeComponent implements AfterViewInit {
   displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu', 'joins', 'action'];
   totalLength = 0; // Tổng số bản ghi
   pageSize = 6; // Số bản ghi trên mỗi trang
-
+  visible = true
 
   private audio = new Audio();
   private audio2 = new Audio();
@@ -194,12 +194,14 @@ export class FirstPrizeComponent implements AfterViewInit {
       const count = this.listWinner.filter((item: any) => item.receive === 1).length;
 
       if (count == 12) {
-        this.loadTable();
+        this.visible = false;
+        this.loadTable2();
         this.playAudio2();
         return;
       }
 
       if (this.isRaffleRunning) {
+        this.visible = false;
         this.playAudio1();
         this.tableVisible = false;
         this.participants = [];
@@ -234,6 +236,7 @@ export class FirstPrizeComponent implements AfterViewInit {
         }
 
       } else {
+        this.visible = false;
         this.playAudio2();
         const insert2A = await firstValueFrom(this.share.getFirst());
         const listWinner = await firstValueFrom(this.share.getListFirst());
