@@ -2,7 +2,7 @@
   display: flex;
   position: fixed;
   justify-content: flex-end;
-  background: url('/7.png');
+  background: url('/special.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -10,7 +10,7 @@
   align-items: center;
   overflow: hidden;
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   /* Chiều cao 100% màn hình */
   background-color: #f5f5f5;
   /* Màu nền (tuỳ chỉnh) */
@@ -75,7 +75,7 @@
   align-items: center;
   margin: auto;
   /* height: 100vh; */
-  top: 70%;
+  top: 80%;
   left: 50%; 
   transform: translate(-50%,-50%);
 
@@ -542,10 +542,10 @@ tr:hover {
 
   /* Tạo container cho bảng */
   .table-container {
-    width: 60%;
+    width: 40%;
     position: fixed;
     left: 50%;
-    top: 50%;
+    top: 55%;
     transform: translate(-50%,-50%);
   }
   
@@ -563,14 +563,14 @@ tr:hover {
   }
   .mat-mdc-row {
     color:#ffffff;
-    font-size: large;
+    font-size: x-large;
     font-weight: bold;
-    height: 40px;
+    /* height: 40px; */
   }
   
   .mat-mdc-header-row{
     color:#ffffff;
-    font-size: large;
+    font-size: x-large;
     font-weight: bold;
   }
   
@@ -585,5 +585,134 @@ tr:hover {
   .mat-mdc-paginator{
     background-color: rgba(0, 0, 0, 0);
   }
+
+
+  /* Ảnh từ phải */
+  .xe1, .xe2, .xe3 {
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    transform-origin: center;
+    transform: translateX(100%) scale(0.1); /* Bắt đầu từ ngoài màn hình phải với kích thước nhỏ */
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
   
- 
+  .xe1 {
+    animation-name: moveInXe1;
+    top: 40%;
+    right:20%;
+  }
+  
+  .xe2 {
+    animation-name: moveInXe2;
+    top: 40%;
+    right:10%;
+    animation-delay: 0.5s;
+  }
+  
+  .xe3 {
+    animation-name: moveInXe3;
+    top: 40%;
+    right: 0%;
+    animation-delay: 1s;
+  }
+  
+  /* Ảnh từ trái */
+  .xe4, .xe5, .xe6 {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform-origin: center;
+    transform: translateX(-100%) scale(0.1); /* Bắt đầu từ ngoài màn hình trái với kích thước nhỏ */
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  
+  .xe4 {
+    animation-name: moveInXe4;
+    top: 40%;
+    left: 30%;
+  }
+  
+  .xe5 {
+    animation-name: moveInXe5;
+    top: 40%;
+    left: 20%;
+    animation-delay: 0.5s;
+  }
+  
+  .xe6 {
+    animation-name: moveInXe6;
+    top: 40%;
+    left: 10%;
+    animation-delay: 1s;
+  }
+  
+  /* Animation for xe1 */
+  @keyframes moveInXe1 {
+    0% {
+      transform: translateX(100%) scale(0.1);
+    }
+    100% {
+      transform: translateX(0%) scale(1);
+    }
+  }
+  
+  /* Animation for xe2 */
+  @keyframes moveInXe2 {
+    0% {
+      transform: translateX(100%) scale(0.1);
+    }
+    100% {
+      transform: translateX(-10%) scale(1);
+    }
+  }
+  
+  /* Animation for xe3 */
+  @keyframes moveInXe3 {
+    0% {
+      transform: translateX(100%) scale(0.1);
+    }
+    100% {
+      transform: translateX(-20%) scale(1);
+    }
+  }
+  
+  /* Animation for xe4 */
+  @keyframes moveInXe4 {
+    0% {
+      transform: translateX(-100%) scale(0.1);
+    }
+    100% {
+      transform: translateX(0%) scale(1);
+    }
+  }
+  
+  /* Animation for xe5 */
+  @keyframes moveInXe5 {
+    0% {
+      transform: translateX(-100%) scale(0.1);
+    }
+    100% {
+      transform: translateX(10%) scale(1);
+    }
+  }
+  
+  /* Animation for xe6 */
+  @keyframes moveInXe6 {
+    0% {
+      transform: translateX(-100%) scale(0.1);
+    }
+    100% {
+      transform: translateX(20%) scale(1);
+    }
+  }
+  
+  img {
+    width: 50%;
+    height: auto;
+  }
+  

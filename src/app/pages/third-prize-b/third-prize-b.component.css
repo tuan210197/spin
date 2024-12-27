@@ -2,7 +2,7 @@
     display: flex;
     position: fixed;
     justify-content: flex-end;
-    background: url('/third.png');
+    background: url('/thirdb.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -75,7 +75,7 @@
     align-items: center;
     margin: auto;
     /* height: 100vh; */
-    top: 75%;
+    top: 80%;
     left: 50%; 
     transform: translate(-50%,-50%);
   
@@ -495,7 +495,7 @@
   
     /* Tạo container cho bảng */
     .table-container {
-      width: 60%;
+      width: 40%;
       position: fixed;
       left: 50%;
       top: 50%;
@@ -516,14 +516,14 @@
   }
   .mat-mdc-row {
     color:#ffffff;
-    font-size: large;
+    font-size: xx-large;
     font-weight: bold;
     height: 40px;
   }
   
   .mat-mdc-header-row{
     color:#ffffff;
-    font-size: large;
+    font-size: xx-large;
     font-weight: bold;
   }
   
@@ -539,3 +539,41 @@
     background-color: rgba(0, 0, 0, 0);
   }
   
+.laptop2 {
+  width: 20%; /* Kích thước ban đầu của hình ảnh */
+  height: auto;
+  position: absolute;
+  top: 25%;
+  left: 40%;
+  opacity: 0; /* Bắt đầu mờ hoàn toàn */
+  transform: scale(0.1); /* Nhỏ hơn khi bắt đầu */
+  animation: appear 3s ease-out forwards, zoom-and-bounce 2s 3s infinite ease-in-out alternate;
+
+}
+
+/* Hiệu ứng xuất hiện từ nhỏ tới to, từ mờ tới rõ */
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Hiệu ứng zoom to nhỏ và chuyển động lên xuống */
+@keyframes zoom-and-bounce {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    transform: scale(1.1) translateY(-10px);
+  }
+}

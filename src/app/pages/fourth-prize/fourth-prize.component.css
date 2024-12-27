@@ -2,7 +2,7 @@
   display: flex;
   position: fixed;
   justify-content: flex-end;
-  background: url('/four4.png');
+  background: url('/foura.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -126,19 +126,7 @@ tr:hover {
 }
 
 
-.fan-container {
-  position: absolute;
-  height: 100vh;
-  top: 25%;
-  left: 100px;
-}
 
-.fan {
-  width: 150px;
-  height: 150px;
-  animation: spin-clockwise 30s linear infinite;
-
-}
 
 /* Animation quay quạt theo chiều kim đồng hồ */
 @keyframes spin-clockwise {
@@ -154,19 +142,31 @@ tr:hover {
 
 
 }
+.fan-container {
+  position: absolute;
+  /* height: 100vh; */
+  top: 35%;
+  left: 5%;
+}
 
+.fan {
+  width: 10vw;
+  height: auto;
+  animation: spin-clockwise 30s linear infinite;
+
+}
 .fan-container2 {
   position: absolute;
   justify-content: center;
   align-items: center;
   height: 100vh;
   top: 10%;
-  left: 300px;
+  left: 0%;
 }
 
 .fan2 {
-  width: 200px;
-  height: 200px;
+  width: 10vw;
+  height: auto;
   animation: spin-clockwise2 20s linear infinite;
   /* Áp dụng hiệu ứng quay theo chiều kim đồng hồ */
 }
@@ -175,14 +175,13 @@ tr:hover {
   position: absolute;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   top: 20%;
   left: 10%;
 }
 
 .fan3 {
-  width: 170px;
-  height: 170px;
+  width: 8vw;
+  height: auto;
   animation: spin-clockwise2 20s linear infinite;
   /* Áp dụng hiệu ứng quay theo chiều kim đồng hồ */
 }
@@ -203,23 +202,6 @@ tr:hover {
 }
 
 
-/* Đèn lồng */
-.lantern {
-  position: absolute;
-  top: 0;
-  right: 0%;
-  transform-origin: top center;
-  /* Đặt điểm quay tại đỉnh của đèn lồng */
-  animation: sway 5s ease-in-out infinite;
-  /* Áp dụng hiệu ứng lắc lư */
-}
-
-/* Ảnh đèn lồng */
-.lantern img {
-  width: 400px;
-  /* Đặt kích thước đèn lồng */
-  height: auto;
-}
 
 /* Hiệu ứng lắc lư */
 @keyframes sway {
@@ -239,6 +221,23 @@ tr:hover {
   }
 }
 
+/* Đèn lồng */
+.lantern {
+  position: absolute;
+  top: 0;
+  right: 0%;
+  transform-origin: top center;
+  /* Đặt điểm quay tại đỉnh của đèn lồng */
+  animation: sway 5s ease-in-out infinite;
+  /* Áp dụng hiệu ứng lắc lư */
+}
+
+/* Ảnh đèn lồng */
+.lantern img {
+  width: 15vw;
+  /* Đặt kích thước đèn lồng */
+  height: auto;
+}
 .lantern2 {
   position: absolute;
   top: 0;
@@ -250,7 +249,7 @@ tr:hover {
 
 /* Ảnh đèn lồng */
 .lantern2 img {
-  width: 300px;
+  width: 10vw;
   /* Đặt kích thước đèn lồng */
   height: auto;
 }
@@ -495,10 +494,10 @@ tr:hover {
 
 /* Tạo container cho bảng */
 .table-container {
-  width: 60%;
+  width: 40%;
   position: fixed;
   left: 50%;
-  top: 50%;
+  top: 55%;
   transform: translate(-50%,-50%);
 }
 
@@ -517,14 +516,14 @@ tr:hover {
 }
 .mat-mdc-row {
   color:#ffffff;
-  font-size: large;
+  font-size: xx-large;
   font-weight: bold;
   height: 40px;
 }
 
 .mat-mdc-header-row{
   color:#ffffff;
-  font-size: large;
+  font-size: xx-large;
   font-weight: bold;
 }
 
@@ -540,3 +539,42 @@ tr:hover {
   background-color: rgba(0, 0, 0, 0);
 }
 
+
+.laptop2 {
+  width: 15%; /* Kích thước ban đầu của hình ảnh */
+  height: auto;
+  position: absolute;
+  top: 30%;
+  left: 42%;
+  opacity: 0; /* Bắt đầu mờ hoàn toàn */
+  transform: scale(0.1); /* Nhỏ hơn khi bắt đầu */
+  animation: appear 3s ease-out forwards, zoom-and-bounce 2s 3s infinite ease-in-out alternate;
+
+}
+
+/* Hiệu ứng xuất hiện từ nhỏ tới to, từ mờ tới rõ */
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Hiệu ứng zoom to nhỏ và chuyển động lên xuống */
+@keyframes zoom-and-bounce {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    transform: scale(1.1) translateY(-10px);
+  }
+}

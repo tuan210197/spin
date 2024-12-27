@@ -106,7 +106,6 @@ export class FourthPrizeComponent implements AfterViewInit {
   hasWinnerDisplayed: boolean = false; // Trạng thái hiển thị người trúng
   requestId = 0; // Tham chiếu của requestAnimationFrame
   tableVisible = true;
-  check: boolean = false;
   totalLength = 0;
   pageSize = 10;
 
@@ -183,7 +182,20 @@ export class FourthPrizeComponent implements AfterViewInit {
   }
 
   async startRaffle(): Promise<void> {
+    const four: Four = { code: '0', vn_name: '', bu: '', working_time: 'A' };
+    const listWinner2 = await firstValueFrom(this.share.getListFourB(four));
+    this.listWinner = Array.isArray(listWinner2) ? listWinner2 : [];
+    const count = this.listWinner.filter((item: any) => item.working_time === 'A').length;
 
+    if (count == 68) {
+      this.loadTable();
+      // console.log(this.tableVisible)
+      this.tableVisible = false;
+      this.resetRaffle();
+      this.launchConfetti();
+      this.playAudio2();
+      return;
+    }
     if (this.isRaffleRunning) {
       this.playAudio1();
       this.tableVisible = true;
@@ -243,10 +255,7 @@ export class FourthPrizeComponent implements AfterViewInit {
       }));
 
       
-      console.log(this.listWinner);
-      if (this.listWinner.length == 68) {
-        this.check = true
-      }
+
       this.dataSource.data = this.listWinner;
       this.totalLength = this.listWinner.length; // Tổng số bản ghi
   

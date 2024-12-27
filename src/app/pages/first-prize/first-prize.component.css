@@ -2,7 +2,7 @@
   display: flex;
   position: fixed;
   justify-content: flex-end;
-  background: url('/1st.png');
+  background: url('/first.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -23,9 +23,9 @@
 }
 
 
-.btn {
-  width: 200PX;
-  height: 100PX;
+.btn-start {
+  width: 200px;
+  height: 100px;
   display: inline-block;
   background: linear-gradient(45deg, #ff6b6b, #f76d2b);
   color: white;
@@ -42,7 +42,7 @@
   font-size: 50px;
 }
 
-.btn::before {
+.btn-start::before {
   content: '';
   position: absolute;
   top: 0;
@@ -55,11 +55,11 @@
   pointer-events: none;
 }
 
-.btn:hover::before {
+.btn-start:hover::before {
   left: 100%;
 }
 
-.btn:hover {
+.btn-start:hover {
   transform: scale(1.05);
 }
 
@@ -71,9 +71,9 @@
   align-items: center;
   margin: auto;
   /* height: 100vh; */
-  top: 75%;
-  left: 50%; 
-  transform: translate(-50%,-50%);
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
 }
 
@@ -385,9 +385,10 @@ tr:hover {
   align-items: center;
   /* height: 100vh; */
   top: 40%;
-  left: 50%; 
-  transform: translate(-50%,-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
+
 .names {
   display: flex;
   flex-direction: column;
@@ -443,8 +444,8 @@ tr:hover {
   color: #ffffff;
   position: fixed;
   top: 47%;
-  left: 50%; 
-  transform: translate(-50%,-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 50px;
   font-weight: bold;
   text-align: center;
@@ -452,13 +453,29 @@ tr:hover {
 }
 
 @keyframes grandientAnimation {
-  0% {transform: translateY(0) }
-  50% {transform: translateY(10px) }
-  100% {transform: translateY(0)}
+  0% {
+    transform: translateY(0)
   }
+
+  50% {
+    transform: translateY(10px)
+  }
+
+  100% {
+    transform: translateY(0)
+  }
+}
+
 @keyframes bounceEffect {
-  0%, 100% {transform: translateY(0);}
-  50% {transform: translateY(-10px);}
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 
 }
 
@@ -473,8 +490,8 @@ tr:hover {
   justify-content: center;
   align-items: center;
   top: 40%;
-  left: 50%; 
-  transform: translate(-50%,-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 
@@ -495,51 +512,148 @@ tr:hover {
 }
 
 
-  /* Tạo container cho bảng */
-  .table-container {
-    width: 50%;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-  }
-  
-  
-  .mat-mdc-table{
-    background-color: rgba(0, 0, 0, 0);
-  }
-  .mat-mdc-header-cell{
-    border-bottom-width:0;
-  }
-  .mat-mdc-cell{
-    border-bottom-width:0;
-  }
-  .mat-elevation-z8, .mat-mdc-elevation-specific.mat-elevation-z8{
-    box-shadow: none;
-  }
-  .mat-mdc-row {
-    color:#ffffff;
-    font-size: large;
-    font-weight: bold;
-    height: 40px;
-  }
-  
-  .mat-mdc-header-row{
-    color:#ffffff;
-    font-size: large;
-    font-weight: bold;
-  }
-  
-  .mat-mdc-row:hover {
-    background-color: rgba(0, 0, 0, 0.2); /* Màu nền khi di chuột qua */
-  }
-  /* 
+/* Tạo container cho bảng */
+.table-container {
+  width: 40%;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.mat-mdc-table {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.mat-mdc-header-cell {
+  border-bottom-width: 0;
+}
+
+.mat-mdc-cell {
+  border-bottom-width: 0;
+}
+
+.mat-elevation-z8,
+.mat-mdc-elevation-specific.mat-elevation-z8 {
+  box-shadow: none;
+}
+
+.mat-mdc-row {
+  color: #ffffff;
+  font-size: x-large;
+  font-weight: bold;
+
+}
+
+.mat-mdc-header-row {
+  color: #ffffff;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.mat-mdc-row:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  /* Màu nền khi di chuột qua */
+}
+
+/* 
   .mat-mdc-header-cell:hover{
     background-color: rgba(0, 0, 0, 0.2); 
   } */
-  
-  .mat-mdc-paginator{
-    background-color: rgba(0, 0, 0, 0);
+
+.mat-mdc-paginator {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+
+/* laptop */
+.laptop1 {
+  position: absolute;
+  width: 15%;
+  transform-origin: center;
+  transform: translateX(110%) scale(0.1);
+  /* Bắt đầu từ ngoài màn hình phải với kích thước nhỏ */
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-name: laptop1;
+  top: 30%;
+  right: 20%;
+}
+
+/* Animation for laptop1 */
+@keyframes laptop1 {
+  0% {
+    transform: translateX(100%) scale(0.1);
   }
-  
-  
+
+  100% {
+    transform: translateX(0%) scale(1);
+  }
+}
+
+.laptop3 {
+  position: absolute;
+  width: 15%;
+  transform-origin: center;
+  transform: translateX(110%) scale(0.1);
+  /* Bắt đầu từ ngoài màn hình phải với kích thước nhỏ */
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-name: laptop3;
+  top: 30%;
+  left: 20%;
+}
+
+/* Animation for laptop1 */
+@keyframes laptop3 {
+  0% {
+    transform: translateX(-100%) scale(0.1);
+  }
+
+  100% {
+    transform: translateX(0%) scale(1);
+  }
+}
+
+
+.laptop2 {
+  width: 20%; /* Kích thước ban đầu của hình ảnh */
+  height: auto;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  opacity: 0; /* Bắt đầu mờ hoàn toàn */
+  transform: scale(0.1); /* Nhỏ hơn khi bắt đầu */
+  animation: appear 3s ease-out forwards, zoom-and-bounce 2s 3s infinite ease-in-out alternate;
+
+}
+
+/* Hiệu ứng xuất hiện từ nhỏ tới to, từ mờ tới rõ */
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Hiệu ứng zoom to nhỏ và chuyển động lên xuống */
+@keyframes zoom-and-bounce {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    transform: scale(1.1) translateY(-10px);
+  }
+}

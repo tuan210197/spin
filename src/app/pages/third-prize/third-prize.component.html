@@ -27,7 +27,7 @@
     <table mat-table [dataSource]="dataSource" *ngIf="!tableVisible" class="mat-elevation-z8">
 
       <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> Position</th>
+        <th mat-header-cell *matHeaderCellDef> STT</th>
         <td mat-cell *matCellDef="let element; let i = index">
           {{ i + 1 + paginator.pageIndex * paginator.pageSize }}
         </td>
@@ -60,7 +60,7 @@
   </div>
 
 
-  <div>
+  <!-- <div>
     <div class="fan-container3">
       <img src="/2.png" alt="Fan" class="fan3">
     </div>
@@ -79,12 +79,15 @@
       <img src="/1.png" class="lantern-img" />
     </div>
 
-  </div>
-  <div class="images" >
+  </div> -->
+  <!-- <div class="images" >
     <img class="imgs"   src="/gold.gif" alt="">
     <img class="imgs2"   src="/gold.gif" alt="">
-  </div>
+  </div> -->
 
   <!-- </div> -->
-
+  <!-- </div> -->
+  <div class="img-container"  *ngIf="tableVisible">
+    <img src="/xedap1.png" alt="Right Image" class="laptop2" />
+  </div>
 </div>

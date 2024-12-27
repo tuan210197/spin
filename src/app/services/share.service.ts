@@ -88,6 +88,9 @@ export class ShareService {
   getListSecond(second: Second): Observable<Second[]> {
     return this.http.post<Second[]>(this.apiUrl + '/second/get-list' , second);
   }
+  getListSecond2(second: Second): Observable<Second[]> {
+    return this.http.post<Second[]>(this.apiUrl + '/second/get-list2' , second);
+  }
 
   // delete service
 
@@ -99,5 +102,17 @@ export class ShareService {
   }
   onToggleChangeSpecial(special: First) {
     return this.http.post(this.apiUrl + '/special/update',  special)
+  }
+  checkFour() {
+    return this.http.get(this.apiUrl + '/four/check');
+  }
+  checkThird() {
+    return this.http.get(this.apiUrl + '/third/check');
+  }
+  checkSecond() {
+    return this.http.get(this.apiUrl + '/second/check');
+  }
+  checkFirst() {
+    return this.http.get(this.apiUrl + '/first/check');
   }
 }

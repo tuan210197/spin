@@ -20,7 +20,7 @@
        <h1 *ngIf="isVisible">Chúc Mừng Bạn Đã Trúng Giải 1.000$</h1>
      </div> -->
      <div class="card-content">
-       <!-- *ngIf="!tableVisible" -->
+      
        <button class="btn"  (click)="startRaffle()">開始</button>
      </div>
      <div class="table-container" >
@@ -60,7 +60,7 @@
      </div>
    
    
-     <div>
+     <!-- <div>
        <div class="fan-container3">
          <img src="/2.png" alt="Fan" class="fan3">
        </div>
@@ -84,7 +84,9 @@
        <img class="imgs"   src="/gold.gif" alt="">
        <img class="imgs2"   src="/gold.gif" alt="">
      </div>
-   
+    -->
      <!-- </div> -->
-   
+     <div class="img-container"  *ngIf="tableVisible">
+      <img src="/xedap2.png" alt="Right Image" class="laptop2" />
+    </div>
    </div>

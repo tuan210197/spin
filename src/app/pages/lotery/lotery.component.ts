@@ -7,6 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
 import { Fireworks } from 'fireworks-js';
 import { ShareService } from '../../services/share.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -39,6 +40,9 @@ export class LoteryComponent {
   generatedNumbers: { number: number }[] = []; // Danh sách số đã quay
   private audio = new Audio();
   private audio2 = new Audio();
+  enableClick: boolean = true;
+
+
   ngOnInit(): void {
     // Khởi tạo 2 đối tượng Audio
     this.audio.src = '/nhac.mp3';
@@ -67,7 +71,6 @@ export class LoteryComponent {
     if (!audio.paused) {
       audio.pause(); // Dừng phát nhạc
       audio.currentTime = 0; // Reset thời gian về đầu
-      console.log('Audio stopped');
     }
   }
 
@@ -111,58 +114,73 @@ export class LoteryComponent {
   currentNumber: string = '00'; // Số hiện tại đang hiển thị
 
 
-
-  // Hàm lấy hai số ngẫu nhiên không trùng
   async pickNumbers(): Promise<void> {
-    if (this.availableNumbers.length === 0) {
-      alert('Hết số để chọn!');
-      return;
-    }
-    if (this.isRunning) {
-      this.playAudio1();
-      const displayElement = document.getElementById('random-display');
-      if (!displayElement) return;
+    
+      if (this.isRunning) {
+        this.playAudio1();
+        const displayElement = document.getElementById('random-display');
+        if (!displayElement) return;
 
-      this.intervalTotal = setInterval(() => {
-        // Hiển thị ngẫu nhiên một số
-        this.currentNumber = this.availableNumbers[
-          Math.floor(Math.random() * this.availableNumbers.length)
-        ];
-      }, 5);
-      this.isRunning = false;
-    }
-    else {
-      this.playAudio2();
-      this.isRunning = true;
-
-      clearInterval(this.intervalTotal);
-      const randomIndex = Math.floor(Math.random() * this.availableNumbers.length);
-      const chosenNumber = this.availableNumbers[randomIndex];
-      // Xóa số đã chọn khỏi mảng
-      this.availableNumbers.splice(randomIndex, 1);
-      console.log(this.availableNumbers.length)
-      // Cập nhật số chính thức và mảng
-      this.currentNumber = chosenNumber;
-      console.log(this.currentNumber);
-      const choose = await this.share.chooseCon(Number(this.currentNumber)).toPromise();
-      // this.numbers.push(chosenNumber);
-      this
-      this.startFireworks();
-      this.saveNumber();
-    }
-
-
+        this.intervalTotal = setInterval(() => {
+          // Hiển thị ngẫu nhiên một số
+          this.currentNumber = this.availableNumbers[
+            Math.floor(Math.random() * this.availableNumbers.length)
+          ];
+        }, 5);
+        this.isRunning = false;
+      }
+      else {
+        this.playAudio2();
+        this.isRunning = true;
+        clearInterval(this.intervalTotal);
+        const randomIndex = Math.floor(Math.random() * this.availableNumbers.length);
+        const chosenNumber = this.availableNumbers[randomIndex];
+        // Xóa số đã chọn khỏi mảng
+        this.availableNumbers.splice(randomIndex, 1);
+        console.log(this.availableNumbers.length)
+        // Cập nhật số chính thức và mảng
+        this.currentNumber = chosenNumber;
+        console.log(this.currentNumber);
+        const choose = await this.share.chooseCon(Number(this.currentNumber)).toPromise();
+        this.startFireworks();
+        this.checkCountNumber();
+      }
+   
   }
 
-  async saveNumber(): Promise<void> {
+  checkCountNumber() {
     this.generatedNumbers = [];
-    const randomNumber = await this.share.getNumberChoosen().toPromise();
-    this.generatedNumbers = Array.isArray(randomNumber) ? randomNumber.map((item: any) => ({ number: item.number })) : [];
-
+    this.share.getNumberChoosen().subscribe(
+      (data) => {
+        const numbers = Array.isArray(data) ? data.map((item: any) => ({ number: item.number })) : [];
+        if (numbers.length < 7) {
+          console.log(numbers.length);
+          this.generatedNumbers = numbers;
+        } else {
+          this.enableClick = false;
+          this.generatedNumbers = numbers.slice(0, numbers.length - 1);
+        }
+      }
+    );
   }
   // Hàm định dạng số thành chuỗi có hai chữ số
   formatNumber(num: number): string {
     return num < 10 ? `0${num}` : `${num}`;
+  }
+  checkCount() {
+    this.share.getNumberChoosen().subscribe(
+      (data) => {
+        const numbers = Array.isArray(data) ? data.map((item: any) => ({ number: item.number })) : [];
+
+        if (numbers.length <= 6) {
+          this.pickNumbers();
+        } else {
+          this.currentNumber = numbers[numbers.length - 1].number;
+          this.generatedNumbers = numbers.slice(0, numbers.length - 1);
+        }
+      }
+    );
+
   }
 }
 

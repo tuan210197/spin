@@ -29,7 +29,7 @@
    </div> -->
   <div class="card-content">
     <!-- *ngIf="!tableVisible" -->
-    <button class="btn" (click)="startRaffle()">開始</button>
+    <button class="btn-start" (click)="startRaffle()">開始</button>
   </div>
   <div class="table-container">
     <table mat-table [dataSource]="dataSource" *ngIf="tableVisible" class="mat-elevation-z8">
@@ -81,7 +81,7 @@
   </div>
 
 
-
+<!-- 
   <div>
     <div class="fan-container3">
       <img src="/2.png" alt="Fan" class="fan3">
@@ -101,7 +101,7 @@
       <img src="/1.png" class="lantern-img" />
     </div>
 
-  </div>
+  </div> -->
   <!-- <div class="images" >
     <img class="imgs"   src="/2.gif" alt="">
   </div>
@@ -110,5 +110,10 @@
   </div> -->
 
   <!-- </div> -->
+  <div class="img-container"  *ngIf="!tableVisible">
+    <!-- <img src="/laptop4.png" alt="Left Image" class="laptop1" /> -->
+    <img src="/laptop5.png" alt="Right Image" class="laptop2" />
+    <!-- <img src="/laptop3.png" alt="Center Image" class="laptop3" /> -->
 
+  </div>
 </div>

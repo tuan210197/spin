@@ -25,7 +25,7 @@ interface Second {
 @Component({
   selector: 'app-second-prize-b',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule,MatSlideToggleModule],
+  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule, MatSlideToggleModule],
   templateUrl: './second-prize-b.component.html',
   styleUrl: './second-prize-b.component.css'
 })
@@ -186,77 +186,87 @@ export class SecondPrizeBComponent implements AfterViewInit {
 
     const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '', receive: 0 };
     const listWinner = await firstValueFrom(this.share.getListSecond(second));
+    const check = await firstValueFrom(this.share.checkThird());
+    if (check == 70) {
 
-    this.listWinner = Array.isArray(listWinner) ? listWinner : [];
-    const count = this.listWinner.filter((item: any) => item.receive === 1).length;
-    console.log(count);
-    if (count == 6) {
-      this.loadTable();
-      this.playAudio2();
-      return;
-    }
-
-    if (this.isRaffleRunning) {
-      this.playAudio1();
-      this.tableVisible = false;
-      this.participants = [];
-      try {
-        const randomData = await this.share.getRandom().toPromise();
-        this.participants = Array.isArray(randomData)
-          ? randomData.map((item: any) => ({ name: item.vn_name, code: item.code }))
-          : [];
-      } catch (err) {
-        console.error('Lỗi khi gọi API getRandom:', err);
-        return; // Dừng lại nếu lỗi xảy ra
-      }
-      this.resetRaffle();
-      const totalNames = this.participants.length; // Tổng số tên cần cuộn qua
-      let currentIndex = 0;
-
-      const updatePosition = () => {
-        // Tăng chỉ số vòng quay nhanh hơn
-        currentIndex = (currentIndex + 3) % totalNames; // Tăng mỗi lần 3 bước (điều chỉnh theo ý bạn)
-
-        // Tính toán offset dựa trên vị trí hiện tại
-        this.currentOffset = currentIndex * this.lineHeight;
-        this.transformStyle = `translateY(-${this.currentOffset}px)`;
-        this.requestId = requestAnimationFrame(updatePosition); // Tiếp tục vòng lặp
-      };
-
-      this.requestId = requestAnimationFrame(updatePosition); // Bắt đầu vòng lặp 
-      this.isRaffleRunning = false;
-      this.showWinnerDiv1 = true
-      if (this.showWinnerDiv1) {
-        this.showWinnerDiv2 = false
-      }
-
-    } else {
-      this.playAudio2();
-      const insert2A = await firstValueFrom(this.share.getSecondB());
-      const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '', receive: 0 };
-      const listWinner = await firstValueFrom(this.share.getListSecond(second));
-      cancelAnimationFrame(this.requestId); // Dừng vòng lặp
-      this.isRaffleRunning = true;
-      this.showWinnerDiv1 = false
-      if (!this.showWinnerDiv1) {
-        this.showWinnerDiv2 = true
-      }
-      if (listWinner) {
-        this.finalWinner = {
-          name: listWinner[0].code,
-          code: listWinner[0].vn_name,
-          bu: listWinner[0].bu,
-          joins: listWinner[0].joins === 'Y' ? 'Tham Gia' : 'Vắng'
-        };
-        this.launchConfetti();
+      this.listWinner = Array.isArray(listWinner) ? listWinner : [];
+      const count = this.listWinner.filter((item: any) => item.receive === 1).length;
+      console.log(count);
+      if (count == 6) {
+        this.loadTable();
+        this.playAudio2();
         return;
-      } else {
-        console.error('specialData is undefined');
       }
-      // this.loadTable();  
-      this.resetRaffle();
 
-      this.tableVisible = false;
+      if (this.isRaffleRunning) {
+        this.playAudio1();
+        this.tableVisible = false;
+        this.participants = [];
+        try {
+          const randomData = await this.share.getRandom().toPromise();
+          this.participants = Array.isArray(randomData)
+            ? randomData.map((item: any) => ({ name: item.vn_name, code: item.code }))
+            : [];
+        } catch (err) {
+          console.error('Lỗi khi gọi API getRandom:', err);
+          return; // Dừng lại nếu lỗi xảy ra
+        }
+        this.resetRaffle();
+        const totalNames = this.participants.length; // Tổng số tên cần cuộn qua
+        let currentIndex = 0;
+
+        const updatePosition = () => {
+          // Tăng chỉ số vòng quay nhanh hơn
+          currentIndex = (currentIndex + 3) % totalNames; // Tăng mỗi lần 3 bước (điều chỉnh theo ý bạn)
+
+          // Tính toán offset dựa trên vị trí hiện tại
+          this.currentOffset = currentIndex * this.lineHeight;
+          this.transformStyle = `translateY(-${this.currentOffset}px)`;
+          this.requestId = requestAnimationFrame(updatePosition); // Tiếp tục vòng lặp
+        };
+
+        this.requestId = requestAnimationFrame(updatePosition); // Bắt đầu vòng lặp 
+        this.isRaffleRunning = false;
+        this.showWinnerDiv1 = true
+        if (this.showWinnerDiv1) {
+          this.showWinnerDiv2 = false
+        }
+
+      } else {
+        this.playAudio2();
+        const insert2A = await firstValueFrom(this.share.getSecondB());
+        const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '', receive: 0 };
+        const listWinner = await firstValueFrom(this.share.getListSecond(second));
+        cancelAnimationFrame(this.requestId); // Dừng vòng lặp
+        this.isRaffleRunning = true;
+        this.showWinnerDiv1 = false
+        if (!this.showWinnerDiv1) {
+          this.showWinnerDiv2 = true
+        }
+        if (listWinner) {
+          this.finalWinner = {
+            name: listWinner[0].code,
+            code: listWinner[0].vn_name,
+            bu: listWinner[0].bu,
+            joins: listWinner[0].joins === 'Y' ? 'Tham Gia' : 'Vắng'
+          };
+          this.launchConfetti();
+          return;
+        } else {
+          console.error('specialData is undefined');
+        }
+        // this.loadTable();  
+        this.resetRaffle();
+
+        this.tableVisible = false;
+        return;
+      }
+    } else {
+      Swal.fire({
+        title: 'Bạn Chưa Quay Hết Giải Ba!',
+        icon: 'info',
+        confirmButtonText: 'OK',
+      });
       return;
     }
   }
@@ -266,15 +276,15 @@ export class SecondPrizeBComponent implements AfterViewInit {
     this.showWinnerDiv2 = false
     this.showWinnerDiv3 = true
     this.tableVisible = true
-    const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '',receive: 0 };
+    const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '', receive: 0 };
     try {
-      const listWinner = await firstValueFrom(this.share.getListSecond(second));
+      const listWinner = await firstValueFrom(this.share.getListSecond2(second));
 
       listWinner.forEach(item => this.listWinner.push({
         code: item.code,
         vn_name: item.vn_name,
         bu: item.bu,
-        working_time: item.working_time ,
+        working_time: item.working_time,
         joins: item.joins === 'Y' ? 'Tham Gia' : 'Vắng',
         receive: item.receive
       }));
@@ -364,7 +374,7 @@ export class SecondPrizeBComponent implements AfterViewInit {
     this.showWinnerDiv3 = true
     this.tableVisible = true
     try {
-      const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'A', joins: '', receive: 0 };
+      const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '', receive: 0 };
       const listWinner = await firstValueFrom(this.share.getListSecond(second));
 
       (Array.isArray(listWinner) ? listWinner : []).forEach(item => this.listWinner.push({
@@ -382,31 +392,41 @@ export class SecondPrizeBComponent implements AfterViewInit {
     }
   }
   async onToggleChange(element: any, event: any) {
-
-    Swal.fire({
-      title: `Bạn có chắc chắn muốn xóa ${element.vn_name} không?`,
-      text: 'Hành động này sẽ không thể hoàn tác.',
-      icon: 'warning', // Biểu tượng cảnh báo
-      showCancelButton: true, // Hiển thị nút Cancel
-      confirmButtonText: 'Có', // Nút xác nhận
-      cancelButtonText: 'Không', // Nút hủy
-      reverseButtons: true // Đảo ngược thứ tự nút (nút "Có" sẽ ở bên trái)
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        // Nếu người dùng nhấn "Có"
-        Swal.fire('Đã xác nhận!', 'Hành động đã được thực hiện.', 'success');
-        element.status = 0; // Cập nhật giá trị 1 hoặc 0
-        element.receive = event.checked ? 1 : 0;
-        const update = await firstValueFrom(this.share.onToggleChangeSecond(element));
-        this.loadTable2();
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        // Nếu người dùng nhấn "Không"
-        Swal.fire('Đã hủy', 'Hành động bị hủy bỏ.', 'error');
-        console.log('User clicked No');
-        this.loadTable();
-      }
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success me-2",
+        cancelButton: "btn btn-danger ms-2"
+      },
+      buttonsStyling: false
     });
-
+    if (element.receive == 1) {
+      swalWithBootstrapButtons.fire({
+        title: `Bạn có chắc chắn muốn xóa <br>${element.vn_name} không?`,
+        text: 'Hành động này sẽ không thể hoàn tác.',
+        icon: 'question', // Biểu tượng cảnh báo
+        showCancelButton: true, // Hiển thị nút Cancel
+        confirmButtonText: 'Có', // Nút xác nhận
+        cancelButtonText: 'Không', // Nút hủy
+        reverseButtons: false // Đảo ngược thứ tự nút (nút "Có" sẽ ở bên trái)
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          // Nếu người dùng nhấn "Có"
+          swalWithBootstrapButtons.fire('Đã xác nhận!', 'Hành động đã được thực hiện.', 'success');
+          element.status = 0; // Cập nhật giá trị 1 hoặc 0
+          element.receive = event.checked ? 1 : 0;
+          const update = await firstValueFrom(this.share.onToggleChangeSecond(element));
+          this.loadTable2();
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          // Nếu người dùng nhấn "Không"
+          swalWithBootstrapButtons.fire('Đã hủy', 'Hành động bị hủy bỏ.', 'error');
+          console.log('User clicked No');
+          this.loadTable();
+        }
+      });
+    } else {
+      swalWithBootstrapButtons.fire('Thông Báo', 'Người Chơi Không Thể Nhận Giải', 'info');
+      this.loadTable2();
+    }
 
   }
 }

@@ -4,9 +4,9 @@ body {
     overflow-x: hidden; /* Ngăn cuộn ngang */
 }
 
-td {
+/* td {
     padding-right: 8px;
-}
+} */
 
 
 :root {

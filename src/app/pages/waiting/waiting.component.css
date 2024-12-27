@@ -2,7 +2,7 @@
   display: flex;
   position: fixed;
   justify-content: flex-end;
-  background: url('/welcome.png');
+  background: url('/waiting.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -25,8 +25,8 @@
 .container2 {
   position: absolute;
   justify-content: flex-end;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
 
 }
@@ -34,14 +34,13 @@
 
 .fan-container {
   position: absolute;
-  height: 100vh;
-  top: 12%;
+  top: 15%;
   left: 13%;
 }
 
 .fan {
-  width: 150px;
-  height: 150px;
+  width: 5vw;
+  height: auto;
   animation: spin-clockwise 30s linear infinite;
 
 }
@@ -66,14 +65,13 @@
   position: absolute;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  top: 25%;
+  top: 5%;
   left: 2%;
 }
 
 .fan2 {
-  width: 200px;
-  height: 200px;
+  width: 10vw;
+  height: auto;
   animation: spin-clockwise2 20s linear infinite;
   /* Áp dụng hiệu ứng quay theo chiều kim đồng hồ */
 }
@@ -135,7 +133,7 @@
 
 /* Ảnh đèn lồng */
 .lantern img {
-  width: 400px;
+  width: 15vw;
   /* Đặt kích thước đèn lồng */
   height: auto;
 }
@@ -169,7 +167,7 @@
 
 /* Ảnh đèn lồng */
 .lantern2 img {
-  width: 300px;
+  width: 10vw;
   /* Đặt kích thước đèn lồng */
   height: auto;
 }
@@ -211,34 +209,21 @@
   justify-content: center;
   flex-wrap: nowrap;
   align-items: center;
-  width: 100%;
-  max-width: 100%;
+  /* width: 100%; */
+  /* max-width: 100%; */
 }
 
 .snake {
   position: absolute;
-  top: 60%;
-  left: 50%;
+  top: 70%;
+  left: 52%;
   transform: translate(-50%, -50%);
   transform-origin: top center;
-  width: 35%;
+  width: 20vw;
   height: auto;
 }
 
 
-.snake2 {
-  position: absolute;
-  top: 34.5%;
-
-  left: 38%;
-  transform: translate(-50%, -50%);
-  animation: snake 3s ease-in-out infinite;
-}
-
-.snake2 {
-  width: 20%;
-  height: auto;
-}
 
 @keyframes snake {
 

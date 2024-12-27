@@ -111,7 +111,7 @@ export class FourPrizeBComponent implements AfterViewInit {
 
   dataSource = new MatTableDataSource<Four>([]);
   // , 'working_time'
-  displayedColumns: string[] = ['position','code', 'vn_name', 'bu'];
+  displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu'];
   // dataSourceWithPageSize = new MatTableDataSource(this.listWinner);
 
 
@@ -182,6 +182,20 @@ export class FourPrizeBComponent implements AfterViewInit {
   }
 
   async startRaffle(): Promise<void> {
+    const four: Four = { code: '0', vn_name: '', bu: '', working_time: 'B' };
+    const listWinner2 = await firstValueFrom(this.share.getListFourB(four));
+    this.listWinner = Array.isArray(listWinner2) ? listWinner2 : [];
+    const count = this.listWinner.filter((item: any) => item.working_time === 'B').length;
+
+    if (count == 67) {
+      this.loadTable();
+      // console.log(this.tableVisible)
+      this.tableVisible = false;
+      this.resetRaffle();
+      this.launchConfetti();
+      this.playAudio2();
+      return;
+    }
 
     if (this.isRaffleRunning) {
       this.playAudio1();
@@ -232,20 +246,16 @@ export class FourPrizeBComponent implements AfterViewInit {
     const four: Four = { code: '0', vn_name: '', bu: '', working_time: 'B' };
     try {
       const listWinner = await firstValueFrom(this.share.getListFourB(four));
-
       listWinner.forEach(item => this.listWinner.push({
         code: item.code,
         vn_name: item.vn_name,
         bu: item.bu,
         working_time: item.working_time === 'A' ? 'Dưới 1 Năm' : 'Trên 1 Năm'
       }));
-      console.log(this.listWinner);
-      if (this.listWinner.length == 67) {
-        this.check = true
-      }
-      this.dataSource.data = this.listWinner;
-      this.totalLength = this.listWinner.length; // Tổng số bản ghi
 
+      this.dataSource.data = this.listWinner;
+      console.log(this.dataSource.data)
+      this.totalLength = this.listWinner.length; // Tổng số bản ghi
       // Đặt paginator ở trang cuối cùng
       const totalPages = Math.ceil(this.totalLength / this.pageSize);
       if (totalPages > 0) {
@@ -266,6 +276,7 @@ export class FourPrizeBComponent implements AfterViewInit {
     this.currentOffset = 0;
     this.finalWinner = null;
     this.hasWinnerDisplayed = false; // Reset trạng thái hiển thị
+    
   }
 
   private initializeFallingEffect(container: HTMLDivElement): void {

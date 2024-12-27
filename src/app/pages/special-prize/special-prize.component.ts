@@ -190,81 +190,94 @@ export class SpecialPrizeComponent implements AfterViewInit {
 
   async startRaffle(): Promise<void> {
 
-    // const second: First = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '' };
-    const listWinner = await firstValueFrom(this.share.getListSpecial());
 
-    this.listWinner = Array.isArray(listWinner) ? listWinner : [];
+    const check = await firstValueFrom(this.share.checkFirst());
+    if (check === 12) {
 
-    const count = this.listWinner.filter((item: any) => item.receive === 1).length;
 
-    if (count >= 6) {
-      this.playAudio2();
-      this.loadTable();
-      return;
-    }
-    if (this.isRaffleRunning) {
-      this.playAudio1()
-      this.tableVisible = false;
-      this.participants = [];
-      try {
-        const randomData = await this.share.getRandom().toPromise();
-        this.participants = Array.isArray(randomData)
-          ? randomData.map((item: any) => ({ name: item.vn_name, code: item.code, bu: item.bu, joins: item.joins }))
-          : [];
-      } catch (err) {
-        console.error('Lỗi khi gọi API getRandom:', err);
-        return; // Dừng lại nếu lỗi xảy ra
-      }
-      this.resetRaffle();
-      const totalNames = this.participants.length; // Tổng số tên cần cuộn qua
-      let currentIndex = 0;
-
-      const updatePosition = () => {
-        // Tăng chỉ số vòng quay nhanh hơn
-        currentIndex = (currentIndex + 3) % totalNames; // Tăng mỗi lần 3 bước (điều chỉnh theo ý bạn)
-
-        // Tính toán offset dựa trên vị trí hiện tại
-        this.currentOffset = currentIndex * this.lineHeight;
-        this.transformStyle = `translateY(-${this.currentOffset}px)`;
-        this.requestId = requestAnimationFrame(updatePosition); // Tiếp tục vòng lặp
-      };
-      this.requestId = requestAnimationFrame(updatePosition); // Bắt đầu vòng lặp 
-      this.isRaffleRunning = false;
-      this.showWinnerDiv1 = true
-      if (this.showWinnerDiv1) {
-        this.showWinnerDiv2 = false
-      }
-
-    } else {
-      this.playAudio2();
-      const insert2A = await firstValueFrom(this.share.getSpecial());
+      // const second: First = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '' };
       const listWinner = await firstValueFrom(this.share.getListSpecial());
-      const okela = Array.isArray(listWinner) ? listWinner[listWinner.length - 1] : null;
-      console.log(okela);
-      cancelAnimationFrame(this.requestId); // Dừng vòng lặp
-      this.isRaffleRunning = true;
-      this.showWinnerDiv1 = false
-      if (!this.showWinnerDiv1) {
-        this.showWinnerDiv2 = true
-      }
 
-      if (okela) {
-        this.finalWinner = {
-          name: okela.code,
-          code: okela.vn_name,
-          bu: okela.bu,
-          joins: okela.joins === 'Y' ? 'Tham Gia' : 'Vắng',
-          receive: okela.receive
-        };
-        this.launchConfetti();
+      this.listWinner = Array.isArray(listWinner) ? listWinner : [];
+
+      const count = this.listWinner.filter((item: any) => item.receive === 1).length;
+
+      if (count >= 6) {
+        this.playAudio2();
+        this.loadTable();
         return;
-      } else {
-        console.error('specialData is undefined');
       }
-      // this.loadTable();  
-      this.resetRaffle();
+      if (this.isRaffleRunning) {
+        this.playAudio1()
+        this.tableVisible = false;
+        this.participants = [];
+        try {
+          const randomData = await this.share.getRandom().toPromise();
+          this.participants = Array.isArray(randomData)
+            ? randomData.map((item: any) => ({ name: item.vn_name, code: item.code, bu: item.bu, joins: item.joins }))
+            : [];
+        } catch (err) {
+          console.error('Lỗi khi gọi API getRandom:', err);
+          return; // Dừng lại nếu lỗi xảy ra
+        }
+        this.resetRaffle();
+        const totalNames = this.participants.length; // Tổng số tên cần cuộn qua
+        let currentIndex = 0;
 
-      this.tableVisible = false;
+        const updatePosition = () => {
+          // Tăng chỉ số vòng quay nhanh hơn
+          currentIndex = (currentIndex + 3) % totalNames; // Tăng mỗi lần 3 bước (điều chỉnh theo ý bạn)
+
+          // Tính toán offset dựa trên vị trí hiện tại
+          this.currentOffset = currentIndex * this.lineHeight;
+          this.transformStyle = `translateY(-${this.currentOffset}px)`;
+          this.requestId = requestAnimationFrame(updatePosition); // Tiếp tục vòng lặp
+        };
+        this.requestId = requestAnimationFrame(updatePosition); // Bắt đầu vòng lặp 
+        this.isRaffleRunning = false;
+        this.showWinnerDiv1 = true
+        if (this.showWinnerDiv1) {
+          this.showWinnerDiv2 = false
+        }
+
+      } else {
+        this.playAudio2();
+        const insert2A = await firstValueFrom(this.share.getSpecial());
+        const listWinner = await firstValueFrom(this.share.getListSpecial());
+        const okela = Array.isArray(listWinner) ? listWinner[listWinner.length - 1] : null;
+        console.log(okela);
+        cancelAnimationFrame(this.requestId); // Dừng vòng lặp
+        this.isRaffleRunning = true;
+        this.showWinnerDiv1 = false
+        if (!this.showWinnerDiv1) {
+          this.showWinnerDiv2 = true
+        }
+
+        if (okela) {
+          this.finalWinner = {
+            name: okela.code,
+            code: okela.vn_name,
+            bu: okela.bu,
+            joins: okela.joins === 'Y' ? 'Tham Gia' : 'Vắng',
+            receive: okela.receive
+          };
+          this.launchConfetti();
+          return;
+        } else {
+          console.error('specialData is undefined');
+        }
+        // this.loadTable();  
+        this.resetRaffle();
+
+        this.tableVisible = false;
+        return;
+      }
+    } else {
+      Swal.fire({
+        title: 'Bạn Chưa Quay Hết Giải Nhất!',
+        icon: 'info',
+        confirmButtonText: 'OK',
+      });
       return;
     }
   }
@@ -386,38 +399,46 @@ export class SpecialPrizeComponent implements AfterViewInit {
   private random(min: number, max: number): number {
     return Math.max(min, Math.min(max, min + Math.random() * (max - min)));
   }
-  async onDelete(special: First): Promise<void> {
-    console.log(special)
-
-    const confirmDelete = confirm('Bạn có chắc chắn muốn xóa người chơi này không?');
-  }
 
   async onToggleChange(element: any, event: any) {
-
-    Swal.fire({
-      title: `Bạn có chắc chắn muốn xóa ${element.vn_name} không?`,
-      text: 'Hành động này sẽ không thể hoàn tác.',
-      icon: 'warning', // Biểu tượng cảnh báo
-      showCancelButton: true, // Hiển thị nút Cancel
-      confirmButtonText: 'Có', // Nút xác nhận
-      cancelButtonText: 'Không', // Nút hủy
-      reverseButtons: false // Đảo ngược thứ tự nút (nút "Có" sẽ ở bên trái)
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        // Nếu người dùng nhấn "Có"
-        Swal.fire('Đã xác nhận!', 'Hành động đã được thực hiện.', 'success');
-        element.status = 0; // Cập nhật giá trị 1 hoặc 0
-        element.receive = event.checked ? 1 : 0;
-        const update = await firstValueFrom(this.share.onToggleChangeSpecial(element));
-        this.loadTable2();
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        // Nếu người dùng nhấn "Không"
-        Swal.fire('Đã hủy', 'Hành động bị hủy bỏ.', 'error');
-        console.log('User clicked No');
-        this.loadTable();
-      }
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success me-2",
+        cancelButton: "btn btn-danger ms-2"
+      },
+      buttonsStyling: false
     });
-
+    if (element.receive === 1) {
+      swalWithBootstrapButtons.fire({
+        title: `Bạn có chắc chắn muốn xóa <br>${element.vn_name} không?`,
+        text: 'Hành động này sẽ không thể hoàn tác.',
+        icon: 'question', // Biểu tượng cảnh báo
+        showCancelButton: true, // Hiển thị nút Cancel
+        confirmButtonText: 'Có, Hãy Xóa', // Nút xác nhận
+        cancelButtonText: 'Không', // Nút hủy
+        reverseButtons: false // Đảo ngược thứ tự nút (nút "Có" sẽ ở bên trái)
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          // Nếu người dùng nhấn "Có"
+          swalWithBootstrapButtons.fire('Đã xác nhận!', 'Hành động đã được thực hiện.', 'success');
+          element.status = 0; // Cập nhật giá trị 1 hoặc 0
+          element.receive = event.checked ? 1 : 0;
+          const update = await firstValueFrom(this.share.onToggleChangeSpecial(element));
+          this.loadTable2();
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          // Nếu người dùng nhấn "Không"
+          swalWithBootstrapButtons.fire('Đã hủy', 'Hành động bị hủy bỏ.', 'error');
+          console.log('User clicked No');
+          this.loadTable();
+        }
+      });
+    } else {
+      swalWithBootstrapButtons.fire('Thông Báo', 'Người Chơi Không Thể Nhận Giải', 'info');
+      this.loadTable2();
+    }
   }
+
+
+
 }
 
