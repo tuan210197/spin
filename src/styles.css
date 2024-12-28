@@ -10,5 +10,5 @@ body {
 
 
 :root {
-    --mat-paginator-container-text-color: rgba(0, 0, 0, 0); /* Đặt màu văn bản */
+    --mat-paginator-container-text-color: rgba(252, 252, 252, 0); /* Đặt màu văn bản */
   }

@@ -266,6 +266,7 @@ export class FirstPrizeComponent implements AfterViewInit {
           };
           console.log("oke: " + this.finalWinner.code)
           this.launchConfetti();
+          this.startFireworks();
           return;
         } else {
           console.error('specialData is undefined');

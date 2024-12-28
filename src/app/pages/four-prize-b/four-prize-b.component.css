@@ -70,7 +70,7 @@
     align-items: center;
     margin: auto;
     /* height: 100vh; */
-    top: 80%;
+    top: 85%;
     left: 50%; 
     transform: translate(-50%,-50%);
   
@@ -525,15 +525,18 @@
   .mat-mdc-row:hover {
     background-color: rgba(0, 0, 0, 0.2); /* Màu nền khi di chuột qua */
   }
+
   /* 
   .mat-mdc-header-cell:hover{
     background-color: rgba(0, 0, 0, 0.2); 
   } */
   
   .mat-mdc-paginator{
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgb(255, 255, 255,0);
   }
-  
+  ::ng-deep .mat-mdc-paginator-icon{
+    fill: rgb(255 255 255 / 54%) !important;
+  }
   
 .laptop2 {
   width: 15%; /* Kích thước ban đầu của hình ảnh */
