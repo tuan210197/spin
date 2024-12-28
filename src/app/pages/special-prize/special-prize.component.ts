@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ElementRef, ChangeDetectorRef  } from '@angular/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
@@ -76,14 +76,18 @@ export class SpecialPrizeComponent implements AfterViewInit {
   pageSize = 6; // Số bản ghi trên mỗi trang
   private audio = new Audio();
   private audio2 = new Audio();
+  private audio3 = new Audio();
+  private audio4 = new Audio();
   responseData: any; // Biến để lưu dữ liệu trả về
 
 
 
   ngOnInit(): void {
     // Khởi tạo 2 đối tượng Audio
-    this.audio.src = '/nhac.mp3';
+    this.audio.src = '/quaythuong.wav';
     this.audio2.src = '/winner1.mp3';
+    this.audio3.src = '/winning1.mp3';
+    this.audio4.src = '/votay.mp3';
   }
 
   playAudio1(): void {
@@ -93,7 +97,9 @@ export class SpecialPrizeComponent implements AfterViewInit {
 
   playAudio2(): void {
     this.stopAudio(this.audio); // Dừng audio 1 nếu đang phát
-    this.startAudio(this.audio2); // Phát audio 2
+    // this.startAudio(this.audio2); // Phát audio 2
+    this.startAudio(this.audio3);
+    this.startAudio(this.audio4);
   }
 
   startAudio(audio: HTMLAudioElement): void {
@@ -185,7 +191,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
     frame();
   }
 
-  constructor(private http: HttpClient, private share: ShareService) {
+  constructor(private http: HttpClient, private share: ShareService, private cdr : ChangeDetectorRef) {
   }
 
   async startRaffle(): Promise<void> {
@@ -205,6 +211,8 @@ export class SpecialPrizeComponent implements AfterViewInit {
       if (count >= 6) {
         this.playAudio2();
         this.loadTable2();
+        this.startFireworks();
+        this.launchConfetti();
         return;
       }
       if (this.isRaffleRunning) {
@@ -262,6 +270,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
             receive: okela.receive
           };
           this.launchConfetti();
+          this.startFireworks();
           return;
         } else {
           console.error('specialData is undefined');
@@ -421,10 +430,11 @@ export class SpecialPrizeComponent implements AfterViewInit {
         if (result.isConfirmed) {
           // Nếu người dùng nhấn "Có"
           swalWithBootstrapButtons.fire('Đã xác nhận!', 'Hành động đã được thực hiện.', 'success');
-          element.status = 0; // Cập nhật giá trị 1 hoặc 0
-          element.receive = event.checked ? 1 : 0;
+          // element.status = 0; // Cập nhật giá trị 1 hoặc 0
+          // element.receive = event.checked ? 1 : 0;
           const update = await firstValueFrom(this.share.onToggleChangeSpecial(element));
           this.loadTable2();
+          // this.cdr.detectChanges();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           // Nếu người dùng nhấn "Không"
           swalWithBootstrapButtons.fire('Đã hủy', 'Hành động bị hủy bỏ.', 'error');

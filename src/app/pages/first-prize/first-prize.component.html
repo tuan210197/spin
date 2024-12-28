@@ -67,10 +67,16 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
-          <mat-slide-toggle 
+          <!-- <mat-slide-toggle 
           [checked]="element.receive === 1" 
           (change)="onToggleChange(element, $event)">
-          </mat-slide-toggle>
+          </mat-slide-toggle> -->
+          <label class="switch">
+            <input type="checkbox" class="checkbox" 
+            [checked]="element.receive === 0"
+              (change)="onToggleChange(element, $event)" />
+            <div class="slider"></div>
+          </label>
         </td>
       </ng-container>
 

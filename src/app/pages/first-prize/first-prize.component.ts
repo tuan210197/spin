@@ -76,10 +76,14 @@ export class FirstPrizeComponent implements AfterViewInit {
 
   private audio = new Audio();
   private audio2 = new Audio();
+  private audio3 = new Audio();
+  private audio4 = new Audio();
   ngOnInit(): void {
     // Khởi tạo 2 đối tượng Audio
-    this.audio.src = '/nhac.mp3';
+    this.audio.src = '/quaythuong.wav';
     this.audio2.src = '/winner1.mp3';
+    this.audio3.src = '/winning1.mp3';
+    this.audio4.src = '/votay.mp3';
   }
 
   playAudio1(): void {
@@ -89,6 +93,8 @@ export class FirstPrizeComponent implements AfterViewInit {
   playAudio2(): void {
     this.stopAudio(this.audio); // Dừng audio 1 nếu đang phát
     this.startAudio(this.audio2); // Phát audio 2
+    this.startAudio(this.audio3);
+    this.startAudio(this.audio4);
   }
   startAudio(audio: HTMLAudioElement): void {
     audio.currentTime = 0; // Đặt lại thời gian về đầu
@@ -197,6 +203,8 @@ export class FirstPrizeComponent implements AfterViewInit {
         this.visible = false;
         this.loadTable2();
         this.playAudio2();
+        this.launchConfetti();
+        this.startFireworks();
         return;
       }
 
@@ -397,8 +405,8 @@ export class FirstPrizeComponent implements AfterViewInit {
         if (result.isConfirmed) {
           // Nếu người dùng nhấn "Có"
           swalWithBootstrapButtons.fire('Đã xác nhận!', 'Hành động đã được thực hiện.', 'success');
-          element.status = 0; // Cập nhật giá trị 1 hoặc 0
-          element.receive = event.checked ? 1 : 0;
+          // element.status = 0; // Cập nhật giá trị 1 hoặc 0
+          // element.receive = event.checked ? 1 : 0;
           await firstValueFrom(this.share.onToggleChangeFirst(element));
           this.loadTable2();
         } else if (result.dismiss === Swal.DismissReason.cancel) {

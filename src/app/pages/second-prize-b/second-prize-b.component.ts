@@ -75,10 +75,14 @@ export class SecondPrizeBComponent implements AfterViewInit {
 
   private audio = new Audio();
   private audio2 = new Audio();
+  private audio3 = new Audio();
+  private audio4 = new Audio();
   ngOnInit(): void {
     // Khởi tạo 2 đối tượng Audio
     this.audio.src = '/nhac.mp3';
     this.audio2.src = '/winner1.mp3';
+    this.audio3.src = '/winning1.mp3';
+    this.audio4.src = '/votay.mp3';
   }
 
   playAudio1(): void {
@@ -88,7 +92,9 @@ export class SecondPrizeBComponent implements AfterViewInit {
 
   playAudio2(): void {
     this.stopAudio(this.audio); // Dừng audio 1 nếu đang phát
-    this.startAudio(this.audio2); // Phát audio 2
+    // this.startAudio(this.audio2); // Phát audio 2
+    this.startAudio(this.audio3);
+    this.startAudio(this.audio4);
   }
 
   startAudio(audio: HTMLAudioElement): void {
@@ -197,6 +203,8 @@ export class SecondPrizeBComponent implements AfterViewInit {
         this.visible = false;
         this.loadTable2();
         this.playAudio2();
+        this.launchConfetti();
+        this.startFireworks();
         return;
       }
 

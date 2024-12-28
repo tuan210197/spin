@@ -716,11 +716,60 @@ tr:hover {
     height: auto;
   }
   
-  ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
-    background-color: #4caf50 !important; /* Màu cho nút khi bật */
-  }
-  
-  ::ng-deep .mat-slide-toggle-bar {
-    background-color: #ff9800 !important; /* Màu cho thanh trượt */
-  }
-  
+  /* .mat-mdc-slide-toggle.mat-accent{
+    --mdc-switch-selected-focus-state-layer-color: #15ff00;
+    --mdc-switch-selected-handle-color: #d81b60;
+    --mdc-switch-selected-hover-state-layer-color: #d81b60;
+    --mdc-switch-selected-pressed-state-layer-color: #d81b60;
+    --mdc-switch-selected-focus-handle-color: #15ff00;
+    --mdc-switch-selected-hover-handle-color: #880e4f;
+    --mdc-switch-selected-pressed-handle-color: #880e4f;
+    --mdc-switch-selected-focus-track-color: #15ff00;
+    --mdc-switch-selected-hover-track-color: #15ff00;
+    --mdc-switch-selected-pressed-track-color: #15ff00;
+    --mdc-switch-selected-track-color: #15ff00;
+  } */
+
+/* From Uiverse.io by Galahhad */ 
+.checkbox {
+  display: none;
+}
+
+.slider {
+  width: 60px;
+  height: 30px;
+  background-color: rgb(5, 224, 16);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border: 4px solid transparent;
+  transition: .3s;
+  box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.25) inset;
+  cursor: pointer;
+}
+
+.slider::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  transform: translateX(-30px);
+  border-radius: 20px;
+  transition: .3s;
+  box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
+}
+
+.checkbox:checked ~ .slider::before {
+  transform: translateX(30px);
+  box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
+}
+
+.checkbox:checked ~ .slider {
+  background-color: #ca0101;
+}
+
+.checkbox:active ~ .slider::before {
+  transform: translate(0);
+}
