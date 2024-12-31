@@ -9,13 +9,15 @@ RUN npm install
 
 # Copy project files and build
 COPY . .
-RUN npm run build --configuration production
+RUN npm run build --configuration=production
 
 # Stage 2: Serve with NGINX
 FROM nginx:stable-alpine
 
+COPY nginx.conf /etc/nginx/nginx.conf
+
 # Copy built files to NGINX's HTML directory
-COPY --from=build /app/dist/spin /usr/share/nginx/html
+COPY --from=build /app/dist/spin/browser /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
