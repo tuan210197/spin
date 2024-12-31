@@ -2,7 +2,7 @@
   display: flex;
   position: fixed;
   justify-content: flex-end;
-  background: url('/foura.jpg');
+  background: url('/giaitu.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -10,7 +10,7 @@
   align-items: center;
   overflow: hidden;
   width: 100%;
-  height: 90vh;
+  height: 100%;
   /* Chiều cao 100% màn hình */
   background-color: #f5f5f5;
   /* Màu nền (tuỳ chỉnh) */
@@ -75,7 +75,7 @@
   align-items: center;
   margin: auto;
   /* height: 100vh; */
-  top: 85%;
+  top: 90%;
   left: 50%; 
   transform: translate(-50%,-50%);
 
@@ -377,7 +377,7 @@ tr:hover {
 
 
 .raffle-box {
-  height: 70px;
+  height: 150px;
   /* Hiển thị 1 dòng */
   overflow: hidden;
   position: relative;
@@ -386,7 +386,7 @@ tr:hover {
   position: fixed;
   justify-content: center;
   align-items: center;
-  top: 40%;
+  top: 50%;
   left: 50%; 
   transform: translate(-50%,-50%);
 }
@@ -403,7 +403,7 @@ tr:hover {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
-  font-size: 45px;
+  font-size: 6em;
   /* -webkit-text-stroke: 1px #fbff27; */
   /* animation: grandientAnimation 3s ease infinite; */
 }
@@ -461,14 +461,14 @@ tr:hover {
 }
 
 .raffle-box2 {
-  height: 100px;
+  height: 200px;
   overflow: hidden;
   position: relative;
   border: none;
   position: fixed;
   justify-content: center;
   align-items: center;
-  top: 40%;
+  top: 50%;
   left: 50%; 
   transform: translate(-50%,-50%);
 }
@@ -487,7 +487,7 @@ tr:hover {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
-  font-size: 45px;
+  font-size: 6em;
 }
 
 /* table css */
@@ -497,7 +497,7 @@ tr:hover {
   width: 50%;
   position: fixed;
   left: 50%;
-  top: 55%;
+  top: 60%;
   transform: translate(-50%,-50%);
 }
 
@@ -516,7 +516,7 @@ tr:hover {
 }
 .mat-mdc-row {
   color:#ffffff;
-  font-size: 3em;
+  font-size: 4em;
   font-weight: bold;
   height: 40px;
   line-height: 1.5;
@@ -524,7 +524,7 @@ tr:hover {
 
 .mat-mdc-header-row{
   color:#ffffff;
-  font-size: 3em;
+  font-size: 4em;
   font-weight: bold;
 }
 

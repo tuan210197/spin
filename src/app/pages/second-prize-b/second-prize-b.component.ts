@@ -79,7 +79,7 @@ export class SecondPrizeBComponent implements AfterViewInit {
   private audio4 = new Audio();
   ngOnInit(): void {
     // Khởi tạo 2 đối tượng Audio
-    this.audio.src = '/nhac.mp3';
+    this.audio.src = '/award.mp3';
     this.audio2.src = '/winner1.mp3';
     this.audio3.src = '/winning1.mp3';
     this.audio4.src = '/votay.mp3';
@@ -387,7 +387,7 @@ export class SecondPrizeBComponent implements AfterViewInit {
     this.tableVisible = true
     try {
       const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '', receive: 0 };
-      const listWinner = await firstValueFrom(this.share.getListSecond(second));
+      const listWinner = await firstValueFrom(this.share.getListSecond2(second));
 
       (Array.isArray(listWinner) ? listWinner : []).forEach(item => this.listWinner.push({
         code: item.code,

@@ -2,7 +2,7 @@
   display: flex;
   position: fixed;
   justify-content: flex-end;
-  background: url('/waiting.jpg');
+  background: url('/welcome.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -216,10 +216,10 @@
 .snake {
   position: absolute;
   top: 70%;
-  left: 52%;
+  left: 50%;
   transform: translate(-50%, -50%);
   transform-origin: top center;
-  width: 20vw;
+  width: 15vw;
   height: auto;
 }
 

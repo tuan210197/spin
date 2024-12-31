@@ -40,6 +40,7 @@ export class LoteryComponent {
   generatedNumbers: { number: number }[] = []; // Danh sách số đã quay
   private audio = new Audio();
   private audio2 = new Audio();
+  private audio3 = new Audio();
   enableClick: boolean = true;
 
 
@@ -47,6 +48,7 @@ export class LoteryComponent {
     // Khởi tạo 2 đối tượng Audio
     this.audio.src = '/nhac.mp3';
     this.audio2.src = '/winner1.mp3';
+    this.audio3.src = '/votay.mp3';
   }
 
   playAudio1(): void {
@@ -57,6 +59,7 @@ export class LoteryComponent {
   playAudio2(): void {
     this.stopAudio(this.audio); // Dừng audio 1 nếu đang phát
     this.startAudio(this.audio2); // Phát audio 2
+    this.startAudio(this.audio3);
   }
 
   startAudio(audio: HTMLAudioElement): void {

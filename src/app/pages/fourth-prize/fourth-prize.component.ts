@@ -40,10 +40,12 @@ export class FourthPrizeComponent implements AfterViewInit {
   }
   private audio = new Audio();
   private audio2 = new Audio();
+  private audio3 = new Audio();
   ngOnInit(): void {
     // Khởi tạo 2 đối tượng Audio
     this.audio.src = '/nhac.mp3';
     this.audio2.src = '/winner1.mp3';
+    this.audio3.src = '/votay.mp3';
   }
 
   playAudio1(): void {
@@ -54,6 +56,7 @@ export class FourthPrizeComponent implements AfterViewInit {
   playAudio2(): void {
     this.stopAudio(this.audio); // Dừng audio 1 nếu đang phát
     this.startAudio(this.audio2); // Phát audio 2
+    this.startAudio(this.audio3); // Phát audio 3
   }
 
   startAudio(audio: HTMLAudioElement): void {
@@ -111,7 +114,7 @@ export class FourthPrizeComponent implements AfterViewInit {
   visible = true;
   dataSource = new MatTableDataSource<Four>([]);
   // , 'working_time'
-  displayedColumns: string[] = ['position','code', 'vn_name', 'bu'];
+  displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu'];
   // dataSourceWithPageSize = new MatTableDataSource(this.listWinner);
 
 
@@ -187,7 +190,7 @@ export class FourthPrizeComponent implements AfterViewInit {
     this.listWinner = Array.isArray(listWinner2) ? listWinner2 : [];
     const count = this.listWinner.filter((item: any) => item.working_time === 'A').length;
 
-    if (count == 68) {
+    if (count == 65) {
       this.visible = false;
       this.loadTable();
       // console.log(this.tableVisible)
@@ -257,11 +260,11 @@ export class FourthPrizeComponent implements AfterViewInit {
         working_time: item.working_time === 'A' ? 'Dưới 1 Năm' : 'Trên 1 Năm'
       }));
 
-      
+
 
       this.dataSource.data = this.listWinner;
       this.totalLength = this.listWinner.length; // Tổng số bản ghi
-  
+
       // Đặt paginator ở trang cuối cùng
       const totalPages = Math.ceil(this.totalLength / this.pageSize);
       if (totalPages > 0) {
@@ -271,7 +274,7 @@ export class FourthPrizeComponent implements AfterViewInit {
 
 
 
-    
+
     } catch (error) {
       console.error('Lỗi khi gọi API:', error);
     }

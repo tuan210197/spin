@@ -2,7 +2,7 @@
   display: flex;
   position: fixed;
   justify-content: flex-end;
-  background: url('/special.jpg');
+  background: url('/giaidb.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -10,7 +10,7 @@
   align-items: center;
   overflow: hidden;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   /* Chiều cao 100% màn hình */
   background-color: #f5f5f5;
   /* Màu nền (tuỳ chỉnh) */
@@ -438,7 +438,7 @@ tr:hover {
 
 }
 .raffle-box {
-  height: 100px;
+  height: 150px;
   overflow: hidden;
   position: relative;
   border: none;
@@ -446,7 +446,7 @@ tr:hover {
   position: fixed;
   justify-content: center;
   align-items: center;
-  top: 40%;
+  top: 50%;
   left: 50%; 
   transform: translate(-50%,-50%);
 }
@@ -454,7 +454,7 @@ tr:hover {
 
 .names {
   width: 100%;
-  height: 100%;
+  height: 200%;
   display: flex;
   flex-direction: column;
   transition: transform 0.1s linear;
@@ -466,7 +466,7 @@ tr:hover {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
-  font-size: 45px;
+  font-size: 6em;
 }
 
 .name-item.winner {
@@ -510,14 +510,14 @@ tr:hover {
 
 .raffle-box2 {
   width: 80%;
-  height: 100px;
+  height: 500px;
   overflow: hidden;
   position: relative;
   border: none;
   position: fixed;
   justify-content: center;
   align-items: center;
-  top: 40%;
+  top: 50%;
   left: 50%; 
   transform: translate(-50%,-50%);
 }
@@ -536,7 +536,7 @@ tr:hover {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
-  font-size: 45px;
+  font-size: 6em;
 }
 
 
@@ -563,14 +563,14 @@ tr:hover {
   }
   .mat-mdc-row {
     color:#ffffff;
-    font-size: 3em;
+    font-size: 4em;
     font-weight: bold;
     line-height: 1.5;
   }
   
   .mat-mdc-header-row{
     color:#ffffff;
-    font-size: 3em;
+    font-size: 4em;
     font-weight: bold;
   }
   
@@ -590,7 +590,7 @@ tr:hover {
   /* Ảnh từ phải */
   .xe1, .xe2, .xe3 {
     position: absolute;
-    top: 50%;
+    top: 70%;
     right: 0%;
     transform-origin: center;
     transform: translateX(100%) scale(0.1); /* Bắt đầu từ ngoài màn hình phải với kích thước nhỏ */
@@ -601,20 +601,20 @@ tr:hover {
   
   .xe1 {
     animation-name: moveInXe1;
-    top: 40%;
+    top: 70%;
     right:20%;
   }
   
   .xe2 {
     animation-name: moveInXe2;
-    top: 40%;
+    top: 70%;
     right:10%;
     animation-delay: 0.5s;
   }
   
   .xe3 {
     animation-name: moveInXe3;
-    top: 40%;
+    top: 70%;
     right: 0%;
     animation-delay: 1s;
   }
@@ -622,7 +622,7 @@ tr:hover {
   /* Ảnh từ trái */
   .xe4, .xe5, .xe6 {
     position: absolute;
-    top: 50%;
+    top: 70%;
     left: 0%;
     transform-origin: center;
     transform: translateX(-100%) scale(0.1); /* Bắt đầu từ ngoài màn hình trái với kích thước nhỏ */
@@ -633,20 +633,20 @@ tr:hover {
   
   .xe4 {
     animation-name: moveInXe4;
-    top: 40%;
+    top: 70%;
     left: 30%;
   }
   
   .xe5 {
     animation-name: moveInXe5;
-    top: 40%;
+    top: 70%;
     left: 20%;
     animation-delay: 0.5s;
   }
   
   .xe6 {
     animation-name: moveInXe6;
-    top: 40%;
+    top: 70%;
     left: 10%;
     animation-delay: 1s;
   }

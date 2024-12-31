@@ -201,7 +201,6 @@ export class SecondPrizeComponent implements AfterViewInit {
         this.visible = false;
         this.loadTable2();
         this.playAudio2();
-        
         this.launchConfetti();
         this.startFireworks();
         return;
@@ -265,12 +264,12 @@ export class SecondPrizeComponent implements AfterViewInit {
             joins: listWinner[0].joins === 'Y' ? 'Tham Gia' : 'Vắng'
           };
           this.launchConfetti();
-          console.log(listWinner.length)
+          this.startFireworks();
           return;
         } else {
           console.error('specialData is undefined');
         }
-        // this.loadTable();  
+        this.loadTable();  
         this.resetRaffle();
 
         this.tableVisible = false;
@@ -293,7 +292,7 @@ export class SecondPrizeComponent implements AfterViewInit {
     this.tableVisible = true
     const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'A', joins: '', receive: 0 };
     try {
-      const listWinner = await firstValueFrom(this.share.getListSecond2(second));
+      const listWinner = await firstValueFrom(this.share.getListSecond(second));
 
       listWinner.forEach(item => this.listWinner.push({
         code: item.code,
@@ -325,7 +324,7 @@ export class SecondPrizeComponent implements AfterViewInit {
     this.tableVisible = true
     try {
       const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'A', joins: '', receive: 0 };
-      const listWinner = await firstValueFrom(this.share.getListSecond(second));
+      const listWinner = await firstValueFrom(this.share.getListSecond2(second));
 
       (Array.isArray(listWinner) ? listWinner : []).forEach(item => this.listWinner.push({
         code: item.code,

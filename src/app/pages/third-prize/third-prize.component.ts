@@ -68,15 +68,19 @@ export class ThirdPrizeComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<Four>([]);
   displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu'];
   totalLength = 0;
-  pageSize = 5;
+  pageSize = 10;
   visible = true;
 
   private audio = new Audio();
   private audio2 = new Audio();
+  private audio3 = new Audio();
+  private audio4 = new Audio();
   ngOnInit(): void {
     // Khởi tạo 2 đối tượng Audio
     this.audio.src = '/nhac.mp3';
     this.audio2.src = '/winner1.mp3';
+    this.audio3.src = '/winning1.mp3';
+    this.audio4.src = '/votay.mp3';
   }
 
   playAudio1(): void {
@@ -86,7 +90,9 @@ export class ThirdPrizeComponent implements AfterViewInit {
 
   playAudio2(): void {
     this.stopAudio(this.audio); // Dừng audio 1 nếu đang phát
-    this.startAudio(this.audio2); // Phát audio 2
+    // this.startAudio(this.audio2); // Phát audio 2
+    this.startAudio(this.audio3);
+    this.startAudio(this.audio4);
   }
 
   startAudio(audio: HTMLAudioElement): void {
@@ -196,7 +202,7 @@ export class ThirdPrizeComponent implements AfterViewInit {
       const count = this.listWinner.filter((item: any) => item.working_time === 'A').length;
       
       console.log(count);
-      if (count == 35) {
+      if (count == 34) {
         this.loadTable();
         this.visible = false;
         this.tableVisible = false;

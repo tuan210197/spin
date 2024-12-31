@@ -39,10 +39,12 @@ export class FourPrizeBComponent implements AfterViewInit {
   }
   private audio = new Audio();
   private audio2 = new Audio();
+  private audio3 = new Audio();
   ngOnInit(): void {
     // Khởi tạo 2 đối tượng Audio
     this.audio.src = '/nhac.mp3';
     this.audio2.src = '/winner1.mp3';
+    this.audio3.src = '/votay.mp3';
   }
 
   playAudio1(): void {
@@ -53,6 +55,7 @@ export class FourPrizeBComponent implements AfterViewInit {
   playAudio2(): void {
     this.stopAudio(this.audio); // Dừng audio 1 nếu đang phát
     this.startAudio(this.audio2); // Phát audio 2
+    this.startAudio(this.audio3); // Phát audio 3
   }
 
   startAudio(audio: HTMLAudioElement): void {
@@ -187,7 +190,7 @@ export class FourPrizeBComponent implements AfterViewInit {
     this.listWinner = Array.isArray(listWinner2) ? listWinner2 : [];
     const count = this.listWinner.filter((item: any) => item.working_time === 'B').length;
 
-    if (count == 67) {
+    if (count == 70) {
       this.visible = false;
       this.loadTable();
       // console.log(this.tableVisible)

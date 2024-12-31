@@ -2,7 +2,7 @@
   display: flex;
   position: fixed;
   justify-content: flex-end;
-  background: url('/first.jpg');
+  background: url('/giainhat.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -10,7 +10,7 @@
   align-items: center;
   overflow: hidden;
   width: 100%;
-  height: 90vh;
+  height: 100%;
   /* Chiều cao 100% màn hình */
   background-color: #f5f5f5;
   /* Màu nền (tuỳ chỉnh) */
@@ -374,7 +374,7 @@ tr:hover {
 
 
 .raffle-box {
-  height: 70px;
+  height: 150px;
   /* Hiển thị 1 dòng */
   overflow: hidden;
   position: relative;
@@ -384,7 +384,7 @@ tr:hover {
   justify-content: center;
   align-items: center;
   /* height: 100vh; */
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -402,7 +402,7 @@ tr:hover {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
-  font-size: 45px;
+  font-size: 6em;
   /* -webkit-text-stroke: 1px #fbff27; */
   /* animation: grandientAnimation 3s ease infinite; */
 }
@@ -482,14 +482,14 @@ tr:hover {
 
 .raffle-box2 {
   width: 80%;
-  height: 100px;
+  height: 500px;
   overflow: hidden;
   position: relative;
   border: none;
   position: fixed;
   justify-content: center;
   align-items: center;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -508,7 +508,7 @@ tr:hover {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
-  font-size: 45px;
+  font-size: 6em;
 }
 
 
@@ -541,14 +541,14 @@ tr:hover {
 
 .mat-mdc-row {
   color: #ffffff;
-  font-size: 3em;
+  font-size: 4em;
   font-weight: bold;
   line-height: 1.5;
 }
 
 .mat-mdc-header-row {
   color: #ffffff;
-  font-size: 3em;
+  font-size: 4em;
   font-weight: bold;
 }
 
