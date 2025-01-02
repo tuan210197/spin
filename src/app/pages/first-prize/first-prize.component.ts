@@ -12,7 +12,7 @@ import { firstValueFrom } from 'rxjs';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import Swal from 'sweetalert2';
-
+import JSConfetti from 'js-confetti';
 
 export interface First {
   vn_name: string;
@@ -73,7 +73,7 @@ export class FirstPrizeComponent implements AfterViewInit {
   totalLength = 0; // Tổng số bản ghi
   pageSize = 6; // Số bản ghi trên mỗi trang
   visible = true
-
+  private jsConfetti = new JSConfetti();
   private audio = new Audio();
   private audio2 = new Audio();
   private audio3 = new Audio();
@@ -184,7 +184,13 @@ export class FirstPrizeComponent implements AfterViewInit {
     frame();
   }
 
-
+  confettiSettings() {
+    this.jsConfetti
+      .addConfetti({
+        emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'],
+      })
+      .then(() => this.jsConfetti.addConfetti());
+  }
 
   constructor(private http: HttpClient, private share: ShareService) {
 
@@ -203,7 +209,8 @@ export class FirstPrizeComponent implements AfterViewInit {
         this.visible = false;
         this.loadTable2();
         this.playAudio2();
-        this.launchConfetti();
+        // this.launchConfetti();
+        this.confettiSettings();
         this.startFireworks();
         return;
       }
@@ -264,13 +271,11 @@ export class FirstPrizeComponent implements AfterViewInit {
             bu: okela.bu,
             joins: okela.joins === 'Y' ? 'Tham Gia' : 'Vắng'
           };
-          console.log("oke: " + this.finalWinner.code)
-          this.launchConfetti();
+          // this.launchConfetti();
+          this.confettiSettings();
           this.startFireworks();
           return;
-        } else {
-          console.error('specialData is undefined');
-        }
+        } 
         // this.loadTable();  
         this.resetRaffle();
 

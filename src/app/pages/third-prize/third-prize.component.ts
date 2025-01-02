@@ -12,6 +12,8 @@ import { firstValueFrom, Observable } from 'rxjs';
 // import { Four } from '../../model/four';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import Swal from 'sweetalert2';
+import JSConfetti from 'js-confetti';
+
 
 interface Four {
   code: string;
@@ -70,7 +72,7 @@ export class ThirdPrizeComponent implements AfterViewInit {
   totalLength = 0;
   pageSize = 10;
   visible = true;
-
+  private jsConfetti = new JSConfetti();
   private audio = new Audio();
   private audio2 = new Audio();
   private audio3 = new Audio();
@@ -185,6 +187,13 @@ export class ThirdPrizeComponent implements AfterViewInit {
   }
 
 
+  confettiSettings() {
+    this.jsConfetti
+      .addConfetti({
+        emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'],
+      })
+      .then(() => this.jsConfetti.addConfetti());
+  }
   constructor(private http: HttpClient, private share: ShareService) {
 
   }
@@ -207,7 +216,9 @@ export class ThirdPrizeComponent implements AfterViewInit {
         this.visible = false;
         this.tableVisible = false;
         this.resetRaffle();
-        this.launchConfetti();
+        // this.launchConfetti();
+        this.confettiSettings();
+
         this.playAudio2();
         return;
       }
@@ -252,7 +263,8 @@ export class ThirdPrizeComponent implements AfterViewInit {
         this.loadTable();
         cancelAnimationFrame(this.requestId); // Dừng vòng lặp
         this.resetRaffle();
-        this.launchConfetti();
+        // this.launchConfetti();
+        this.confettiSettings();
         this.tableVisible = false;
         return;
       }

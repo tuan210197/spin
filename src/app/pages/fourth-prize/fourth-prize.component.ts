@@ -8,10 +8,8 @@ import { ShareService } from '../../services/share.service';
 import { firstValueFrom } from 'rxjs';
 import { AfterViewInit, Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import JSConfetti from 'js-confetti';
 
 interface Four {
   code: string;
@@ -116,7 +114,7 @@ export class FourthPrizeComponent implements AfterViewInit {
   // , 'working_time'
   displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu'];
   // dataSourceWithPageSize = new MatTableDataSource(this.listWinner);
-
+  private jsConfetti = new JSConfetti();
 
   constructor(private http: HttpClient, private share: ShareService) {
   }
@@ -183,6 +181,15 @@ export class FourthPrizeComponent implements AfterViewInit {
 
     frame();
   }
+ 
+
+  confettiSettings() {
+    this.jsConfetti
+      .addConfetti({
+        emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'],
+      })
+      .then(() => this.jsConfetti.addConfetti());
+  }
 
   async startRaffle(): Promise<void> {
     const four: Four = { code: '0', vn_name: '', bu: '', working_time: 'A' };
@@ -196,7 +203,8 @@ export class FourthPrizeComponent implements AfterViewInit {
       // console.log(this.tableVisible)
       this.tableVisible = false;
       this.resetRaffle();
-      this.launchConfetti();
+      // this.launchConfetti();
+      this.confettiSettings();
       this.playAudio2();
       return;
     }
@@ -240,7 +248,8 @@ export class FourthPrizeComponent implements AfterViewInit {
       this.loadTable();
       cancelAnimationFrame(this.requestId); // Dừng vòng lặp
       this.resetRaffle();
-      this.launchConfetti();
+      // this.launchConfetti();
+      this.confettiSettings();
       this.tableVisible = false;
       return;
     }

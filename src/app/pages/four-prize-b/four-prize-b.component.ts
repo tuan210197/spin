@@ -9,7 +9,7 @@ import { firstValueFrom } from 'rxjs';
 import { AfterViewInit, Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-
+import JSConfetti from 'js-confetti';
 
 interface Four {
   code: string;
@@ -113,9 +113,8 @@ export class FourPrizeBComponent implements AfterViewInit {
   pageSize = 10;
   visible = true;
   dataSource = new MatTableDataSource<Four>([]);
-  // , 'working_time'
   displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu'];
-  // dataSourceWithPageSize = new MatTableDataSource(this.listWinner);
+  private jsConfetti = new JSConfetti();
 
 
   constructor(private http: HttpClient, private share: ShareService) {
@@ -184,6 +183,16 @@ export class FourPrizeBComponent implements AfterViewInit {
     frame();
   }
 
+
+
+  confettiSettings() {
+    this.jsConfetti
+      .addConfetti({
+        emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'],
+      })
+      .then(() => this.jsConfetti.addConfetti());
+  }
+
   async startRaffle(): Promise<void> {
     const four: Four = { code: '0', vn_name: '', bu: '', working_time: 'B' };
     const listWinner2 = await firstValueFrom(this.share.getListFourB(four));
@@ -196,7 +205,8 @@ export class FourPrizeBComponent implements AfterViewInit {
       // console.log(this.tableVisible)
       this.tableVisible = false;
       this.resetRaffle();
-      this.launchConfetti();
+      // this.launchConfetti();
+      this.confettiSettings();
       this.playAudio2();
       return;
     }
@@ -240,7 +250,8 @@ export class FourPrizeBComponent implements AfterViewInit {
       this.loadTable();
       cancelAnimationFrame(this.requestId); // Dừng vòng lặp
       this.resetRaffle();
-      this.launchConfetti();
+      // this.launchConfetti();
+      this.confettiSettings();
       this.tableVisible = false;
       return;
     }
@@ -282,7 +293,7 @@ export class FourPrizeBComponent implements AfterViewInit {
     this.currentOffset = 0;
     this.finalWinner = null;
     this.hasWinnerDisplayed = false; // Reset trạng thái hiển thị
-    
+
   }
 
   private initializeFallingEffect(container: HTMLDivElement): void {

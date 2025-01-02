@@ -12,7 +12,7 @@ import { firstValueFrom } from 'rxjs';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import Swal from 'sweetalert2';
-
+import JSConfetti from 'js-confetti';
 
 export interface First {
   vn_name: string;
@@ -79,7 +79,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
   private audio3 = new Audio();
   private audio4 = new Audio();
   responseData: any; // Biến để lưu dữ liệu trả về
-
+  private jsConfetti = new JSConfetti();
 
 
   ngOnInit(): void {
@@ -190,7 +190,13 @@ export class SpecialPrizeComponent implements AfterViewInit {
 
     frame();
   }
-
+  confettiSettings() {
+    this.jsConfetti
+      .addConfetti({
+        emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'],
+      })
+      .then(() => this.jsConfetti.addConfetti());
+  }
   constructor(private http: HttpClient, private share: ShareService, private cdr : ChangeDetectorRef) {
   }
 
@@ -212,7 +218,8 @@ export class SpecialPrizeComponent implements AfterViewInit {
         this.playAudio2();
         this.loadTable2();
         this.startFireworks();
-        this.launchConfetti();
+        // this.launchConfetti();
+        this,this.confettiSettings();
         return;
       }
       if (this.isRaffleRunning) {
@@ -269,7 +276,8 @@ export class SpecialPrizeComponent implements AfterViewInit {
             joins: okela.joins === 'Y' ? 'Tham Gia' : 'Vắng',
             receive: okela.receive
           };
-          this.launchConfetti();
+          // this.launchConfetti();
+          this.confettiSettings();
           this.startFireworks();
           return;
         } else {
