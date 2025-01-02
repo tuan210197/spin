@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { Fireworks } from 'fireworks-js';
 import { ShareService } from '../../services/share.service';
 import Swal from 'sweetalert2';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -66,7 +67,7 @@ export class LoteryComponent {
     audio.currentTime = 0; // Đặt lại thời gian về đầu
     audio
       .play()
-      .then(() => console.log('Audio started'))
+      .then(() => { })
       .catch((err) => console.error('Error playing audio:', err));
   }
 
@@ -114,41 +115,65 @@ export class LoteryComponent {
   }
   numbers: string[] = []; // Mảng lưu các số đã được chọn
   availableNumbers: string[] = []; // Danh sách số từ 00-99
+  availableNumbers2: string[] = []; // Danh sách số từ 00-99
   currentNumber: string = '00'; // Số hiện tại đang hiển thị
 
 
   async pickNumbers(): Promise<void> {
-    
-      if (this.isRunning) {
-        this.playAudio1();
-        const displayElement = document.getElementById('random-display');
-        if (!displayElement) return;
 
-        this.intervalTotal = setInterval(() => {
-          // Hiển thị ngẫu nhiên một số
-          this.currentNumber = this.availableNumbers[
-            Math.floor(Math.random() * this.availableNumbers.length)
-          ];
-        }, 5);
-        this.isRunning = false;
-      }
-      else {
-        this.playAudio2();
-        this.isRunning = true;
-        clearInterval(this.intervalTotal);
-        const randomIndex = Math.floor(Math.random() * this.availableNumbers.length);
-        const chosenNumber = this.availableNumbers[randomIndex];
-        // Xóa số đã chọn khỏi mảng
-        this.availableNumbers.splice(randomIndex, 1);
-        console.log(this.availableNumbers.length)
-        // Cập nhật số chính thức và mảng
-        this.currentNumber = chosenNumber;
-        console.log(this.currentNumber);
-        const choose = await this.share.chooseCon(Number(this.currentNumber)).toPromise();
-        this.startFireworks();
-        this.checkCountNumber();
-      }
-   
+
+    const list_number = await firstValueFrom(this.share.getListNumber());
+
+    this.availableNumbers2 = Array.isArray(list_number) ? list_number.map((item: any) => item.number) : [];
+
+    if (this.isRunning) {
+      this.playAudio1();
+      const displayElement = document.getElementById('random-display');
+      if (!displayElement) return;
+
+      this.intervalTotal = setInterval(() => {
+        // Hiển thị ngẫu nhiên một số
+        this.currentNumber = this.availableNumbers[
+          Math.floor(Math.random() * this.availableNumbers.length)
+        ];
+      }, 5);
+      this.isRunning = false;
+    }
+    else {
+
+      this.playAudio2();
+      this.isRunning = true;
+      clearInterval(this.intervalTotal);
+      this.startFireworks();
+
+
+      this.share.getNumberChoosen().subscribe(
+        async (data) => {
+          const numbers = Array.isArray(data) ? data.map((item: any) => ({ number: item.number })) : [];
+          if (numbers.length < 4) {
+            console.log(numbers.length);
+            const randomIndex = Math.floor(Math.random() * this.availableNumbers.length);
+            const chosenNumber = this.availableNumbers[randomIndex];
+            // Xóa số đã chọn khỏi mảng
+            this.availableNumbers.splice(randomIndex, 1);
+            // Cập nhật số chính thức và mảng
+            this.currentNumber = chosenNumber;
+            await this.share.chooseCon(Number(this.currentNumber)).toPromise();
+          } else {
+            console.log(numbers.length);
+            const randomIndex = Math.floor(Math.random() * this.availableNumbers2.length);
+            const chosenNumber = this.availableNumbers[randomIndex];
+            // Xóa số đã chọn khỏi mảng
+            this.availableNumbers.splice(randomIndex, 1);
+            // Cập nhật số chính thức và mảng
+            this.currentNumber = chosenNumber;
+            await this.share.chooseCon(Number(this.currentNumber)).toPromise();
+          }
+        }
+      );
+      this.checkCountNumber();
+    }
+
   }
 
   checkCountNumber() {

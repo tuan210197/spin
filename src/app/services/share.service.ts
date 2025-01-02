@@ -55,6 +55,10 @@ export class ShareService {
     return this.http.get<number>(this.apiUrl + '/congra/get-all');
   }
 
+  getListNumber():Observable<number>{
+    return this.http.get<number>(this.apiUrl + '/congra/list-number');
+  }
+
   getListFourA(four: Four): Observable<Four[]> {
     return this.http.post<Four[]>(this.apiUrl + '/four/get-list' , four);
   }

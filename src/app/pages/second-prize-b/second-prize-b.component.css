@@ -573,11 +573,11 @@ tr:hover {
   background-color: rgba(0, 0, 0, 0);
 }
 .laptop2 {
-  width: 20%; /* Kích thước ban đầu của hình ảnh */
+  width: 10%; /* Kích thước ban đầu của hình ảnh */
   height: auto;
   position: absolute;
   top: 30%;
-  left: 40%;
+  left: 45%;
   opacity: 0; /* Bắt đầu mờ hoàn toàn */
   transform: scale(0.1); /* Nhỏ hơn khi bắt đầu */
   animation: appear 3s ease-out forwards, zoom-and-bounce 2s 3s infinite ease-in-out alternate;
