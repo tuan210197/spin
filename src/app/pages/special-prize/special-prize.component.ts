@@ -201,19 +201,12 @@ export class SpecialPrizeComponent implements AfterViewInit {
   }
 
   async startRaffle(): Promise<void> {
-
-
     const check = await firstValueFrom(this.share.checkFirst());
     if (check === 12) {
-
-
       // const second: First = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '' };
       const listWinner = await firstValueFrom(this.share.getListSpecial());
-
       this.listWinner = Array.isArray(listWinner) ? listWinner : [];
-
       const count = this.listWinner.filter((item: any) => item.receive === 1).length;
-
       if (count >= 6) {
         this.playAudio2();
         this.loadTable2();
@@ -254,11 +247,12 @@ export class SpecialPrizeComponent implements AfterViewInit {
         if (this.showWinnerDiv1) {
           this.showWinnerDiv2 = false
         }
-
       } else {
         this.playAudio2();
         const insert2A = await firstValueFrom(this.share.getSpecial());
-        const listWinner = await firstValueFrom(this.share.getListSpecial());
+        const listWinner = await firstValueFrom(this.share.getListSpecial2());
+
+        console.log(listWinner);
         const okela = Array.isArray(listWinner) ? listWinner[listWinner.length - 1] : null;
         console.log(okela);
         cancelAnimationFrame(this.requestId); // Dừng vòng lặp
@@ -267,7 +261,6 @@ export class SpecialPrizeComponent implements AfterViewInit {
         if (!this.showWinnerDiv1) {
           this.showWinnerDiv2 = true
         }
-
         if (okela) {
           this.finalWinner = {
             name: okela.code,
@@ -280,12 +273,9 @@ export class SpecialPrizeComponent implements AfterViewInit {
           this.confettiSettings();
           this.startFireworks();
           return;
-        } else {
-          console.error('specialData is undefined');
-        }
+        } 
         // this.loadTable();  
         this.resetRaffle();
-
         this.tableVisible = false;
         return;
       }

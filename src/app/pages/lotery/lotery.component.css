@@ -316,7 +316,7 @@
 
 h1 {
   color: white;
-  font-size: 180px;
+  font-size: 280px;
   font-weight: bold;
 }
 
@@ -377,7 +377,7 @@ h1 {
 }
 
 .number-box {
-  font-size: 90px;
+  font-size: 150px;
   /* Cỡ chữ lớn */
   font-weight: bold;
   /* Chữ đậm */

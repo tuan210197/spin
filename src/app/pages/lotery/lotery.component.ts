@@ -120,17 +120,12 @@ export class LoteryComponent {
 
 
   async pickNumbers(): Promise<void> {
-
-
     const list_number = await firstValueFrom(this.share.getListNumber());
-
     this.availableNumbers2 = Array.isArray(list_number) ? list_number.map((item: any) => item.number) : [];
-
     if (this.isRunning) {
       this.playAudio1();
       const displayElement = document.getElementById('random-display');
       if (!displayElement) return;
-
       this.intervalTotal = setInterval(() => {
         // Hiển thị ngẫu nhiên một số
         this.currentNumber = this.availableNumbers[
@@ -140,13 +135,10 @@ export class LoteryComponent {
       this.isRunning = false;
     }
     else {
-
       this.playAudio2();
       this.isRunning = true;
       clearInterval(this.intervalTotal);
       this.startFireworks();
-
-
       this.share.getNumberChoosen().subscribe(
         async (data) => {
           const numbers = Array.isArray(data) ? data.map((item: any) => ({ number: item.number })) : [];

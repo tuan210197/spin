@@ -24,6 +24,9 @@ export class ShareService {
  getListSpecial(): Observable<First>{
     return this.http.get<First>(this.apiUrl+'/special/list');
   }
+  getListSpecial2(): Observable<First>{
+    return this.http.get<First>(this.apiUrl+'/special/list-reload');
+  }
   
   getFirst(): Observable<Winner> {
     return this.http.get<Winner>(this.apiUrl + '/first/get');
@@ -33,7 +36,10 @@ export class ShareService {
     return this.http.get<First>(this.apiUrl+'/first/list');
   }
   
- 
+  getListFirst2(): Observable<First>{
+    return this.http.get<First>(this.apiUrl+'/first/list-reload');
+  }
+  
   
   getSecond(): Observable<Winner> {
     return this.http.get<Winner>(this.apiUrl + '/second/get');

@@ -254,7 +254,7 @@ export class FirstPrizeComponent implements AfterViewInit {
         this.visible = false;
         this.playAudio2();
         const insert2A = await firstValueFrom(this.share.getFirst());
-        const listWinner = await firstValueFrom(this.share.getListFirst());
+        const listWinner = await firstValueFrom(this.share.getListFirst2());
         const okela = Array.isArray(listWinner) ? listWinner[listWinner.length - 1] : null;
 
         cancelAnimationFrame(this.requestId); // Dừng vòng lặp
@@ -278,7 +278,6 @@ export class FirstPrizeComponent implements AfterViewInit {
         } 
         // this.loadTable();  
         this.resetRaffle();
-
         this.tableVisible = false;
         return;
       }
