@@ -11,35 +11,29 @@
   overflow: hidden;
   width: 100%;
   height: 100%;
-  /* Chiều cao 100% màn hình */
   background-color: #f5f5f5;
-  /* Màu nền (tuỳ chỉnh) */
-  padding-right: 20px;
-  /* Tạo khoảng trống bên phải */
   box-sizing: border-box;
-  /* Đảm bảo padding không làm thay đổi kích thước */
   pointer-events: all;
-  /*Cho phép các sự kiện chuột đi qua */
 }
 
 
 .btn {
-  width: 200PX;
-  height: 100PX;
+  width: 10vw;
+  height: 10vh;
   display: inline-block;
   background: linear-gradient(45deg, #ff6b6b, #f76d2b);
   color: white;
   padding: 1rem 2rem;
   font-size: 1.2rem;
   border: none;
-  border-radius: 20px;
+  border-radius: 1vw;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
   z-index: 10;
-  font-size: 50px;
+  font-size: 4em;
 }
 
 .btn::before {
@@ -63,12 +57,6 @@
   transform: scale(1.05);
 }
 
-
-
-
-
-
-/* Tổng thể căn giữa màn hình */
 .card-content {
   position: fixed;
   justify-content: center;
@@ -125,245 +113,6 @@ tr:hover {
   /* Đường viền */
 }
 
-
-
-
-/* Animation quay quạt theo chiều kim đồng hồ */
-@keyframes spin-clockwise {
-  0% {
-    transform: rotate(0deg);
-    /* Bắt đầu từ 0 độ */
-  }
-
-  100% {
-    transform: rotate(360deg);
-    /* Quay 360 độ theo chiều kim đồng hồ */
-  }
-
-
-}
-.fan-container {
-  position: absolute;
-  /* height: 100vh; */
-  top: 35%;
-  left: 5%;
-}
-
-.fan {
-  width: 10vw;
-  height: auto;
-  animation: spin-clockwise 30s linear infinite;
-
-}
-.fan-container2 {
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  top: 10%;
-  left: 0%;
-}
-
-.fan2 {
-  width: 10vw;
-  height: auto;
-  animation: spin-clockwise2 20s linear infinite;
-  /* Áp dụng hiệu ứng quay theo chiều kim đồng hồ */
-}
-
-.fan-container3 {
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  top: 20%;
-  left: 10%;
-}
-
-.fan3 {
-  width: 8vw;
-  height: auto;
-  animation: spin-clockwise2 20s linear infinite;
-  /* Áp dụng hiệu ứng quay theo chiều kim đồng hồ */
-}
-
-
-/* Animation quay quạt theo chiều kim đồng hồ */
-@keyframes spin-clockwise2 {
-  0% {
-    transform: rotate(0deg);
-    /* Bắt đầu từ 0 độ */
-  }
-
-  100% {
-    transform: rotate(-360deg);
-    /* Quay 360 độ theo chiều kim đồng hồ */
-  }
-
-}
-
-
-
-/* Hiệu ứng lắc lư */
-@keyframes sway {
-  0% {
-    transform: rotate(10deg) translateX(-20px);
-    /* Bắt đầu nghiêng và di chuyển sang trái */
-  }
-
-  50% {
-    transform: rotate(-10deg) translateX(20px);
-    /* Nghiêng và di chuyển sang phải */
-  }
-
-  100% {
-    transform: rotate(10deg) translateX(-20px);
-    /* Quay lại vị trí ban đầu */
-  }
-}
-
-/* Đèn lồng */
-.lantern {
-  position: absolute;
-  top: 0;
-  right: 0%;
-  transform-origin: top center;
-  /* Đặt điểm quay tại đỉnh của đèn lồng */
-  animation: sway 5s ease-in-out infinite;
-  /* Áp dụng hiệu ứng lắc lư */
-}
-
-/* Ảnh đèn lồng */
-.lantern img {
-  width: 15vw;
-  /* Đặt kích thước đèn lồng */
-  height: auto;
-}
-.lantern2 {
-  position: absolute;
-  top: 0;
-  transform-origin: top center;
-  /* Đặt điểm quay tại đỉnh của đèn lồng */
-  animation: sway 5s ease-in-out infinite;
-  /* Áp dụng hiệu ứng lắc lư */
-}
-
-/* Ảnh đèn lồng */
-.lantern2 img {
-  width: 10vw;
-  /* Đặt kích thước đèn lồng */
-  height: auto;
-}
-
-.lantern2 {
-  position: absolute;
-  top: 0;
-  right: 15%;
-  transform-origin: top center;
-  /* Đặt điểm quay tại đỉnh của đèn lồng */
-  animation: sway 5s ease-in-out infinite;
-  /* Áp dụng hiệu ứng lắc lư */
-}
-
-
-/* Đèn lồng */
-.gold1 {
-  position: absolute;
-  bottom: -3%;
-  right: 20%;
-  transform-origin: top center;
-  /* Đặt điểm quay tại đỉnh của đèn lồng */
-  animation: swinggold 5s ease-in-out infinite;
-  /* Áp dụng hiệu ứng lắc lư */
-}
-
-/* Ảnh đèn lồng */
-.gold1 img {
-  width: 150px;
-  /* Đặt kích thước đèn lồng */
-  height: auto;
-}
-
-/* Đèn lồng */
-.gold2 {
-  position: absolute;
-  bottom: -2%;
-  right: 10%;
-  transform-origin: top center;
-  /* Đặt điểm quay tại đỉnh của đèn lồng */
-  animation: swinggold 5s ease-in-out infinite;
-  /* Áp dụng hiệu ứng lắc lư */
-}
-
-/* Ảnh đèn lồng */
-.gold2 img {
-  width: 200px;
-  /* Đặt kích thước đèn lồng */
-  height: auto;
-}
-
-
-.gold3 {
-  position: absolute;
-  bottom: -13%;
-  left: 10%;
-  transform-origin: top center;
-}
-
-.gold3 img {
-  width: 350px;
-  height: auto;
-}
-
-.gold4 {
-  position: absolute;
-  bottom: 2%;
-  right: 30%;
-  transform-origin: top center;
-
-}
-
-.gold4 img {
-  width: 350px;
-  height: auto;
-}
-
-.gold5 {
-  position: absolute;
-  bottom: -5%;
-  left: 35%;
-  transform-origin: top center;
-
-}
-
-.gold5 img {
-  width: 350px;
-  height: auto;
-}
-
-
-
-@keyframes swinggold {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  25% {
-    transform: rotate(2deg);
-  }
-
-  50% {
-    transform: rotate(0deg);
-  }
-
-  75% {
-    transform: rotate(-2deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
 .content1 {
   position: fixed;
   justify-content: center;
@@ -374,15 +123,12 @@ tr:hover {
 
 }
 
-
-
 .raffle-box {
-  height: 150px;
+  height: 10vh;
   /* Hiển thị 1 dòng */
   overflow: hidden;
   position: relative;
   border: none;
-
   position: fixed;
   justify-content: center;
   align-items: center;
@@ -418,25 +164,6 @@ tr:hover {
   /* Cho phép các sự kiện chuột đi qua */
 
 }
-
-.imgs {
-  width: 12%;
-  height: auto;
-  position: absolute;
-  bottom: 0%;
-  left: 28%;
-  transition: opacity 2s ease-in-out;
-}
-
-.imgs2 {
-  width: 12%;
-  height: auto;
-  position: absolute;
-  bottom: 0%;
-  right: 27%;
-  transition: opacity 2s ease-in-out;
-}
-
 .caption h1 {
   border: none;
   color: #ffffff;
@@ -461,7 +188,8 @@ tr:hover {
 }
 
 .raffle-box2 {
-  height: 200px;
+  width: 80%;
+  height: auto;
   overflow: hidden;
   position: relative;
   border: none;
@@ -473,13 +201,11 @@ tr:hover {
   transform: translate(-50%,-50%);
 }
 
-
 .names2 {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-
 
 }
 
@@ -518,7 +244,6 @@ tr:hover {
   color:#ffffff;
   font-size: 4em;
   font-weight: bold;
-  height: 40px;
   line-height: 1.5;
 }
 
@@ -526,15 +251,12 @@ tr:hover {
   color:#ffffff;
   font-size: 4em;
   font-weight: bold;
+  line-height: 1.7;
 }
 
 .mat-mdc-row:hover {
   background-color: rgba(0, 0, 0, 0.2); /* Màu nền khi di chuột qua */
 }
-/* 
-.mat-mdc-header-cell:hover{
-  background-color: rgba(0, 0, 0, 0.2); 
-} */
 
 .mat-mdc-paginator{
   background-color: rgba(0, 0, 0, 0);

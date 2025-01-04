@@ -28,7 +28,7 @@
         <ng-container matColumnDef="position">
           <th mat-header-cell *matHeaderCellDef> STT</th>
           <td mat-cell *matCellDef="let element; let i = index">
-            {{ i + 1 + paginator.pageIndex * paginator.pageSize }}
+            {{ i + 66 + paginator.pageIndex * paginator.pageSize }}
           </td>
         </ng-container>
         <ng-container matColumnDef="code">
@@ -57,33 +57,6 @@
       <mat-paginator  [pageSizeOptions]="[10]" aria-label="Select page of users"></mat-paginator>
     </div>
   
-     <!-- <div>
-      <div class="fan-container3">
-        <img src="/2.png" alt="Fan" class="fan3">
-      </div>
-  
-      <div class="fan-container">
-        <img src="/2.png" alt="Fan" class="fan">
-      </div>
-      <div class="fan-container2">
-        <img src="/2.png" alt="Fan" class="fan2">
-      </div>
-  
-      <div class="lantern">
-        <img src="/1.png" class="lantern-img" />
-      </div>
-      <div class="lantern2">
-        <img src="/1.png" class="lantern-img" />
-      </div>
-  
-    </div> -->
-    <!-- <div class="images">
-      <img class="imgs" src="/thantai.gif" alt="">
-  
-      <img class="imgs2" src="/thantai.gif" alt="">
-    </div>  -->
-  
-    <!-- </div> -->
     <div class="img-container"  *ngIf="visible">
       <img src="/noicom2.png" alt="Right Image" class="laptop2" />
     </div>

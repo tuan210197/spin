@@ -21,28 +21,29 @@ export class ShareService {
   getSpecial(): Observable<Winner> {
     return this.http.get<Winner>(this.apiUrl + '/special/get');
   }
- getListSpecial(): Observable<First>{
-    return this.http.get<First>(this.apiUrl+'/special/list');
+  getListSpecial(): Observable<First> {
+    return this.http.get<First>(this.apiUrl + '/special/list');
   }
-  getListSpecial2(): Observable<First>{
-    return this.http.get<First>(this.apiUrl+'/special/list-reload');
+  getListSpecial2(): Observable<First> {
+    return this.http.get<First>(this.apiUrl + '/special/list-reload');
   }
-  
+
   getFirst(): Observable<Winner> {
     return this.http.get<Winner>(this.apiUrl + '/first/get');
   }
 
-  getListFirst(): Observable<First>{
-    return this.http.get<First>(this.apiUrl+'/first/list');
+  getListFirst(): Observable<First> {
+    return this.http.get<First>(this.apiUrl + '/first/list');
   }
-  
-  getListFirst2(): Observable<First>{
-    return this.http.get<First>(this.apiUrl+'/first/list-reload');
+
+  getListFirst2(): Observable<First> {
+    return this.http.get<First>(this.apiUrl + '/first/list-reload');
   }
-  
-  
   getSecond(): Observable<Winner> {
     return this.http.get<Winner>(this.apiUrl + '/second/get');
+  }
+  getCountSecondA(Second: Second) {
+    return this.http.post(this.apiUrl + '/second/check-count', Second);
   }
   getThird(): Observable<Winner> {
     return this.http.get<Winner>(this.apiUrl + '/third/get');
@@ -53,7 +54,7 @@ export class ShareService {
   getRandom(): Observable<Winner> {
     return this.http.get<Winner>(this.apiUrl + '/user/random');
   }
-  chooseCon(num : number) :Observable<Winner>{
+  chooseCon(num: number): Observable<Winner> {
     return this.http.get<Winner>(this.apiUrl + '/congra/get/' + num);
   }
 
@@ -61,15 +62,15 @@ export class ShareService {
     return this.http.get<number>(this.apiUrl + '/congra/get-all');
   }
 
-  getListNumber():Observable<number>{
+  getListNumber(): Observable<number> {
     return this.http.get<number>(this.apiUrl + '/congra/list-number');
   }
 
   getListFourA(four: Four): Observable<Four[]> {
-    return this.http.post<Four[]>(this.apiUrl + '/four/get-list' , four);
+    return this.http.post<Four[]>(this.apiUrl + '/four/get-list', four);
   }
   getListFourB(four: Four): Observable<Four[]> {
-    return this.http.post<Four[]>(this.apiUrl + '/four/get-list' , four);
+    return this.http.post<Four[]>(this.apiUrl + '/four/get-list', four);
   }
   getFourA() {
     return this.http.get(this.apiUrl + '/four/get-4a');
@@ -85,7 +86,7 @@ export class ShareService {
   }
 
   getListThirdA(four: Four): Observable<Four[]> {
-    return this.http.post<Four[]>(this.apiUrl + '/third/get-list' , four);
+    return this.http.post<Four[]>(this.apiUrl + '/third/get-list', four);
   }
 
   getSecondA() {
@@ -96,22 +97,24 @@ export class ShareService {
   }
 
   getListSecond(second: Second): Observable<Second[]> {
-    return this.http.post<Second[]>(this.apiUrl + '/second/get-list' , second);
+    return this.http.post<Second[]>(this.apiUrl + '/second/get-list', second);
   }
   getListSecond2(second: Second): Observable<Second[]> {
-    return this.http.post<Second[]>(this.apiUrl + '/second/get-list2' , second);
+    return this.http.post<Second[]>(this.apiUrl + '/second/get-list2', second);
   }
-
+  getCountSecond() {
+    return this.http.get(this.apiUrl + '/second/count-second');
+  }
   // delete service
 
   onToggleChangeSecond(second: Second) {
-    return this.http.post(this.apiUrl + '/second/update',  second)
+    return this.http.post(this.apiUrl + '/second/update', second)
   }
   onToggleChangeFirst(first: First) {
-    return this.http.post(this.apiUrl + '/first/update',  first)
+    return this.http.post(this.apiUrl + '/first/update', first)
   }
   onToggleChangeSpecial(special: First) {
-    return this.http.post(this.apiUrl + '/special/update',  special)
+    return this.http.post(this.apiUrl + '/special/update', special)
   }
   checkFour() {
     return this.http.get(this.apiUrl + '/four/check');

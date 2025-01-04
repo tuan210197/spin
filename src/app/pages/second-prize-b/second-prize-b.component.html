@@ -18,11 +18,11 @@
         </div>
       </div>
   
-      <!-- <div class="raffle-box2">
-        <div *ngIf="showWinnerDiv3" class="names2">
-          <p class="name-item2">ĐÃ HẾT GIẢI THƯỞNG RỒI</p>
+      <div class="raffle-box3">
+        <div *ngIf="showWinnerDiv2" class="names2">
+          <p class="name-item3">chúc mừng CNV thứ {{totalCountSecond}} đã chúng giải</p>
         </div>
-      </div> -->
+      </div>
     
       <!-- <div class="caption">
         <h1 *ngIf="isVisible">Chúc Mừng Bạn Đã Trúng Giải 1.000$</h1>
@@ -37,7 +37,7 @@
           <ng-container matColumnDef="position">
             <th mat-header-cell *matHeaderCellDef> STT</th>
             <td mat-cell *matCellDef="let element; let i = index">
-              {{ i + 1 + paginator.pageIndex * paginator.pageSize }}
+              {{ i + countSecondA +1 + paginator.pageIndex * paginator.pageSize }}
             </td>
           </ng-container>
           <ng-container matColumnDef="code">
@@ -87,35 +87,6 @@
         <mat-paginator  [pageSizeOptions]="[6]" aria-label="Select page of users"></mat-paginator>
       </div>
     
-    
- <!-- <div>
-   <div class="fan-container3">
-     <img src="/2.png" alt="Fan" class="fan3">
-   </div>
-
-   <div class="fan-container">
-     <img src="/2.png" alt="Fan" class="fan">
-   </div>
-   <div class="fan-container2">
-     <img src="/2.png" alt="Fan" class="fan2">
-   </div>
-
-   <div class="lantern">
-     <img src="/1.png" class="lantern-img" />
-   </div>
-   <div class="lantern2">
-     <img src="/1.png" class="lantern-img" />
-   </div>
-
- </div> -->
- <!-- <div class="images" >
-   <img class="imgs"   src="/2.gif" alt="">
- </div>
- <div class="images" >
-   <img class="imgs2"   src="/33.gif" alt="">
- </div> -->
-
- <!-- </div> -->
  <div class="img-container"  *ngIf="visible">
   <img src="/dienthoai10.png" alt="Right Image" class="laptop2" />
 </div>

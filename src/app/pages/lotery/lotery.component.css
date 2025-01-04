@@ -362,7 +362,8 @@ h1 {
 
 .number-box {
   justify-content: center;
-  gap: 50px;
+  padding-left: 100px !important;
+  /* gap: 100px; */
 }
 
 .column2 {

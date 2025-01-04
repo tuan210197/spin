@@ -11,35 +11,29 @@
   overflow: hidden;
   width: 100%;
   height: 100%;
-  /* Chiều cao 100% màn hình */
   background-color: #f5f5f5;
-  /* Màu nền (tuỳ chỉnh) */
-  padding-right: 20px;
-  /* Tạo khoảng trống bên phải */
   box-sizing: border-box;
-  /* Đảm bảo padding không làm thay đổi kích thước */
   pointer-events: all;
-  /*Cho phép các sự kiện chuột đi qua */
 }
 
 
 .btn {
-  width: 200PX;
-  height: 100PX;
+  width: 10vw;
+  height: 10vh;
   display: inline-block;
   background: linear-gradient(45deg, #ff6b6b, #f76d2b);
   color: white;
   padding: 1rem 2rem;
   font-size: 1.2rem;
   border: none;
-  border-radius: 20px;
+  border-radius: 1vw;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
   z-index: 10;
-  font-size: 50px;
+  font-size: 4em;
 }
 
 .btn::before {
@@ -64,10 +58,6 @@
 }
 
 
-
-
-
-
 /* Tổng thể căn giữa màn hình */
 .card-content {
   position: fixed;
@@ -88,15 +78,12 @@
   /* height: 100vh; */
   top: 20%;
   left: 35%;
-  font-size: 60px;
+  font-size: 4em;
   font-weight: bold;
   color: #ffffff;
   text-align: center;
 
 }
-
-
-
 
 .title {
   text-align: center;
@@ -125,281 +112,6 @@ tr:hover {
   /* Đường viền */
 }
 
-
-.fan-container {
-  position: absolute;
-  height: 100vh;
-  top: 25%;
-  left: 1%;
-}
-
-.fan {
-  width: 150px;
-  height: 150px;
-  animation: spin-clockwise 30s linear infinite;
-
-}
-
-/* Animation quay quạt theo chiều kim đồng hồ */
-@keyframes spin-clockwise {
-  0% {
-    transform: rotate(0deg);
-    /* Bắt đầu từ 0 độ */
-  }
-
-  100% {
-    transform: rotate(360deg);
-    /* Quay 360 độ theo chiều kim đồng hồ */
-  }
-
-
-}
-
-.fan-container2 {
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  top: 10%;
-  left: 300px;
-}
-
-.fan2 {
-  width: 200px;
-  height: 200px;
-  animation: spin-clockwise2 20s linear infinite;
-  /* Áp dụng hiệu ứng quay theo chiều kim đồng hồ */
-}
-
-.fan-container3 {
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  top: 60%;
-  left: 10%;
-}
-
-.fan3 {
-  width: 200px;
-  height: 200px;
-  animation: spin-clockwise2 20s linear infinite;
-  /* Áp dụng hiệu ứng quay theo chiều kim đồng hồ */
-}
-
-
-/* Animation quay quạt theo chiều kim đồng hồ */
-@keyframes spin-clockwise2 {
-  0% {
-    transform: rotate(0deg);
-    /* Bắt đầu từ 0 độ */
-  }
-
-  100% {
-    transform: rotate(-360deg);
-    /* Quay 360 độ theo chiều kim đồng hồ */
-  }
-
-}
-
-
-/* Đèn lồng */
-.lantern {
-  position: absolute;
-  top: 0;
-  right: 0%;
-  transform-origin: top center;
-  /* Đặt điểm quay tại đỉnh của đèn lồng */
-  animation: sway 5s ease-in-out infinite;
-  /* Áp dụng hiệu ứng lắc lư */
-}
-
-/* Ảnh đèn lồng */
-.lantern img {
-  width: 400px;
-  /* Đặt kích thước đèn lồng */
-  height: auto;
-}
-
-/* Hiệu ứng lắc lư */
-@keyframes sway {
-  0% {
-    transform: rotate(10deg) translateX(-20px);
-    /* Bắt đầu nghiêng và di chuyển sang trái */
-  }
-
-  50% {
-    transform: rotate(-10deg) translateX(20px);
-    /* Nghiêng và di chuyển sang phải */
-  }
-
-  100% {
-    transform: rotate(10deg) translateX(-20px);
-    /* Quay lại vị trí ban đầu */
-  }
-}
-
-.lantern2 {
-  position: absolute;
-  top: 0;
-  transform-origin: top center;
-  /* Đặt điểm quay tại đỉnh của đèn lồng */
-  animation: sway 5s ease-in-out infinite;
-  /* Áp dụng hiệu ứng lắc lư */
-}
-
-/* Ảnh đèn lồng */
-.lantern2 img {
-  width: 300px;
-  /* Đặt kích thước đèn lồng */
-  height: auto;
-}
-
-.lantern2 {
-  position: absolute;
-  top: 0;
-  right: 15%;
-  transform-origin: top center;
-  /* Đặt điểm quay tại đỉnh của đèn lồng */
-  animation: sway 5s ease-in-out infinite;
-  /* Áp dụng hiệu ứng lắc lư */
-}
-
-/* Đèn lồng */
-.lantern3 {
-  position: absolute;
-  top: 0;
-  left: 0%;
-  transform-origin: top center;
-  /* Đặt điểm quay tại đỉnh của đèn lồng */
-  animation: sway 5s ease-in-out infinite;
-  /* Áp dụng hiệu ứng lắc lư */
-}
-
-/* Ảnh đèn lồng */
-.lantern3 img {
-  width: 400px;
-  /* Đặt kích thước đèn lồng */
-  height: auto;
-}
-
-/* Ảnh đèn lồng */
-.lantern4 img {
-  width: 300px;
-  /* Đặt kích thước đèn lồng */
-  height: auto;
-}
-
-.lantern4 {
-  position: absolute;
-  top: 0;
-  left: 15%;
-  transform-origin: top center;
-  /* Đặt điểm quay tại đỉnh của đèn lồng */
-  animation: sway 5s ease-in-out infinite;
-  /* Áp dụng hiệu ứng lắc lư */
-}
-
-
-/* Đèn lồng */
-.gold1 {
-  position: absolute;
-  bottom: -3%;
-  right: 20%;
-  transform-origin: top center;
-  /* Đặt điểm quay tại đỉnh của đèn lồng */
-  animation: swinggold 5s ease-in-out infinite;
-  /* Áp dụng hiệu ứng lắc lư */
-}
-
-/* Ảnh đèn lồng */
-.gold1 img {
-  width: 150px;
-  /* Đặt kích thước đèn lồng */
-  height: auto;
-}
-
-/* Đèn lồng */
-.gold2 {
-  position: absolute;
-  bottom: -2%;
-  right: 10%;
-  transform-origin: top center;
-  /* Đặt điểm quay tại đỉnh của đèn lồng */
-  animation: swinggold 5s ease-in-out infinite;
-  /* Áp dụng hiệu ứng lắc lư */
-}
-
-/* Ảnh đèn lồng */
-.gold2 img {
-  width: 200px;
-  /* Đặt kích thước đèn lồng */
-  height: auto;
-}
-
-
-.gold3 {
-  position: absolute;
-  bottom: -13%;
-  left: 10%;
-  transform-origin: top center;
-}
-
-.gold3 img {
-  width: 350px;
-  height: auto;
-}
-
-.gold4 {
-  position: absolute;
-  bottom: 2%;
-  right: 30%;
-  transform-origin: top center;
-
-}
-
-.gold4 img {
-  width: 350px;
-  height: auto;
-}
-
-.gold5 {
-  position: absolute;
-  bottom: -5%;
-  left: 35%;
-  transform-origin: top center;
-
-}
-
-.gold5 img {
-  width: 350px;
-  height: auto;
-}
-
-
-
-@keyframes swinggold {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  25% {
-    transform: rotate(2deg);
-  }
-
-  50% {
-    transform: rotate(0deg);
-  }
-
-  75% {
-    transform: rotate(-2deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
 .content1 {
   position: fixed;
   justify-content: center;
@@ -410,10 +122,6 @@ tr:hover {
 
 }
 
-
-
-
-
 .caption h1 {
   border: none;
   color: #ffffff;
@@ -421,24 +129,14 @@ tr:hover {
   top: 47%;
   left: 50%; 
   transform: translate(-50%,-50%);
-  font-size: 50px;
+  font-size: 4em;
   font-weight: bold;
   text-align: center;
 
 }
 
-@keyframes grandientAnimation {
-  0% {transform: translateY(0) }
-  50% {transform: translateY(10px) }
-  100% {transform: translateY(0)}
-  }
-@keyframes bounceEffect {
-  0%, 100% {transform: translateY(0);}
-  50% {transform: translateY(-10px);}
-
-}
 .raffle-box {
-  height: 150px;
+  height: 10vh;
   overflow: hidden;
   position: relative;
   border: none;
@@ -461,7 +159,6 @@ tr:hover {
 }
 
 .name-item {
-  /* width: 100%; */
   line-height: 50px; /* thay đổi test*/
   text-align: center;
   font-weight: bold;
@@ -472,7 +169,7 @@ tr:hover {
 .name-item.winner {
   background-color: #ffd700; 
   color: #fff;
-  font-size: 20px;
+  /* font-size: 20px; */
   position: relative;
 } 
 
@@ -489,28 +186,9 @@ tr:hover {
 
 }
 
-
-.imgs {
-  width: 350px;
-  height: 350px;
-  position: absolute;
-  bottom: 5%;
-  left: 25%;
-  transition: opacity 2s ease-in-out;
-}
-
-.imgs2 {
-  width: 350px;
-  height: 350px;
-  position: absolute;
-  bottom: 5%;
-  right: 25%;
-  transition: opacity 2s ease-in-out;
-}
-
 .raffle-box2 {
   width: 80%;
-  height: 500px;
+  height: auto;
   overflow: hidden;
   position: relative;
   border: none;
@@ -572,6 +250,7 @@ tr:hover {
     color:#ffffff;
     font-size: 4em;
     font-weight: bold;
+    line-height: 1.7;
   }
   
   .mat-mdc-row:hover {
@@ -716,21 +395,6 @@ tr:hover {
     height: auto;
   }
   
-  /* .mat-mdc-slide-toggle.mat-accent{
-    --mdc-switch-selected-focus-state-layer-color: #15ff00;
-    --mdc-switch-selected-handle-color: #d81b60;
-    --mdc-switch-selected-hover-state-layer-color: #d81b60;
-    --mdc-switch-selected-pressed-state-layer-color: #d81b60;
-    --mdc-switch-selected-focus-handle-color: #15ff00;
-    --mdc-switch-selected-hover-handle-color: #880e4f;
-    --mdc-switch-selected-pressed-handle-color: #880e4f;
-    --mdc-switch-selected-focus-track-color: #15ff00;
-    --mdc-switch-selected-hover-track-color: #15ff00;
-    --mdc-switch-selected-pressed-track-color: #15ff00;
-    --mdc-switch-selected-track-color: #15ff00;
-  } */
-
-/* From Uiverse.io by Galahhad */ 
 .checkbox {
   display: none;
 }

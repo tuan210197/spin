@@ -72,6 +72,8 @@ export class SecondPrizeBComponent implements AfterViewInit {
   totalLength = 0;
   pageSize = 6; // Số bản ghi trên mỗi trang
   visible = true;
+  countSecondA = 0;
+  totalCountSecond =0;
   private jsConfetti = new JSConfetti();
   private audio = new Audio();
   private audio2 = new Audio();
@@ -199,6 +201,10 @@ export class SecondPrizeBComponent implements AfterViewInit {
 
   async startRaffle(): Promise<void> {
 
+    const countSecond: Second = { code: '0', vn_name: '', bu: '', working_time: 'A', joins: '', receive: 1 };
+    const countA: number = await firstValueFrom(this.share.getCountSecondA(countSecond)) as number;
+  
+    this.countSecondA = countA;
     const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '', receive: 0 };
     const listWinner = await firstValueFrom(this.share.getListSecond(second));
     const check = await firstValueFrom(this.share.checkThird());
@@ -206,7 +212,7 @@ export class SecondPrizeBComponent implements AfterViewInit {
 
       this.listWinner = Array.isArray(listWinner) ? listWinner : [];
       const count = this.listWinner.filter((item: any) => item.receive === 1).length;
-      console.log(count);
+
       if (count == 6) {
         this.visible = false;
         this.loadTable2();
@@ -258,6 +264,9 @@ export class SecondPrizeBComponent implements AfterViewInit {
         const insert2A = await firstValueFrom(this.share.getSecondB());
         const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '', receive: 0 };
         const listWinner = await firstValueFrom(this.share.getListSecond(second));
+       
+        const count: number = await firstValueFrom(this.share.getCountSecond()) as number;
+        this.totalCountSecond = count;
         cancelAnimationFrame(this.requestId); // Dừng vòng lặp
         this.isRaffleRunning = true;
         this.showWinnerDiv1 = false

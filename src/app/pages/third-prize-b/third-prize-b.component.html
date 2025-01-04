@@ -10,15 +10,7 @@
        </div>
    
      </div>
-     <!-- <div class="raffle-box2">
-       <div *ngIf="showWinnerDiv" class="names2">
-         <p class="name-item2">{{ finalWinner?.code +' - ' }} {{ finalWinner?.name }}</p>
-       </div>
-     </div> -->
-   
-     <!-- <div class="caption">
-       <h1 *ngIf="isVisible">Chúc Mừng Bạn Đã Trúng Giải 1.000$</h1>
-     </div> -->
+  
      <div class="card-content">
       
        <button class="btn"  (click)="startRaffle()">開始</button>
@@ -30,7 +22,7 @@
         <ng-container matColumnDef="position">
           <th mat-header-cell *matHeaderCellDef> STT</th>
           <td mat-cell *matCellDef="let element; let i = index">
-            {{ i + 1 + paginator.pageIndex * paginator.pageSize }}
+            {{ i + 35 + paginator.pageIndex * paginator.pageSize }}
           </td>
         </ng-container>
          <ng-container matColumnDef="code">

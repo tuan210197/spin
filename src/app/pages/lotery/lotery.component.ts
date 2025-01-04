@@ -128,9 +128,7 @@ export class LoteryComponent {
       if (!displayElement) return;
       this.intervalTotal = setInterval(() => {
         // Hiển thị ngẫu nhiên một số
-        this.currentNumber = this.availableNumbers[
-          Math.floor(Math.random() * this.availableNumbers.length)
-        ];
+        this.currentNumber = this.availableNumbers[Math.floor(Math.random() * this.availableNumbers.length)];
       }, 5);
       this.isRunning = false;
     }
@@ -151,6 +149,7 @@ export class LoteryComponent {
             // Cập nhật số chính thức và mảng
             this.currentNumber = chosenNumber;
             await this.share.chooseCon(Number(this.currentNumber)).toPromise();
+            console.log(this.currentNumber);
           } else {
             console.log(numbers.length);
             const randomIndex = Math.floor(Math.random() * this.availableNumbers2.length);
@@ -160,6 +159,7 @@ export class LoteryComponent {
             // Cập nhật số chính thức và mảng
             this.currentNumber = chosenNumber;
             await this.share.chooseCon(Number(this.currentNumber)).toPromise();
+            console.log(this.currentNumber);
           }
         }
       );
@@ -195,9 +195,10 @@ export class LoteryComponent {
         if (numbers.length <= 6) {
           this.pickNumbers();
         } else {
-          this.currentNumber = numbers[numbers.length - 1].number;
+          this.currentNumber = this.formatNumber(Number(numbers[numbers.length - 1].number)) ;
           this.generatedNumbers = numbers.slice(0, numbers.length - 1);
         }
+        // console.log( this.formatNumber((Number(this.currentNumber))));
       }
     );
 
