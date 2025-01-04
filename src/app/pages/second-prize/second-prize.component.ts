@@ -74,6 +74,7 @@ export class SecondPrizeComponent implements AfterViewInit {
   totalLength = 0;
   pageSize = 6; // Số bản ghi trên mỗi trang
   visible = true;
+  totalCountSecond =0;
   private jsConfetti = new JSConfetti();
   private audio = new Audio();
   private audio2 = new Audio();
@@ -84,7 +85,7 @@ export class SecondPrizeComponent implements AfterViewInit {
     this.audio.src = '/award.mp3';
     this.audio2.src = '/winner1.mp3';
     this.audio3.src = '/winning1.mp3';
-    this.audio4.src = '/votay.mp3';
+    this.audio4.src = '/votay4.mp3';
   }
 
   playAudio1(): void {
@@ -261,7 +262,9 @@ export class SecondPrizeComponent implements AfterViewInit {
         const insert2A = await firstValueFrom(this.share.getSecondA());
         const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'A', joins: '', receive: 0 };
         const listWinner = await firstValueFrom(this.share.getListSecond(second));
-        console.log(listWinner)
+        
+        const count: number = await firstValueFrom(this.share.getCountSecond()) as number;
+        this.totalCountSecond = count;
         cancelAnimationFrame(this.requestId); // Dừng vòng lặp
         this.isRaffleRunning = true;
         this.showWinnerDiv1 = false

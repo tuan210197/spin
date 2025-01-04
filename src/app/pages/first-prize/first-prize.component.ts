@@ -73,6 +73,7 @@ export class FirstPrizeComponent implements AfterViewInit {
   totalLength = 0; // Tổng số bản ghi
   pageSize = 6; // Số bản ghi trên mỗi trang
   visible = true
+  totalCountFirst =0;
   private jsConfetti = new JSConfetti();
   private audio = new Audio();
   private audio2 = new Audio();
@@ -83,7 +84,7 @@ export class FirstPrizeComponent implements AfterViewInit {
     this.audio.src = '/quaythuong.wav';
     this.audio2.src = '/winner1.mp3';
     this.audio3.src = '/winning1.mp3';
-    this.audio4.src = '/votay.mp3';
+    this.audio4.src = '/votay4.mp3';
   }
 
   playAudio1(): void {
@@ -256,6 +257,9 @@ export class FirstPrizeComponent implements AfterViewInit {
         const insert2A = await firstValueFrom(this.share.getFirst());
         const listWinner = await firstValueFrom(this.share.getListFirst2());
         const okela = Array.isArray(listWinner) ? listWinner[listWinner.length - 1] : null;
+
+        const count: number = await firstValueFrom(this.share.getCountFirst()) as number;
+        this.totalCountFirst = count;
 
         cancelAnimationFrame(this.requestId); // Dừng vòng lặp
         this.isRaffleRunning = true;

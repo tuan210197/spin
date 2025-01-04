@@ -18,8 +18,8 @@
 
 
 .btn {
-  width: 10vw;
-  height: 10vh;
+  width: 8vw;
+  height: 8vh;
   display: inline-block;
   background: linear-gradient(45deg, #ff6b6b, #f76d2b);
   color: white;
@@ -169,7 +169,20 @@ tr:hover {
   position: fixed;
   justify-content: center;
   align-items: center;
-  top: 50%;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.raffle-box3 {
+  width: 80%;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+  border: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 47%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -190,7 +203,12 @@ tr:hover {
   color: #ffffff;
   font-size: 7em;
 }
-
+.name-item3 {
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 5em;
+}
 
 /* Tạo container cho bảng */
 .table-container {

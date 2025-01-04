@@ -18,8 +18,8 @@
 
 
 .btn {
-  width: 10vw;
-  height: 10vh;
+  width: 8vw;
+  height: 8vh;
   display: inline-block;
   background: linear-gradient(45deg, #ff6b6b, #f76d2b);
   color: white;
@@ -66,8 +66,8 @@
   margin: auto;
   /* height: 100vh; */
   top: 80%;
-  left: 50%; 
-  transform: translate(-50%,-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
 
 }
 
@@ -127,8 +127,8 @@ tr:hover {
   color: #ffffff;
   position: fixed;
   top: 47%;
-  left: 50%; 
-  transform: translate(-50%,-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 4em;
   font-weight: bold;
   text-align: center;
@@ -145,8 +145,8 @@ tr:hover {
   justify-content: center;
   align-items: center;
   top: 50%;
-  left: 50%; 
-  transform: translate(-50%,-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 
@@ -159,7 +159,8 @@ tr:hover {
 }
 
 .name-item {
-  line-height: 50px; /* thay đổi test*/
+  line-height: 50px;
+  /* thay đổi test*/
   text-align: center;
   font-weight: bold;
   color: #ffffff;
@@ -167,11 +168,11 @@ tr:hover {
 }
 
 .name-item.winner {
-  background-color: #ffd700; 
+  background-color: #ffd700;
   color: #fff;
   /* font-size: 20px; */
   position: relative;
-} 
+}
 
 
 
@@ -186,6 +187,7 @@ tr:hover {
 
 }
 
+
 .raffle-box2 {
   width: 80%;
   height: auto;
@@ -195,10 +197,25 @@ tr:hover {
   position: fixed;
   justify-content: center;
   align-items: center;
-  top: 50%;
-  left: 50%; 
-  transform: translate(-50%,-50%);
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
+
+.raffle-box3 {
+  width: 80%;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+  border: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 
 
 .names2 {
@@ -217,184 +234,209 @@ tr:hover {
   font-size: 7em;
 }
 
+.name-item3 {
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 5em;
+}
 
-  /* Tạo container cho bảng */
-  .table-container {
-    width: 50%;
-    position: fixed;
-    left: 50%;
-    top: 55%;
-    transform: translate(-50%,-50%);
-  }
-  
-  .mat-mdc-table{
-    background-color: rgba(0, 0, 0, 0);
-  }
-  .mat-mdc-header-cell{
-    border-bottom-width:0;
-  }
-  .mat-mdc-cell{
-    border-bottom-width:0;
-  }
-  .mat-elevation-z8, .mat-mdc-elevation-specific.mat-elevation-z8{
-    box-shadow: none;
-  }
-  .mat-mdc-row {
-    color:#ffffff;
-    font-size: 4em;
-    font-weight: bold;
-    line-height: 1.5;
-  }
-  
-  .mat-mdc-header-row{
-    color:#ffffff;
-    font-size: 4em;
-    font-weight: bold;
-    line-height: 1.7;
-  }
-  
-  .mat-mdc-row:hover {
-    background-color: rgba(0, 0, 0, 0.2); /* Màu nền khi di chuột qua */
-  }
-  /* 
+/* Tạo container cho bảng */
+.table-container {
+  width: 50%;
+  position: fixed;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+}
+
+.mat-mdc-table {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.mat-mdc-header-cell {
+  border-bottom-width: 0;
+}
+
+.mat-mdc-cell {
+  border-bottom-width: 0;
+}
+
+.mat-elevation-z8,
+.mat-mdc-elevation-specific.mat-elevation-z8 {
+  box-shadow: none;
+}
+
+.mat-mdc-row {
+  color: #ffffff;
+  font-size: 4em;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.mat-mdc-header-row {
+  color: #ffffff;
+  font-size: 4em;
+  font-weight: bold;
+  line-height: 1.7;
+}
+
+.mat-mdc-row:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  /* Màu nền khi di chuột qua */
+}
+
+/* 
   .mat-mdc-header-cell:hover{
     background-color: rgba(0, 0, 0, 0.2); 
   } */
-  
-  .mat-mdc-paginator{
-    background-color: rgba(0, 0, 0, 0);
-  }
+
+.mat-mdc-paginator {
+  background-color: rgba(0, 0, 0, 0);
+}
 
 
-  /* Ảnh từ phải */
-  .xe1, .xe2, .xe3 {
-    position: absolute;
-    top: 70%;
-    right: 0%;
-    transform-origin: center;
-    transform: translateX(100%) scale(0.1); /* Bắt đầu từ ngoài màn hình phải với kích thước nhỏ */
-    animation-duration: 3s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
+/* Ảnh từ phải */
+.xe1,
+.xe2,
+.xe3 {
+  position: absolute;
+  top: 70%;
+  right: 0%;
+  transform-origin: center;
+  transform: translateX(100%) scale(0.1);
+  /* Bắt đầu từ ngoài màn hình phải với kích thước nhỏ */
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.xe1 {
+  animation-name: moveInXe1;
+  top: 70%;
+  right: 20%;
+}
+
+.xe2 {
+  animation-name: moveInXe2;
+  top: 70%;
+  right: 10%;
+  animation-delay: 0.5s;
+}
+
+.xe3 {
+  animation-name: moveInXe3;
+  top: 70%;
+  right: 0%;
+  animation-delay: 1s;
+}
+
+/* Ảnh từ trái */
+.xe4,
+.xe5,
+.xe6 {
+  position: absolute;
+  top: 70%;
+  left: 0%;
+  transform-origin: center;
+  transform: translateX(-100%) scale(0.1);
+  /* Bắt đầu từ ngoài màn hình trái với kích thước nhỏ */
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.xe4 {
+  animation-name: moveInXe4;
+  top: 70%;
+  left: 30%;
+}
+
+.xe5 {
+  animation-name: moveInXe5;
+  top: 70%;
+  left: 20%;
+  animation-delay: 0.5s;
+}
+
+.xe6 {
+  animation-name: moveInXe6;
+  top: 70%;
+  left: 10%;
+  animation-delay: 1s;
+}
+
+/* Animation for xe1 */
+@keyframes moveInXe1 {
+  0% {
+    transform: translateX(100%) scale(0.1);
   }
-  
-  .xe1 {
-    animation-name: moveInXe1;
-    top: 70%;
-    right:20%;
+
+  100% {
+    transform: translateX(0%) scale(1);
   }
-  
-  .xe2 {
-    animation-name: moveInXe2;
-    top: 70%;
-    right:10%;
-    animation-delay: 0.5s;
+}
+
+/* Animation for xe2 */
+@keyframes moveInXe2 {
+  0% {
+    transform: translateX(100%) scale(0.1);
   }
-  
-  .xe3 {
-    animation-name: moveInXe3;
-    top: 70%;
-    right: 0%;
-    animation-delay: 1s;
+
+  100% {
+    transform: translateX(-10%) scale(1);
   }
-  
-  /* Ảnh từ trái */
-  .xe4, .xe5, .xe6 {
-    position: absolute;
-    top: 70%;
-    left: 0%;
-    transform-origin: center;
-    transform: translateX(-100%) scale(0.1); /* Bắt đầu từ ngoài màn hình trái với kích thước nhỏ */
-    animation-duration: 3s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
+}
+
+/* Animation for xe3 */
+@keyframes moveInXe3 {
+  0% {
+    transform: translateX(100%) scale(0.1);
   }
-  
-  .xe4 {
-    animation-name: moveInXe4;
-    top: 70%;
-    left: 30%;
+
+  100% {
+    transform: translateX(-20%) scale(1);
   }
-  
-  .xe5 {
-    animation-name: moveInXe5;
-    top: 70%;
-    left: 20%;
-    animation-delay: 0.5s;
+}
+
+/* Animation for xe4 */
+@keyframes moveInXe4 {
+  0% {
+    transform: translateX(-100%) scale(0.1);
   }
-  
-  .xe6 {
-    animation-name: moveInXe6;
-    top: 70%;
-    left: 10%;
-    animation-delay: 1s;
+
+  100% {
+    transform: translateX(0%) scale(1);
   }
-  
-  /* Animation for xe1 */
-  @keyframes moveInXe1 {
-    0% {
-      transform: translateX(100%) scale(0.1);
-    }
-    100% {
-      transform: translateX(0%) scale(1);
-    }
+}
+
+/* Animation for xe5 */
+@keyframes moveInXe5 {
+  0% {
+    transform: translateX(-100%) scale(0.1);
   }
-  
-  /* Animation for xe2 */
-  @keyframes moveInXe2 {
-    0% {
-      transform: translateX(100%) scale(0.1);
-    }
-    100% {
-      transform: translateX(-10%) scale(1);
-    }
+
+  100% {
+    transform: translateX(10%) scale(1);
   }
-  
-  /* Animation for xe3 */
-  @keyframes moveInXe3 {
-    0% {
-      transform: translateX(100%) scale(0.1);
-    }
-    100% {
-      transform: translateX(-20%) scale(1);
-    }
+}
+
+/* Animation for xe6 */
+@keyframes moveInXe6 {
+  0% {
+    transform: translateX(-100%) scale(0.1);
   }
-  
-  /* Animation for xe4 */
-  @keyframes moveInXe4 {
-    0% {
-      transform: translateX(-100%) scale(0.1);
-    }
-    100% {
-      transform: translateX(0%) scale(1);
-    }
+
+  100% {
+    transform: translateX(20%) scale(1);
   }
-  
-  /* Animation for xe5 */
-  @keyframes moveInXe5 {
-    0% {
-      transform: translateX(-100%) scale(0.1);
-    }
-    100% {
-      transform: translateX(10%) scale(1);
-    }
-  }
-  
-  /* Animation for xe6 */
-  @keyframes moveInXe6 {
-    0% {
-      transform: translateX(-100%) scale(0.1);
-    }
-    100% {
-      transform: translateX(20%) scale(1);
-    }
-  }
-  
-  img {
-    width: 50%;
-    height: auto;
-  }
-  
+}
+
+img {
+  width: 50%;
+  height: auto;
+}
+
 .checkbox {
   display: none;
 }
@@ -425,18 +467,19 @@ tr:hover {
   box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
 }
 
-.checkbox:checked ~ .slider::before {
+.checkbox:checked~.slider::before {
   transform: translateX(30px);
   box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
 }
 
-.checkbox:checked ~ .slider {
+.checkbox:checked~.slider {
   background-color: #ca0101;
 }
 
-.checkbox:active ~ .slider::before {
+.checkbox:active~.slider::before {
   transform: translate(0);
 }
-::ng-deep .mat-mdc-paginator-icon{
+
+::ng-deep .mat-mdc-paginator-icon {
   fill: rgb(255 255 255 / 54%) !important;
 }

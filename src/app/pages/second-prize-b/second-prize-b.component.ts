@@ -84,7 +84,7 @@ export class SecondPrizeBComponent implements AfterViewInit {
     this.audio.src = '/award.mp3';
     this.audio2.src = '/winner1.mp3';
     this.audio3.src = '/winning1.mp3';
-    this.audio4.src = '/votay.mp3';
+    this.audio4.src = '/votay4.mp3';
   }
 
   playAudio1(): void {

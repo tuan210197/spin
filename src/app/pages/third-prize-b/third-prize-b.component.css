@@ -17,8 +17,8 @@
   }
   
   .btn {
-    width: 10vw;
-    height: 10vh;
+    width: 8vw;
+    height: 8vh;
     display: inline-block;
     background: linear-gradient(45deg, #ff6b6b, #f76d2b);
     color: white;
@@ -62,7 +62,7 @@
     align-items: center;
     margin: auto;
 
-    top: 90%;
+    top: 92%;
     left: 50%; 
     transform: translate(-50%,-50%);
   

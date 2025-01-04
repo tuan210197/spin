@@ -18,7 +18,11 @@
         {{ finalWinner?.bu +' - '+ finalWinner?.joins }}</p>
     </div>
   </div>
-
+  <div class="raffle-box3">
+    <div *ngIf="showWinnerDiv2" class="names2">
+      <p class="name-item3">Chúc mừng CNV thứ {{totalCountFirst}} đã chúng giải</p>
+    </div>
+  </div>
   <div class="card-content">
     <!-- *ngIf="!tableVisible" -->
     <button class="btn-start" (click)="startRaffle()">開始</button>

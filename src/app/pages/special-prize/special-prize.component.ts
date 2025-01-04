@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit, ElementRef, ChangeDetectorRef  } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
@@ -74,6 +74,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
   displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu', 'joins', 'action'];
   totalLength = 0;
   pageSize = 6; // Số bản ghi trên mỗi trang
+  totalCountSpecial = 0;
   private audio = new Audio();
   private audio2 = new Audio();
   private audio3 = new Audio();
@@ -87,7 +88,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
     this.audio.src = '/quaythuong.wav';
     this.audio2.src = '/winner1.mp3';
     this.audio3.src = '/winning1.mp3';
-    this.audio4.src = '/votay.mp3';
+    this.audio4.src = '/votay4.mp3';
   }
 
   playAudio1(): void {
@@ -197,7 +198,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
       })
       .then(() => this.jsConfetti.addConfetti());
   }
-  constructor(private http: HttpClient, private share: ShareService, private cdr : ChangeDetectorRef) {
+  constructor(private http: HttpClient, private share: ShareService, private cdr: ChangeDetectorRef) {
   }
 
   async startRaffle(): Promise<void> {
@@ -212,7 +213,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
         this.loadTable2();
         this.startFireworks();
         // this.launchConfetti();
-        this,this.confettiSettings();
+        this, this.confettiSettings();
         return;
       }
       if (this.isRaffleRunning) {
@@ -255,6 +256,11 @@ export class SpecialPrizeComponent implements AfterViewInit {
         console.log(listWinner);
         const okela = Array.isArray(listWinner) ? listWinner[listWinner.length - 1] : null;
         console.log(okela);
+
+
+        const count: number = await firstValueFrom(this.share.getCountSpecial()) as number;
+        this.totalCountSpecial = count;
+
         cancelAnimationFrame(this.requestId); // Dừng vòng lặp
         this.isRaffleRunning = true;
         this.showWinnerDiv1 = false
@@ -273,7 +279,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
           this.confettiSettings();
           this.startFireworks();
           return;
-        } 
+        }
         // this.loadTable();  
         this.resetRaffle();
         this.tableVisible = false;

@@ -19,6 +19,11 @@
     </div>
   </div>
 
+  <div class="raffle-box3">
+    <div *ngIf="showWinnerDiv2" class="names2">
+      <p class="name-item3">Chúc mừng CNV thứ {{totalCountSpecial}} đã chúng giải</p>
+    </div>
+  </div>
   <div class="card-content">
     <button class="btn" (click)="startRaffle()">開始</button>
   </div>

@@ -75,7 +75,7 @@ export class WaitingComponent implements AfterViewInit{
     for (let i = 0; i < this.total; i++) {
       const div = document.createElement('div');
       div.className = 'dot';
-      div.style.backgroundImage = 'url(http://localhost:4200/hoadao.png)';
+      div.style.backgroundImage = 'url(/hoadao.png)';
       div.style.backgroundSize = 'cover'; // Đảm bảo ảnh khớp với hình dạng của 
       div.style.backgroundSize = '100% 100%'; // Đặt ảnh khớp với kích thước của phần tử
       div.style.backgroundRepeat = 'no-repeat';

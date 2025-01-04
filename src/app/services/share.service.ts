@@ -105,7 +105,13 @@ export class ShareService {
   getCountSecond() {
     return this.http.get(this.apiUrl + '/second/count-second');
   }
-  // delete service
+  getCountFirst() {
+    return this.http.get(this.apiUrl + '/first/count-first');
+  }
+  getCountSpecial() {
+    return this.http.get(this.apiUrl + '/special/count-special');
+  }
+
 
   onToggleChangeSecond(second: Second) {
     return this.http.post(this.apiUrl + '/second/update', second)

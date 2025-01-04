@@ -21,7 +21,7 @@ import { FourPrizeBComponent } from './pages/four-prize-b/four-prize-b.component
 export const routes: Routes = [
 
     // { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: '', redirectTo: '/spin', pathMatch: 'full' },
     { path: 'first', component: FirstPrizeComponent, canActivate: [AuthGuard] },
     { path: 'second', component: SecondPrizeComponent, canActivate: [AuthGuard] },
     { path: 'third', component: ThirdPrizeComponent, canActivate: [AuthGuard] },
