@@ -13,10 +13,10 @@ import { First } from '../model/first';
 })
 export class ShareService {
 
+  // private apiUrl = 'localhost:8080/api'; // Replace with your API URL
   private apiUrl = '/api'; // Replace with your API URL
 
   constructor(private http: HttpClient, private router: Router) { }
-
 
   getSpecial(): Observable<Winner> {
     return this.http.get<Winner>(this.apiUrl + '/special/get');
@@ -102,8 +102,11 @@ export class ShareService {
   getListSecond2(second: Second): Observable<Second[]> {
     return this.http.post<Second[]>(this.apiUrl + '/second/get-list2', second);
   }
-  getCountSecond() {
-    return this.http.get(this.apiUrl + '/second/count-second');
+  getCountSeconda() {
+    return this.http.get(this.apiUrl + '/second/count-second-a');
+  }
+  getCountSecondb() {
+    return this.http.get(this.apiUrl + '/second/count-second-b');
   }
   getCountFirst() {
     return this.http.get(this.apiUrl + '/first/count-first');

@@ -265,7 +265,7 @@ export class SecondPrizeBComponent implements AfterViewInit {
         const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '', receive: 0 };
         const listWinner = await firstValueFrom(this.share.getListSecond(second));
        
-        const count: number = await firstValueFrom(this.share.getCountSecond()) as number;
+        const count: number = await firstValueFrom(this.share.getCountSecondb()) as number;
         this.totalCountSecond = count;
         cancelAnimationFrame(this.requestId); // Dừng vòng lặp
         this.isRaffleRunning = true;
@@ -287,7 +287,7 @@ export class SecondPrizeBComponent implements AfterViewInit {
         } else {
           console.error('specialData is undefined');
         }
-        // this.loadTable();  
+        this.loadTable();  
         this.resetRaffle();
 
         this.tableVisible = false;

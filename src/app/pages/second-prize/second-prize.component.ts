@@ -263,7 +263,7 @@ export class SecondPrizeComponent implements AfterViewInit {
         const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'A', joins: '', receive: 0 };
         const listWinner = await firstValueFrom(this.share.getListSecond(second));
         
-        const count: number = await firstValueFrom(this.share.getCountSecond()) as number;
+        const count: number = await firstValueFrom(this.share.getCountSeconda()) as number;
         this.totalCountSecond = count;
         cancelAnimationFrame(this.requestId); // Dừng vòng lặp
         this.isRaffleRunning = true;
