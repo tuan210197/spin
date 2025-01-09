@@ -21,10 +21,10 @@
     </div> -->
     <div class="card-content">
       <!-- *ngIf="!tableVisible" -->
-      <button class="btn" [disabled]="check" (click)="startRaffle()">開始</button>
+      <button class="btn" [disabled]="check" (click)="startRaffle()">{{btnText}}</button>
     </div>
-    <div class="table-container" >
-      <table mat-table [dataSource]="dataSource" *ngIf="!tableVisible" class="mat-elevation-z8">
+    <div class="table-container" [hidden]="tableVisible">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="position">
           <th mat-header-cell *matHeaderCellDef> STT</th>
           <td mat-cell *matCellDef="let element; let i = index">

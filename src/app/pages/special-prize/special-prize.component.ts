@@ -81,7 +81,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
   private audio4 = new Audio();
   responseData: any; // Biến để lưu dữ liệu trả về
   private jsConfetti = new JSConfetti();
-
+  btnText = '開始';
 
   ngOnInit(): void {
     // Khởi tạo 2 đối tượng Audio
@@ -209,14 +209,13 @@ export class SpecialPrizeComponent implements AfterViewInit {
       this.listWinner = Array.isArray(listWinner) ? listWinner : [];
       const count = this.listWinner.filter((item: any) => item.receive === 1).length;
       if (count >= 6) {
-         this.playAudio2();
+        this.playAudio2();
         this.loadTable2();
-        // this.startFireworks();
-        // this.launchConfetti();
-        // this.confettiSettings();
+        this.btnText = '結束'
         return;
       }
       if (this.isRaffleRunning) {
+        this.btnText = '停止'
         this.playAudio1()
         this.tableVisible = false;
         this.participants = [];
@@ -249,15 +248,13 @@ export class SpecialPrizeComponent implements AfterViewInit {
           this.showWinnerDiv2 = false
         }
       } else {
+        this.btnText = '開始';
         this.playAudio2();
         const insert2A = await firstValueFrom(this.share.getSpecial());
         const listWinner = await firstValueFrom(this.share.getListSpecial2());
-
         console.log(listWinner);
         const okela = Array.isArray(listWinner) ? listWinner[listWinner.length - 1] : null;
         console.log(okela);
-
-
         const count: number = await firstValueFrom(this.share.getCountSpecial()) as number;
         this.totalCountSpecial = count;
 
@@ -432,18 +429,11 @@ export class SpecialPrizeComponent implements AfterViewInit {
         reverseButtons: false // Đảo ngược thứ tự nút (nút "Có" sẽ ở bên trái)
       }).then(async (result) => {
         if (result.isConfirmed) {
-          // Nếu người dùng nhấn "Có"
-          // swalWithBootstrapButtons.fire('Đã xác nhận!', 'Hành động đã được thực hiện.', 'success');
-          // element.status = 0; // Cập nhật giá trị 1 hoặc 0
-          // element.receive = event.checked ? 1 : 0;
           const update = await firstValueFrom(this.share.onToggleChangeSpecial(element));
           this.loadTable2();
-          // this.cdr.detectChanges();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
-          // Nếu người dùng nhấn "Không"
-          // swalWithBootstrapButtons.fire('Đã hủy', 'Hành động bị hủy bỏ.', 'error');
           console.log('User clicked No');
-          this.loadTable();
+          this.loadTable2();
         }
       });
     } else {

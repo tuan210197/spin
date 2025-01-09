@@ -72,6 +72,7 @@ export class ThirdPrizeComponent implements AfterViewInit {
   totalLength = 0;
   pageSize = 10;
   visible = true;
+  btnText = '開始';
   private jsConfetti = new JSConfetti();
   private audio = new Audio();
   private audio2 = new Audio();
@@ -209,22 +210,21 @@ export class ThirdPrizeComponent implements AfterViewInit {
       const listWinner2 = await firstValueFrom(this.share.getListThirdA(third));
       this.listWinner = Array.isArray(listWinner2) ? listWinner2 : [];
       const count = this.listWinner.filter((item: any) => item.working_time === 'A').length;
-      
+
       console.log(count);
       if (count == 34) {
         this.loadTable();
         this.visible = false;
         this.tableVisible = false;
         this.resetRaffle();
-        // this.launchConfetti();
-        // this.confettiSettings();
-
         this.playAudio2();
+        this.btnText = '結束'
         return;
       }
 
 
       if (this.isRaffleRunning) {
+        this.btnText = '停止'
         this.visible = false;
         this.playAudio1();
         this.tableVisible = true;
@@ -263,7 +263,7 @@ export class ThirdPrizeComponent implements AfterViewInit {
         this.loadTable();
         cancelAnimationFrame(this.requestId); // Dừng vòng lặp
         this.resetRaffle();
-        // this.launchConfetti();
+        this.btnText = '開始';
         this.confettiSettings();
         this.tableVisible = false;
         return;

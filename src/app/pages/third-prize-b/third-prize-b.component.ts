@@ -70,6 +70,7 @@ export class ThirdPrizeBComponent implements AfterViewInit {
   displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu'];
   totalLength = 0;
   pageSize = 10;
+  btnText ='開始';
   private jsConfetti = new JSConfetti();
   private audio = new Audio();
   private audio2 = new Audio();
@@ -211,14 +212,14 @@ export class ThirdPrizeBComponent implements AfterViewInit {
         this.loadTable();
         this.tableVisible = false;
         this.resetRaffle();
-        // this.launchConfetti();
-        // this.confettiSettings();
          this.playAudio2();
+           this.btnText = '結束'
         return;
       }
 
 
       if (this.isRaffleRunning) {
+        this.btnText ='停止'
         this.playAudio1()
         this.tableVisible = true;
         this.visible = false;
@@ -260,6 +261,7 @@ export class ThirdPrizeBComponent implements AfterViewInit {
         // this.launchConfetti();
         this.confettiSettings();
         this.tableVisible = false;
+        this.btnText ='開始';
         return;
       }
     } else {

@@ -74,6 +74,7 @@ export class FirstPrizeComponent implements AfterViewInit {
   pageSize = 6; // Số bản ghi trên mỗi trang
   visible = true
   totalCountFirst = 0;
+  btnText = '開始';
   private jsConfetti = new JSConfetti();
   private audio = new Audio();
   private audio2 = new Audio();
@@ -209,14 +210,12 @@ export class FirstPrizeComponent implements AfterViewInit {
       if (count == 12) {
         this.visible = false;
         this.loadTable2();
-        // this.playAudio2s();
-        // this.launchConfetti();
-        // this.confettiSettings();
-        // this.startFireworks();
+  this.btnText = '結束'
         return;
       }
 
       if (this.isRaffleRunning) {
+        this.btnText ='停止'
         this.visible = false;
         this.playAudio1();
         this.tableVisible = false;
@@ -252,6 +251,7 @@ export class FirstPrizeComponent implements AfterViewInit {
         }
 
       } else {
+        this.btnText ='開始';
         this.visible = false;
         this.playAudio2();
         const insert2A = await firstValueFrom(this.share.getFirst());

@@ -25,7 +25,7 @@
     </div>
   </div>
   <div class="card-content">
-    <button class="btn" (click)="startRaffle()">開始</button>
+    <button class="btn" (click)="startRaffle()">{{btnText}}</button>
   </div>
   <div class="table-container">
     <table mat-table [dataSource]="dataSource" *ngIf="tableVisible" class="mat-elevation-z8">
@@ -75,7 +75,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[6]" aria-label="Select page of users"></mat-paginator>
+    <mat-paginator   [pageSizeOptions]="[6]" aria-label="Select page of users"></mat-paginator>
   </div>
 
   <div >

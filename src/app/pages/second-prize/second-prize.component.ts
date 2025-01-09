@@ -76,6 +76,7 @@ export class SecondPrizeComponent implements AfterViewInit {
   visible = true;
   totalCountSecond =0;
   private jsConfetti = new JSConfetti();
+  btnText ='開始';
   private audio = new Audio();
   private audio2 = new Audio();
   private audio3 = new Audio();
@@ -213,13 +214,12 @@ export class SecondPrizeComponent implements AfterViewInit {
         this.visible = false;
         this.loadTable2();
          this.playAudio2();
-        // this.launchConfetti();
-        // this.confettiSettings();
-        // this.startFireworks();
+  this.btnText = '結束'
         return;
       }
 
       if (this.isRaffleRunning) {
+        this.btnText ='停止'
         this.playAudio1();
         this.listWinner = [];
         this.tableVisible = false;
@@ -268,6 +268,7 @@ export class SecondPrizeComponent implements AfterViewInit {
         cancelAnimationFrame(this.requestId); // Dừng vòng lặp
         this.isRaffleRunning = true;
         this.showWinnerDiv1 = false
+        this.btnText ='開始';
         if (!this.showWinnerDiv1) {
           this.showWinnerDiv2 = true
         }

@@ -117,9 +117,10 @@ export class LoteryComponent {
   availableNumbers: string[] = []; // Danh sách số từ 00-99
   availableNumbers2: string[] = []; // Danh sách số từ 00-99
   currentNumber: string = '00'; // Số hiện tại đang hiển thị
-
+  btnText = '開始';
 
   async pickNumbers(): Promise<void> {
+    this.btnText = '停止';
     const list_number = await firstValueFrom(this.share.getListNumber());
     this.availableNumbers2 = Array.isArray(list_number) ? list_number.map((item: any) => item.number) : [];
     if (this.isRunning) {
@@ -133,6 +134,7 @@ export class LoteryComponent {
       this.isRunning = false;
     }
     else {
+
       this.playAudio2();
       this.isRunning = true;
       clearInterval(this.intervalTotal);
@@ -141,7 +143,6 @@ export class LoteryComponent {
         async (data) => {
           const numbers = Array.isArray(data) ? data.map((item: any) => ({ number: item.number })) : [];
           if (numbers.length < 4) {
-            console.log(numbers.length);
             const randomIndex = Math.floor(Math.random() * this.availableNumbers.length);
             const chosenNumber = this.availableNumbers[randomIndex];
             // Xóa số đã chọn khỏi mảng
@@ -149,9 +150,8 @@ export class LoteryComponent {
             // Cập nhật số chính thức và mảng
             this.currentNumber = chosenNumber;
             await this.share.chooseCon(Number(this.currentNumber)).toPromise();
-            console.log(this.currentNumber);
+            this.btnText = '開始';
           } else {
-            console.log(numbers.length);
             const randomIndex = Math.floor(Math.random() * this.availableNumbers2.length);
             const chosenNumber = this.availableNumbers[randomIndex];
             // Xóa số đã chọn khỏi mảng
@@ -159,11 +159,18 @@ export class LoteryComponent {
             // Cập nhật số chính thức và mảng
             this.currentNumber = chosenNumber;
             await this.share.chooseCon(Number(this.currentNumber)).toPromise();
-            console.log(this.currentNumber);
+            this.btnText = '開始';
+            const number = await firstValueFrom(this.share.getNumberChoosen());
+            if (Array.isArray(number) && number.length == 7)
+              this.btnText = '結束';
+            else {
+              this.btnText = '開始';
+            }
           }
         }
       );
       this.checkCountNumber();
+
     }
 
   }
@@ -173,8 +180,8 @@ export class LoteryComponent {
     this.share.getNumberChoosen().subscribe(
       (data) => {
         const numbers = Array.isArray(data) ? data.map((item: any) => ({ number: item.number })) : [];
+        console.log(numbers.length)
         if (numbers.length < 7) {
-          console.log(numbers.length);
           this.generatedNumbers = numbers;
         } else {
           this.enableClick = false;
@@ -192,10 +199,16 @@ export class LoteryComponent {
       (data) => {
         const numbers = Array.isArray(data) ? data.map((item: any) => ({ number: item.number })) : [];
 
-        if (numbers.length <= 6) {
+        if (numbers.length < 6) {
           this.pickNumbers();
-        } else {
-          this.currentNumber = this.formatNumber(Number(numbers[numbers.length - 1].number)) ;
+
+        }
+        else if (numbers.length == 6) {
+          this.pickNumbers();
+
+        }
+        else {
+          this.currentNumber = this.formatNumber(Number(numbers[numbers.length - 1].number));
           this.generatedNumbers = numbers.slice(0, numbers.length - 1);
         }
         // console.log( this.formatNumber((Number(this.currentNumber))));

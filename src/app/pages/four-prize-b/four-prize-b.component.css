@@ -290,7 +290,7 @@ tr:hover {
 }
 
 ::ng-deep .mat-mdc-paginator-icon {
-  fill: rgb(255 255 255 / 54%) !important;
+  fill: rgb(255 255 255 ) !important;
 }
 
 .laptop2 {

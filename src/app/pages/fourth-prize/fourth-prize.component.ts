@@ -111,11 +111,9 @@ export class FourthPrizeComponent implements AfterViewInit {
   pageSize = 10;
   visible = true;
   dataSource = new MatTableDataSource<Four>([]);
-  // , 'working_time'
   displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu'];
-  // dataSourceWithPageSize = new MatTableDataSource(this.listWinner);
   private jsConfetti = new JSConfetti();
-
+  btnText = '開始'
   constructor(private http: HttpClient, private share: ShareService) {
   }
   startFireworks(): void {
@@ -206,9 +204,11 @@ export class FourthPrizeComponent implements AfterViewInit {
       // this.launchConfetti();
       // this.confettiSettings();
       this.playAudio2();
+      this.btnText = '結束'
       return;
     }
     if (this.isRaffleRunning) {
+      this.btnText ='停止'
       this.visible = false;
       this.playAudio1();
       this.tableVisible = true;
@@ -225,21 +225,14 @@ export class FourthPrizeComponent implements AfterViewInit {
       this.resetRaffle();
       const totalNames = this.participants.length; // Tổng số tên cần cuộn qua
       let currentIndex = 0;
-
       const updatePosition = () => {
-        // Tăng chỉ số vòng quay nhanh hơn
         currentIndex = (currentIndex + 3) % totalNames; // Tăng mỗi lần 3 bước (điều chỉnh theo ý bạn)
-
-        // Tính toán offset dựa trên vị trí hiện tại
         this.currentOffset = currentIndex * this.lineHeight;
         this.transformStyle = `translateY(-${this.currentOffset}px)`;
-
         this.requestId = requestAnimationFrame(updatePosition); // Tiếp tục vòng lặp
       };
-
       this.requestId = requestAnimationFrame(updatePosition); // Bắt đầu vòng lặp
       this.isRaffleRunning = false;
-
       const insert4A = await firstValueFrom(this.share.getFourA());
       console.log(insert4A)
     } else {
@@ -251,6 +244,7 @@ export class FourthPrizeComponent implements AfterViewInit {
       // this.launchConfetti();
       this.confettiSettings();
       this.tableVisible = false;
+      this.btnText ='開始';
       return;
     }
 

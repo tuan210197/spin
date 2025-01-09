@@ -115,7 +115,7 @@ export class FourPrizeBComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<Four>([]);
   displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu'];
   private jsConfetti = new JSConfetti();
-
+  btnText = '開始'
 
   constructor(private http: HttpClient, private share: ShareService) {
   }
@@ -207,10 +207,12 @@ export class FourPrizeBComponent implements AfterViewInit {
       // this.launchConfetti();
       // this.confettiSettings();
        this.playAudio2();
+         this.btnText = '結束'
       return;
     }
 
     if (this.isRaffleRunning) {
+      this.btnText ='停止'
       this.visible = false;
       this.playAudio1();
       this.tableVisible = true;
@@ -244,6 +246,7 @@ export class FourPrizeBComponent implements AfterViewInit {
 
       const insert4A = await firstValueFrom(this.share.getFourB());
     } else {
+
       this.visible = false;
       this.playAudio2();
       this.loadTable();
@@ -252,6 +255,7 @@ export class FourPrizeBComponent implements AfterViewInit {
       // this.launchConfetti();
       this.confettiSettings();
       this.tableVisible = false;
+      this.btnText ='開始';
       return;
     }
 

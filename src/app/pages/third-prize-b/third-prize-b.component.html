@@ -13,10 +13,10 @@
   
      <div class="card-content">
       
-       <button class="btn"  (click)="startRaffle()">開始</button>
+       <button class="btn"  (click)="startRaffle()">{{btnText}}</button>
      </div>
-     <div class="table-container" >
-       <table mat-table [dataSource]="dataSource" *ngIf="!tableVisible" class="mat-elevation-z8">
+     <div class="table-container" [hidden]="tableVisible">
+       <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8">
    
 
         <ng-container matColumnDef="position">
