@@ -212,7 +212,7 @@ export class SecondPrizeComponent implements AfterViewInit {
       
         this.visible = false;
         this.loadTable2();
-        // this.playAudio2();
+         this.playAudio2();
         // this.launchConfetti();
         // this.confettiSettings();
         // this.startFireworks();

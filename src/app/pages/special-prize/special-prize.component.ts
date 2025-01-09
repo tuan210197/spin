@@ -209,7 +209,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
       this.listWinner = Array.isArray(listWinner) ? listWinner : [];
       const count = this.listWinner.filter((item: any) => item.receive === 1).length;
       if (count >= 6) {
-        // this.playAudio2();
+         this.playAudio2();
         this.loadTable2();
         // this.startFireworks();
         // this.launchConfetti();

@@ -206,7 +206,7 @@ export class FourPrizeBComponent implements AfterViewInit {
       this.resetRaffle();
       // this.launchConfetti();
       // this.confettiSettings();
-      // this.playAudio2();
+       this.playAudio2();
       return;
     }
 
