@@ -144,7 +144,7 @@ export class FourPrizeBComponent implements AfterViewInit {
 
     setTimeout(() => {
       this.fireworks.waitStop();
-    }, 5000);
+    }, 2000);
   }
 
   title = 'colorful-confetti';
@@ -202,12 +202,11 @@ export class FourPrizeBComponent implements AfterViewInit {
     if (count == 70) {
       this.visible = false;
       this.loadTable();
-      // console.log(this.tableVisible)
       this.tableVisible = false;
       this.resetRaffle();
       // this.launchConfetti();
-      this.confettiSettings();
-      this.playAudio2();
+      // this.confettiSettings();
+      // this.playAudio2();
       return;
     }
 

@@ -68,7 +68,7 @@ export class WaitingComponent implements AfterViewInit{
 
       setTimeout(() => {
         this.fireworks.waitStop(); // Ngừng hoàn toàn
-      }, 5000); // Thời gian để các hạt rơi hết
+      }, 3000); // Thời gian để các hạt rơi hết
     
   }
   private initializeFallingEffect(container: HTMLDivElement): void {

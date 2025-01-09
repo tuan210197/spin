@@ -152,7 +152,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
 
     setTimeout(() => {
       this.fireworks.waitStop();
-    }, 5000);
+    }, 2000);
   }
 
 
@@ -209,11 +209,11 @@ export class SpecialPrizeComponent implements AfterViewInit {
       this.listWinner = Array.isArray(listWinner) ? listWinner : [];
       const count = this.listWinner.filter((item: any) => item.receive === 1).length;
       if (count >= 6) {
-        this.playAudio2();
+        // this.playAudio2();
         this.loadTable2();
-        this.startFireworks();
+        // this.startFireworks();
         // this.launchConfetti();
-        this, this.confettiSettings();
+        // this.confettiSettings();
         return;
       }
       if (this.isRaffleRunning) {
@@ -433,7 +433,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
       }).then(async (result) => {
         if (result.isConfirmed) {
           // Nếu người dùng nhấn "Có"
-          swalWithBootstrapButtons.fire('Đã xác nhận!', 'Hành động đã được thực hiện.', 'success');
+          // swalWithBootstrapButtons.fire('Đã xác nhận!', 'Hành động đã được thực hiện.', 'success');
           // element.status = 0; // Cập nhật giá trị 1 hoặc 0
           // element.receive = event.checked ? 1 : 0;
           const update = await firstValueFrom(this.share.onToggleChangeSpecial(element));
@@ -441,7 +441,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
           // this.cdr.detectChanges();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           // Nếu người dùng nhấn "Không"
-          swalWithBootstrapButtons.fire('Đã hủy', 'Hành động bị hủy bỏ.', 'error');
+          // swalWithBootstrapButtons.fire('Đã hủy', 'Hành động bị hủy bỏ.', 'error');
           console.log('User clicked No');
           this.loadTable();
         }

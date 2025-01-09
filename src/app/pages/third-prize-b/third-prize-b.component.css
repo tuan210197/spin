@@ -216,7 +216,7 @@
   
     /* Tạo container cho bảng */
     .table-container {
-      width: 50%;
+      width: 55%;
       position: fixed;
       left: 50%;
       top: 60%;
@@ -298,4 +298,7 @@
 
 ::ng-deep .mat-mdc-paginator-icon{
   fill: rgb(255 255 255 / 54%) !important;
+}
+::ng-deep .mat-mdc-icon-button{
+  --mdc-icon-button-icon-size:100px !important;
 }

@@ -73,7 +73,7 @@ export class FirstPrizeComponent implements AfterViewInit {
   totalLength = 0; // Tổng số bản ghi
   pageSize = 6; // Số bản ghi trên mỗi trang
   visible = true
-  totalCountFirst =0;
+  totalCountFirst = 0;
   private jsConfetti = new JSConfetti();
   private audio = new Audio();
   private audio2 = new Audio();
@@ -145,7 +145,7 @@ export class FirstPrizeComponent implements AfterViewInit {
 
     setTimeout(() => {
       this.fireworks.waitStop();
-    }, 5000);
+    }, 2000);
   }
 
 
@@ -201,7 +201,7 @@ export class FirstPrizeComponent implements AfterViewInit {
 
     const check = await firstValueFrom(this.share.checkSecond());
     if (check === 12) {
-      
+
       const listWinner2 = await firstValueFrom(this.share.getListFirst());
       this.listWinner = Array.isArray(listWinner2) ? listWinner2 : [];
       const count = this.listWinner.filter((item: any) => item.receive === 1).length;
@@ -209,10 +209,10 @@ export class FirstPrizeComponent implements AfterViewInit {
       if (count == 12) {
         this.visible = false;
         this.loadTable2();
-        this.playAudio2();
+        // this.playAudio2s();
         // this.launchConfetti();
-        this.confettiSettings();
-        this.startFireworks();
+        // this.confettiSettings();
+        // this.startFireworks();
         return;
       }
 
@@ -279,7 +279,7 @@ export class FirstPrizeComponent implements AfterViewInit {
           this.confettiSettings();
           this.startFireworks();
           return;
-        } 
+        }
         // this.loadTable();  
         this.resetRaffle();
         this.tableVisible = false;
@@ -412,22 +412,14 @@ export class FirstPrizeComponent implements AfterViewInit {
 
       }).then(async (result) => {
         if (result.isConfirmed) {
-          // Nếu người dùng nhấn "Có"
-          swalWithBootstrapButtons.fire('Đã xác nhận!', 'Hành động đã được thực hiện.', 'success');
-          // element.status = 0; // Cập nhật giá trị 1 hoặc 0
-          // element.receive = event.checked ? 1 : 0;
           await firstValueFrom(this.share.onToggleChangeFirst(element));
           this.loadTable2();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
-          // Nếu người dùng nhấn "Không"
-          swalWithBootstrapButtons.fire('Đã hủy', 'Hành động bị hủy bỏ.', 'error');
-
           this.loadTable2();
         }
       });
     }
     else {
-      swalWithBootstrapButtons.fire('Thông Báo', 'Người Chơi Không Thể Nhận Giải', 'info');
       this.loadTable2();
     }
   }
@@ -450,6 +442,7 @@ export class FirstPrizeComponent implements AfterViewInit {
       }));
       console.log(this.listWinner);
       this.dataSource.data = this.listWinner;
+      
     } catch (error) {
       console.error('Lỗi khi gọi API:', error);
     }

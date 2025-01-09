@@ -143,7 +143,7 @@ export class FourthPrizeComponent implements AfterViewInit {
 
     setTimeout(() => {
       this.fireworks.waitStop();
-    }, 5000);
+    }, 2000);
   }
 
   title = 'colorful-confetti';
@@ -204,8 +204,8 @@ export class FourthPrizeComponent implements AfterViewInit {
       this.tableVisible = false;
       this.resetRaffle();
       // this.launchConfetti();
-      this.confettiSettings();
-      this.playAudio2();
+      // this.confettiSettings();
+      // this.playAudio2();
       return;
     }
     if (this.isRaffleRunning) {
@@ -261,7 +261,6 @@ export class FourthPrizeComponent implements AfterViewInit {
     const four: Four = { code: '0', vn_name: '', bu: '', working_time: 'A' };
     try {
       const listWinner = await firstValueFrom(this.share.getListFourA(four));
-      console.log(this.listWinner);
       listWinner.forEach(item => this.listWinner.push({
         code: item.code,
         vn_name: item.vn_name,

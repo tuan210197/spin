@@ -236,7 +236,7 @@ tr:hover {
 
 /* Tạo container cho bảng */
 .table-container {
-  width: 50%;
+  width: 55%;
   position: fixed;
   left: 50%;
   top: 60%;
@@ -346,4 +346,7 @@ canvas#confetti {
   left: 0%;
   z-index: 1000;
   pointer-events: none;
+}
+::ng-deep .mat-mdc-icon-button{
+  --mdc-icon-button-icon-size:100px !important;
 }

@@ -220,7 +220,7 @@ tr:hover {
 
 /* Tạo container cho bảng */
 .table-container {
-  width: 50%;
+  width: 55%;
   position: fixed;
   left: 50%;
   top: 60%;
@@ -302,4 +302,7 @@ tr:hover {
   100% {
     transform: scale(1.1) translateY(-10px);
   }
+}
+::ng-deep .mat-mdc-icon-button{
+  --mdc-icon-button-icon-size:100px !important;
 }
