@@ -373,6 +373,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
       }));
       console.log(this.listWinner);
       this.dataSource.data = this.listWinner;
+      this.paginator.firstPage(); 
     } catch (error) {
       console.error('Lỗi khi gọi API:', error);
     }

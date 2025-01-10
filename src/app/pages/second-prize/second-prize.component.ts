@@ -370,6 +370,7 @@ export class SecondPrizeComponent implements AfterViewInit {
         working_time: item.working_time
       }));
       this.dataSource.data = this.listWinner;
+      this.paginator.firstPage();
     } catch (error) {
       console.error('Lỗi khi gọi API:', error);
     }

@@ -13,11 +13,11 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import Swal from 'sweetalert2';
 import JSConfetti from 'js-confetti';
-import {PageEvent} from '@angular/material/paginator';
-import {JsonPipe} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { PageEvent } from '@angular/material/paginator';
+import { JsonPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 export interface First {
@@ -32,9 +32,9 @@ export interface First {
   selector: 'app-first-prize',
   imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule, MatSlideToggleModule,
     MatFormFieldModule,
-   MatInputModule,
-   FormsModule,
-   MatPaginatorModule,
+    MatInputModule,
+    FormsModule,
+    MatPaginatorModule,
   ],
   standalone: true,
   templateUrl: './first-prize.component.html',
@@ -306,7 +306,7 @@ export class FirstPrizeComponent implements AfterViewInit {
           this.startFireworks();
           return;
         }
-        // this.loadTable();  
+        this.loadTable2();
         this.resetRaffle();
         this.tableVisible = false;
         return;
@@ -469,7 +469,7 @@ export class FirstPrizeComponent implements AfterViewInit {
       }));
       console.log(this.listWinner);
       this.dataSource.data = this.listWinner;
-
+      this.paginator.firstPage();
     } catch (error) {
       console.error('Lỗi khi gọi API:', error);
     }
