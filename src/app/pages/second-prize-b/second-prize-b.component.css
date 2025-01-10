@@ -10,7 +10,7 @@
   align-items: center;
   overflow: hidden;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: #f5f5f5;
   box-sizing: border-box;
   pointer-events: all;
@@ -24,7 +24,7 @@
   background: linear-gradient(45deg, #ff6b6b, #f76d2b);
   color: white;
   padding: 1rem 2rem;
-  font-size: 1.2rem;
+  font-size: 30px;
   border: none;
   border-radius: 1vw;
   cursor: pointer;
@@ -33,7 +33,7 @@
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
   z-index: 10;
-  font-size: 4em;
+  /* font-size: 4em; */
 }
 
 .btn::before {
@@ -56,12 +56,6 @@
 .btn:hover {
   transform: scale(1.05);
 }
-
-
-
-
-
-
 /* Tổng thể căn giữa màn hình */
 .card-content {
   position: fixed;
@@ -69,7 +63,7 @@
   align-items: center;
   margin: auto;
   /* height: 100vh; */
-  top: 80%;
+  top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
 
@@ -88,10 +82,6 @@
   text-align: center;
 
 }
-
-
-
-
 .title {
   text-align: center;
 }
@@ -127,11 +117,11 @@ tr:hover {
   position: fixed;
   justify-content: center;
   align-items: center;
-  /* height: 100vh; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .names {
   display: flex;
   flex-direction: column;
@@ -143,9 +133,7 @@ tr:hover {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
-  font-size: 6em;
-  /* -webkit-text-stroke: 1px #fbff27; */
-  /* animation: grandientAnimation 3s ease infinite; */
+  font-size: 4em;
 }
 
 .container2 {
@@ -158,6 +146,7 @@ tr:hover {
   /* Cho phép các sự kiện chuột đi qua */
 
 }
+
 .caption h1 {
   border: none;
   color: #ffffff;
@@ -165,7 +154,7 @@ tr:hover {
   top: 47%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 4em;
+  font-size: 50px;
   font-weight: bold;
   text-align: center;
 
@@ -193,7 +182,7 @@ tr:hover {
   position: fixed;
   justify-content: center;
   align-items: center;
-  top: 47%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -212,22 +201,22 @@ tr:hover {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
-  font-size: 7em;
+  font-size: 3em;
 }
-
 .name-item3 {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
-  font-size: 5em;
+  font-size: 3em;
 }
 
+/* Tạo container cho bảng */
 .table-container {
   width: 55%;
   position: fixed;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
+  top: 60%;
+  transform: translate(-50%, -50%);
 }
 
 .mat-mdc-table {
@@ -249,24 +238,33 @@ tr:hover {
 
 .mat-mdc-row {
   color: #ffffff;
-  font-size: 4em;
+  font-size: 2em;
   font-weight: bold;
   line-height: 1.5;
 }
 
 .mat-mdc-header-row {
   color: #ffffff;
-  font-size: 4em;
+  font-size: 2em;
   font-weight: bold;
   line-height: 1.7;
 }
 
 .mat-mdc-row:hover {
   background-color: rgba(0, 0, 0, 0.2);
+  /* Màu nền khi di chuột qua */
 }
+
+/* 
+  .mat-mdc-header-cell:hover{
+    background-color: rgba(0, 0, 0, 0.2); 
+  } */
+
 .mat-mdc-paginator {
   background-color: rgba(0, 0, 0, 0);
 }
+
+
 .laptop2 {
   width: 10%; /* Kích thước ban đầu của hình ảnh */
   height: auto;
@@ -274,8 +272,9 @@ tr:hover {
   top: 30%;
   left: 45%;
   opacity: 0; /* Bắt đầu mờ hoàn toàn */
-  transform: scale(0.1); /* Nhỏ hơn khi bắt đầu */
+  transform: scale(0.1), translate(-50%, -50%); /* Nhỏ hơn khi bắt đầu */
   animation: appear 3s ease-out forwards, zoom-and-bounce 2s 3s infinite ease-in-out alternate;
+
 }
 
 /* Hiệu ứng xuất hiện từ nhỏ tới to, từ mờ tới rõ */
@@ -351,5 +350,5 @@ tr:hover {
   fill: rgb(255 255 255 ) !important;
 }
 ::ng-deep .mat-mdc-icon-button{
-  --mdc-icon-button-icon-size:100px !important;
+  --mdc-icon-button-icon-size: 50px !important;
 }

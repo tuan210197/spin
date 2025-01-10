@@ -388,7 +388,7 @@ export class FirstPrizeComponent implements AfterViewInit {
   private animateElement(elm: HTMLElement): void {
 
     gsap.to(elm, {
-      y: this.h + 100,
+      y: this.h + 400,
       duration: this.random(6, 15),
       ease: 'none',
       repeat: -1,

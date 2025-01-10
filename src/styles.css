@@ -2,6 +2,8 @@ body {
     margin: auto;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     overflow-x: hidden; /* Ngăn cuộn ngang */
+    /* width: 2048px;
+    height: 832px; */
 }
 
 /* td {
@@ -12,5 +14,5 @@ body {
 :root {
     --mat-paginator-container-text-color: rgba(252, 252, 252,0); 
     --mat-paginator-container-text-size: 40px;
-
-  }
+    --mat-table-row-item-container-height:35px;
+  } 

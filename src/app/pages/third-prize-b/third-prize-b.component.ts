@@ -75,6 +75,7 @@ export class ThirdPrizeBComponent implements AfterViewInit {
   displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu'];
   totalLength = 0;
   pageSize = 10;
+  // pageSize = 5;
   btnText = '開始';
   private jsConfetti = new JSConfetti();
   private audio = new Audio();
@@ -351,7 +352,7 @@ export class ThirdPrizeBComponent implements AfterViewInit {
   private animateElement(elm: HTMLElement): void {
 
     gsap.to(elm, {
-      y: this.h + 100,
+      y: this.h + 400,
       duration: this.random(6, 15),
       ease: 'none',
       repeat: -1,

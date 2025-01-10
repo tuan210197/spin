@@ -21,7 +21,7 @@
   background: linear-gradient(45deg, #ff6b6b, #f76d2b);
   color: white;
   padding: 1rem 2rem;
-  font-size: 1.2rem;
+  font-size: 30px;
   border: none;
   border-radius: 1vw;
   cursor: pointer;
@@ -30,7 +30,7 @@
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
   z-index: 10;
-  font-size: 4em;
+  /* font-size: 4em; */
 }
 
 .btn-start::before {
@@ -62,7 +62,7 @@
   align-items: center;
   margin: auto;
   /* height: 100vh; */
-  top: 80%;
+  top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
 
@@ -124,7 +124,7 @@ tr:hover {
   justify-content: center;
   align-items: center;
   /* height: 100vh; */
-  top: 50%;
+  top: 53%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -142,7 +142,7 @@ tr:hover {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
-  font-size: 6em;
+  font-size: 3em;
   /* -webkit-text-stroke: 1px #fbff27; */
   /* animation: grandientAnimation 3s ease infinite; */
 }
@@ -195,7 +195,7 @@ tr:hover {
   position: fixed;
   justify-content: center;
   align-items: center;
-  top: 55%;
+  top: 58%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -208,7 +208,7 @@ tr:hover {
   position: fixed;
   justify-content: center;
   align-items: center;
-  top: 47%;
+  top: 63%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -227,13 +227,13 @@ tr:hover {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
-  font-size: 7em;
+  font-size: 3em;
 }
 .name-item3 {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
-  font-size: 5em;
+  font-size: 3em;
 }
 
 /* Tạo container cho bảng */
@@ -241,7 +241,7 @@ tr:hover {
   width: 55%;
   position: fixed;
   left: 50%;
-  top: 50%;
+  top: 60%;
   transform: translate(-50%, -50%);
 }
 
@@ -265,14 +265,14 @@ tr:hover {
 
 .mat-mdc-row {
   color: #ffffff;
-  font-size: 4em;
+  font-size: 2em;
   font-weight: bold;
   line-height: 1.5;
 }
 
 .mat-mdc-header-row {
   color: #ffffff;
-  font-size: 4em;
+  font-size: 2em;
   font-weight: bold;
   line-height: 1.7;
 }
@@ -430,5 +430,5 @@ tr:hover {
   fill: rgb(255 255 255 ) !important;
 }
 ::ng-deep .mat-mdc-icon-button{
-  --mdc-icon-button-icon-size:100px !important;
+  --mdc-icon-button-icon-size: 50px !important;
 }

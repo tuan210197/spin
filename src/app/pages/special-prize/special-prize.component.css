@@ -24,7 +24,7 @@
   background: linear-gradient(45deg, #ff6b6b, #f76d2b);
   color: white;
   padding: 1rem 2rem;
-  font-size: 1.2rem;
+  font-size: 30px;
   border: none;
   border-radius: 1vw;
   cursor: pointer;
@@ -33,7 +33,7 @@
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
   z-index: 10;
-  font-size: 4em;
+  /* font-size: 4em; */
 }
 
 .btn::before {
@@ -65,7 +65,7 @@
   align-items: center;
   margin: auto;
   /* height: 100vh; */
-  top: 80%;
+  top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
 
@@ -144,7 +144,7 @@ tr:hover {
   position: fixed;
   justify-content: center;
   align-items: center;
-  top: 50%;
+  top: 53%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -164,7 +164,7 @@ tr:hover {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
-  font-size: 6em;
+  font-size: 4em;
 }
 
 .name-item.winner {
@@ -197,7 +197,7 @@ tr:hover {
   position: fixed;
   justify-content: center;
   align-items: center;
-  top: 55%;
+  top: 58%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -211,7 +211,7 @@ tr:hover {
   position: fixed;
   justify-content: center;
   align-items: center;
-  top: 47%;
+  top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -231,14 +231,14 @@ tr:hover {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
-  font-size: 7em;
+  font-size: 3em;
 }
 
 .name-item3 {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
-  font-size: 5em;
+  font-size: 3em;
 }
 
 /* Tạo container cho bảng */
@@ -246,7 +246,7 @@ tr:hover {
   width: 55%;
   position: fixed;
   left: 50%;
-  top: 55%;
+  top: 60%;
   transform: translate(-50%, -50%);
 }
 
@@ -269,14 +269,14 @@ tr:hover {
 
 .mat-mdc-row {
   color: #ffffff;
-  font-size: 4em;
+  font-size: 2em;
   font-weight: bold;
   line-height: 1.5;
 }
 
 .mat-mdc-header-row {
   color: #ffffff;
-  font-size: 4em;
+  font-size: 2em;
   font-weight: bold;
   line-height: 1.7;
 }
@@ -309,28 +309,33 @@ tr:hover {
   animation-duration: 3s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
-  pointer-events: none;
+  pointer-events: none; /* Ngừng hình ảnh nhận sự kiện chuột */
+
+
 
 }
 
 .xe1 {
   animation-name: moveInXe1;
   top: 70%;
-  right: 20%;
+  right: 5%;
+  pointer-events: none;
 }
 
 .xe2 {
   animation-name: moveInXe2;
   top: 70%;
-  right: 10%;
+  right: -5%;
   animation-delay: 0.5s;
+  pointer-events: none;
 }
 
 .xe3 {
   animation-name: moveInXe3;
   top: 70%;
-  right: 0%;
+  right: -15%;
   animation-delay: 1s;
+  pointer-events: none;
 }
 
 /* Ảnh từ trái */
@@ -346,12 +351,15 @@ tr:hover {
   animation-duration: 3s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
+  pointer-events: none;
+
 }
 
 .xe4 {
   animation-name: moveInXe4;
   top: 70%;
   left: 30%;
+  pointer-events: none;
 }
 
 .xe5 {
@@ -359,6 +367,7 @@ tr:hover {
   top: 70%;
   left: 20%;
   animation-delay: 0.5s;
+  pointer-events: none;
 }
 
 .xe6 {
@@ -366,6 +375,7 @@ tr:hover {
   top: 70%;
   left: 10%;
   animation-delay: 1s;
+  pointer-events: none;
 }
 
 /* Animation for xe1 */
@@ -435,7 +445,7 @@ tr:hover {
 }
 
 img {
-  width: 50%;
+  width: 30%;
   height: auto;
 }
 
@@ -487,5 +497,5 @@ img {
 }
 
 ::ng-deep .mat-mdc-icon-button{
-  --mdc-icon-button-icon-size: 90px !important;
+  --mdc-icon-button-icon-size: 50px !important;
 }

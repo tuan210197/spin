@@ -23,8 +23,8 @@
   display: inline-block;
   background: linear-gradient(45deg, #ff6b6b, #f76d2b);
   color: white;
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
+  /* padding: 1rem 2rem; */
+  font-size: 30px;
   border: none;
   border-radius: 1vw;
   cursor: pointer;
@@ -33,7 +33,7 @@
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
   z-index: 10;
-  font-size: 4em;
+  /* font-size: 4em; */
 }
 
 .btn::before {
@@ -149,7 +149,7 @@ tr:hover {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
-  font-size: 6em;
+  font-size: 3em;
   /* -webkit-text-stroke: 1px #fbff27; */
   /* animation: grandientAnimation 3s ease infinite; */
 }
@@ -213,7 +213,7 @@ tr:hover {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
-  font-size: 6em;
+  font-size: 3em;
 }
 
 /* table css */
@@ -242,16 +242,18 @@ tr:hover {
 }
 .mat-mdc-row {
   color:#ffffff;
-  font-size: 4em;
+  font-size: 2em;
   font-weight: bold;
-  line-height: 1.5;
+  line-height: 1;
 }
-
+.mat-column {
+  padding: 4px 8px; /* Giảm khoảng cách padding của các cột */
+}
 .mat-mdc-header-row{
   color:#ffffff;
-  font-size: 4em;
+  font-size: 2em;
   font-weight: bold;
-  line-height: 1.7;
+  line-height: 1;
 }
 
 .mat-mdc-row:hover {
@@ -309,7 +311,7 @@ tr:hover {
 }
 
 ::ng-deep .mat-mdc-icon-button{
-  --mdc-icon-button-icon-size: 60px !important;
+  --mdc-icon-button-icon-size: 50px !important;
   
 }
 

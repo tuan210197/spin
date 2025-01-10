@@ -119,6 +119,8 @@ export class FourPrizeBComponent implements AfterViewInit {
   check: boolean = false
   totalLength = 0;
   pageSize = 10;
+  // pageSize = 5;
+
   visible = true;
   dataSource = new MatTableDataSource<Four>([]);
   displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu'];
@@ -328,7 +330,7 @@ export class FourPrizeBComponent implements AfterViewInit {
   private animateElement(elm: HTMLElement): void {
 
     gsap.to(elm, {
-      y: this.h + 100,
+      y: this.h + 400,
       duration: this.random(6, 15),
       ease: 'none',
       repeat: -1,
