@@ -281,7 +281,7 @@ export class SecondPrizeBComponent implements AfterViewInit {
         const count: number = await firstValueFrom(this.share.getCountSecondb()) as number;
         this.totalCountSecond = count;
         console.log(this.totalCountSecond)
-        if(this.totalCountSecond == 6){
+        if(this.totalCountSecond == 12){
           this.btnText ='結束';
           setTimeout(() => {
             this.loadTable2()
