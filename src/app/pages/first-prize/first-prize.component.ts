@@ -109,6 +109,13 @@ export class FirstPrizeComponent implements AfterViewInit {
     this.startAudio(this.audio3);
     this.startAudio(this.audio4);
   }
+  playAudio3(): void {
+    this.stopAudio(this.audio); // Dừng audio 1 nếu đang phát
+    this.stopAudio(this.audio4); // Dừng audio 1 nếu đang phát
+    this.stopAudio(this.audio2); // Dừng audio 1 nếu đang phát
+    this.stopAudio(this.audio3); // Dừng audio 1 nếu đang phát
+  }
+
   startAudio(audio: HTMLAudioElement): void {
     audio.currentTime = 0; // Đặt lại thời gian về đầu
     audio
@@ -221,6 +228,7 @@ export class FirstPrizeComponent implements AfterViewInit {
       if (count == 12) {
         this.visible = false;
         this.loadTable2();
+        this.playAudio3();
         this.btnText = '結束'
         return;
       }

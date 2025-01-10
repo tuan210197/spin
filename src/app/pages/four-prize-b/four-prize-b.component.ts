@@ -60,6 +60,11 @@ export class FourPrizeBComponent implements AfterViewInit {
     this.startAudio(this.audio2); // Phát audio 2
     this.startAudio(this.audio3); // Phát audio 3
   }
+  playAudio3(): void {
+    this.stopAudio(this.audio); // Dừng audio 1 nếu đang phát
+    this.stopAudio(this.audio2); // Dừng audio 1 nếu đang phát
+    this.stopAudio(this.audio3); // Dừng audio 1 nếu đang phát
+  }
 
   startAudio(audio: HTMLAudioElement): void {
     audio.currentTime = 0; // Đặt lại thời gian về đầu
@@ -209,7 +214,7 @@ export class FourPrizeBComponent implements AfterViewInit {
       this.resetRaffle();
       // this.launchConfetti();
       // this.confettiSettings();
-       this.playAudio2();
+       this.playAudio3();
          this.btnText = '結束'
       return;
     }

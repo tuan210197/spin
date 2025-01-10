@@ -75,6 +75,12 @@ export class FourthPrizeComponent implements AfterViewInit {
       console.log('Audio stopped');
     }
   }
+  playAudio3(): void {
+    this.stopAudio(this.audio); // Dừng audio 1 nếu đang phát
+
+    this.stopAudio(this.audio2); // Dừng audio 1 nếu đang phát
+    this.stopAudio(this.audio3); // Dừng audio 1 nếu đang phát
+  }
 
   ngOnDestroy(): void {
     // Dọn dẹp khi component bị hủy
@@ -206,7 +212,7 @@ export class FourthPrizeComponent implements AfterViewInit {
       this.resetRaffle();
       // this.launchConfetti();
       // this.confettiSettings();
-      this.playAudio2();
+      this.playAudio3();
       this.btnText = '結束'
       return;
     }
