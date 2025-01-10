@@ -218,7 +218,7 @@ export class ThirdPrizeBComponent implements AfterViewInit {
       const count = this.listWinner.filter((item: any) => item.working_time === 'B').length;
 
       console.log(count);
-      if (count == 36) {
+      if (count == 36 && this.isRaffleRunning ) {
         this.visible = false;
         this.loadTable();
         this.tableVisible = false;

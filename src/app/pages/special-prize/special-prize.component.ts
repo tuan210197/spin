@@ -233,7 +233,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
       const listWinner = await firstValueFrom(this.share.getListSpecial());
       this.listWinner = Array.isArray(listWinner) ? listWinner : [];
       const count = this.listWinner.filter((item: any) => item.receive === 1).length;
-      if (count >= 6) {
+      if (count >= 6 && this.isRaffleRunning) {
         this.playAudio3();
         this.loadTable2();
         this.btnText = '結束'

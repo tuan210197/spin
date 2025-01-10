@@ -207,7 +207,7 @@ export class FourPrizeBComponent implements AfterViewInit {
     this.listWinner = Array.isArray(listWinner2) ? listWinner2 : [];
     const count = this.listWinner.filter((item: any) => item.working_time === 'B').length;
 
-    if (count == 70) {
+    if (count == 70 && this.isRaffleRunning) {
       this.visible = false;
       this.loadTable();
       this.tableVisible = false;

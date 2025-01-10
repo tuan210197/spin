@@ -218,7 +218,7 @@ export class SecondPrizeComponent implements AfterViewInit {
       this.listWinner = Array.isArray(listWinner) ? listWinner : [];
       const count = this.listWinner.filter((item: any) => item.receive === 1).length;
 
-      if (count == 6) {
+      if (count == 6 && this.isRaffleRunning) {
 
         this.visible = false;
         this.loadTable2();
