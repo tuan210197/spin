@@ -1,5 +1,4 @@
 import { Component, ViewChild, AfterViewInit, ElementRef, ChangeDetectorRef } from '@angular/core';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { Fireworks } from 'fireworks-js';
@@ -13,6 +12,12 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import Swal from 'sweetalert2';
 import JSConfetti from 'js-confetti';
+import {PageEvent} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {JsonPipe} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 export interface First {
   vn_name: string;
@@ -26,7 +31,18 @@ export interface First {
 @Component({
   selector: 'app-special-prize',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule, MatSlideToggleModule],
+  imports: [
+    MatTableModule, 
+    MatPaginatorModule, 
+    MatIconModule, 
+    CommonModule, 
+    MatSlideToggleModule,   
+     MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatSlideToggleModule,
+    MatPaginatorModule,
+    ],
   templateUrl: './special-prize.component.html',
   styleUrl: './special-prize.component.css'
 })
@@ -198,7 +214,10 @@ export class SpecialPrizeComponent implements AfterViewInit {
       })
       .then(() => this.jsConfetti.addConfetti());
   }
-  constructor(private http: HttpClient, private share: ShareService, private cdr: ChangeDetectorRef) {
+  constructor(private http: HttpClient,
+     private share: ShareService, 
+     private cdr: ChangeDetectorRef,
+    ) {
   }
 
   async startRaffle(): Promise<void> {
@@ -257,7 +276,14 @@ export class SpecialPrizeComponent implements AfterViewInit {
         console.log(okela);
         const count: number = await firstValueFrom(this.share.getCountSpecial()) as number;
         this.totalCountSpecial = count;
-
+        if (this.totalCountSpecial == 6) {
+          this.btnText = '結束';
+          setTimeout(() => {
+            this.loadTable2()
+          }, 3000);
+        } else {
+          this.btnText = '開始';
+        }
         cancelAnimationFrame(this.requestId); // Dừng vòng lặp
         this.isRaffleRunning = true;
         this.showWinnerDiv1 = false
@@ -428,6 +454,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
         cancelButtonText: 'Không', // Nút hủy
         reverseButtons: false // Đảo ngược thứ tự nút (nút "Có" sẽ ở bên trái)
       }).then(async (result) => {
+        this.btnText = '開始';
         if (result.isConfirmed) {
           const update = await firstValueFrom(this.share.onToggleChangeSpecial(element));
           this.loadTable2();
@@ -441,8 +468,22 @@ export class SpecialPrizeComponent implements AfterViewInit {
       this.loadTable2();
     }
   }
+ 
+  length = 50;
+  pageIndex = 0;
+  pageSizeOptions = [];
+  hidePageSize = true;
+  disabled = false;
 
+  pageEvent: PageEvent | undefined;
 
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.length = e.length;
+    console.log(this.length);
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+  }
 
 }
 

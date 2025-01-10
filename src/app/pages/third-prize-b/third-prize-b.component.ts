@@ -12,6 +12,10 @@ import { firstValueFrom, Observable } from 'rxjs';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import JSConfetti from 'js-confetti';
+import { PageEvent } from '@angular/material/paginator';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 interface Four {
   code: string;
@@ -24,9 +28,10 @@ interface Four {
 @Component({
   selector: 'app-third-prize-b',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule,],
+  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule, FormsModule, MatInputModule, MatFormFieldModule],
   templateUrl: './third-prize-b.component.html',
-  styleUrl: './third-prize-b.component.css'
+  styleUrl: './third-prize-b.component.css',
+
 })
 export class ThirdPrizeBComponent implements AfterViewInit {
 
@@ -70,7 +75,7 @@ export class ThirdPrizeBComponent implements AfterViewInit {
   displayedColumns: string[] = ['position', 'code', 'vn_name', 'bu'];
   totalLength = 0;
   pageSize = 10;
-  btnText ='開始';
+  btnText = '開始';
   private jsConfetti = new JSConfetti();
   private audio = new Audio();
   private audio2 = new Audio();
@@ -82,7 +87,7 @@ export class ThirdPrizeBComponent implements AfterViewInit {
     this.audio2.src = '/winner1.mp3';
     this.audio3.src = '/winning1.mp3';
     this.audio4.src = '/votay4.mp3';
-  
+
   }
 
   playAudio1(): void {
@@ -205,21 +210,21 @@ export class ThirdPrizeBComponent implements AfterViewInit {
       const listWinner2 = await firstValueFrom(this.share.getListThirdA(third));
       this.listWinner = Array.isArray(listWinner2) ? listWinner2 : [];
       const count = this.listWinner.filter((item: any) => item.working_time === 'B').length;
-      
+
       console.log(count);
       if (count == 36) {
         this.visible = false;
         this.loadTable();
         this.tableVisible = false;
         this.resetRaffle();
-         this.playAudio2();
-           this.btnText = '結束'
+        this.playAudio2();
+        this.btnText = '結束'
         return;
       }
 
 
       if (this.isRaffleRunning) {
-        this.btnText ='停止'
+        this.btnText = '停止'
         this.playAudio1()
         this.tableVisible = true;
         this.visible = false;
@@ -261,7 +266,7 @@ export class ThirdPrizeBComponent implements AfterViewInit {
         // this.launchConfetti();
         this.confettiSettings();
         this.tableVisible = false;
-        this.btnText ='開始';
+        this.btnText = '開始';
         return;
       }
     } else {
@@ -286,11 +291,16 @@ export class ThirdPrizeBComponent implements AfterViewInit {
       }));
       console.log(this.listWinner);
       this.dataSource.data = this.listWinner;
-      this.totalLength = this.listWinner.length; // Tổng số bản ghi
+      this.totalLength = this.listWinner.length; // Tổng số bản ghi 
 
       // Đặt paginator ở trang cuối cùng
       const totalPages = Math.ceil(this.totalLength / this.pageSize);
+      console.log( this.paginator.length);
+      
       if (totalPages > 0) {
+
+        this.paginator.length = this.totalLength +34; // Gán tổng số mục cho paginator
+        this.paginator.getNumberOfPages = () => totalPages; // Gán số trang
         this.paginator.pageIndex = totalPages - 1; // Trang cuối cùng
         this.paginator._changePageSize(this.pageSize); // Kích hoạt thay đổi
       }
@@ -370,5 +380,19 @@ export class ThirdPrizeBComponent implements AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  length = 50;
+  pageIndex = 0;
+  pageSizeOptions = [];
+  hidePageSize = true;
+  disabled = false;
+
+  pageEvent: PageEvent | undefined;
+
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.length = e.length;
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
   }
 }

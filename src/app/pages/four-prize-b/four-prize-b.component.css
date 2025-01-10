@@ -289,8 +289,18 @@ tr:hover {
   background-color: rgb(255, 255, 255, 0);
 }
 
+
 ::ng-deep .mat-mdc-paginator-icon {
-  fill: rgb(255 255 255 ) !important;
+  fill: rgb(255 255 255  ) !important;
+}
+
+::ng-deep .mat-mdc-icon-button{
+  --mdc-icon-button-icon-size: 60px !important;
+  
+}
+
+::ng-deep .mat-mdc-paginator-range-actions {
+  align-items: flex-end !important;
 }
 
 .laptop2 {
@@ -346,7 +356,4 @@ canvas#confetti {
   left: 0%;
   z-index: 1000;
   pointer-events: none;
-}
-::ng-deep .mat-mdc-icon-button{
-  --mdc-icon-button-icon-size:100px !important;
 }

@@ -13,7 +13,10 @@ import { firstValueFrom } from 'rxjs';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import Swal from 'sweetalert2';
 import JSConfetti from 'js-confetti';
-
+import {PageEvent} from '@angular/material/paginator';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 interface Second {
   code: string;
@@ -27,7 +30,7 @@ interface Second {
 @Component({
   selector: 'app-second-prize',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule, MatSlideToggleModule],
+  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule, MatSlideToggleModule,  FormsModule,MatInputModule,MatFormFieldModule],
   templateUrl: './second-prize.component.html',
   styleUrl: './second-prize.component.css'
 })
@@ -74,9 +77,9 @@ export class SecondPrizeComponent implements AfterViewInit {
   totalLength = 0;
   pageSize = 6; // Số bản ghi trên mỗi trang
   visible = true;
-  totalCountSecond =0;
+  totalCountSecond = 0;
   private jsConfetti = new JSConfetti();
-  btnText ='開始';
+  btnText = '開始';
   private audio = new Audio();
   private audio2 = new Audio();
   private audio3 = new Audio();
@@ -208,18 +211,18 @@ export class SecondPrizeComponent implements AfterViewInit {
 
       this.listWinner = Array.isArray(listWinner) ? listWinner : [];
       const count = this.listWinner.filter((item: any) => item.receive === 1).length;
-    
+
       if (count == 6) {
-      
+
         this.visible = false;
         this.loadTable2();
-         this.playAudio2();
-  this.btnText = '結束'
+        this.playAudio2();
+        this.btnText = '結束'
         return;
       }
 
       if (this.isRaffleRunning) {
-        this.btnText ='停止'
+        this.btnText = '停止'
         this.playAudio1();
         this.listWinner = [];
         this.tableVisible = false;
@@ -262,13 +265,22 @@ export class SecondPrizeComponent implements AfterViewInit {
         const insert2A = await firstValueFrom(this.share.getSecondA());
         const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'A', joins: '', receive: 0 };
         const listWinner = await firstValueFrom(this.share.getListSecond(second));
-        
+
         const count: number = await firstValueFrom(this.share.getCountSeconda()) as number;
         this.totalCountSecond = count;
         cancelAnimationFrame(this.requestId); // Dừng vòng lặp
         this.isRaffleRunning = true;
         this.showWinnerDiv1 = false
-        this.btnText ='開始';
+        console.log(this.totalCountSecond)
+        if (this.totalCountSecond == 6) {
+          this.btnText = '結束';
+          setTimeout(() => {
+            this.loadTable2()
+          }, 3000);
+        } else {
+          this.btnText = '開始';
+        }
+
         if (!this.showWinnerDiv1) {
           this.showWinnerDiv2 = true
         }
@@ -286,10 +298,10 @@ export class SecondPrizeComponent implements AfterViewInit {
         } else {
           console.error('specialData is undefined');
         }
-        this.loadTable();  
+        this.loadTable();
         this.resetRaffle();
-
         this.tableVisible = false;
+
         return;
       }
     } else {
@@ -439,10 +451,10 @@ export class SecondPrizeComponent implements AfterViewInit {
         confirmButtonText: 'Có', // Nút xác nhận
         cancelButtonText: 'Không', // Nút hủy
         reverseButtons: false // Đảo ngược thứ tự nút (nút "Có" sẽ ở bên trái)
+
       }).then(async (result) => {
         if (result.isConfirmed) {
-         
-          // swalWithBootstrapButtons.fire('Đã xác nhận!', 'Hành động đã được thực hiện.', 'success');
+          this.btnText = '開始';
           element.status = 0; // Cập nhật giá trị 1 hoặc 0
           element.receive = event.checked ? 1 : 0;
           const update = await firstValueFrom(this.share.onToggleChangeSecond(element));
@@ -459,5 +471,19 @@ export class SecondPrizeComponent implements AfterViewInit {
       this.loadTable2();
     }
 
+  }
+  length = 50;
+  pageIndex = 0;
+  pageSizeOptions = [];
+  hidePageSize = true;
+  disabled = false;
+
+  pageEvent: PageEvent | undefined;
+
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.length = e.length;
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
   }
 }

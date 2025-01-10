@@ -303,6 +303,16 @@ tr:hover {
     transform: scale(1.1) translateY(-10px);
   }
 }
+
+::ng-deep .mat-mdc-paginator-icon {
+  fill: rgb(255 255 255 ) !important;
+}
+
 ::ng-deep .mat-mdc-icon-button{
-  --mdc-icon-button-icon-size:100px !important;
+  --mdc-icon-button-icon-size: 60px !important;
+  
+}
+
+::ng-deep .mat-mdc-paginator-range-actions {
+  align-items: flex-end !important;
 }

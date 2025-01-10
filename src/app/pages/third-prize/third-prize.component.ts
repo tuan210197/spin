@@ -13,7 +13,11 @@ import { firstValueFrom, Observable } from 'rxjs';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import JSConfetti from 'js-confetti';
-
+import {PageEvent} from '@angular/material/paginator';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {JsonPipe} from '@angular/common';
 
 interface Four {
   code: string;
@@ -26,7 +30,8 @@ interface Four {
 @Component({
   selector: 'app-third-prize',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule,],
+  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule,  FormsModule,MatInputModule,MatFormFieldModule
+  ],
   templateUrl: './third-prize.component.html',
   styleUrl: './third-prize.component.css'
 })
@@ -375,6 +380,23 @@ export class ThirdPrizeComponent implements AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  length = 50;
+  pageIndex = 0;
+  pageSizeOptions = [10];
+  hidePageSize = true;
+  disabled = false;
+  showPageSizeOptions = true;
+
+
+  pageEvent: PageEvent | undefined;
+
+  handlePageEvent(e: PageEvent) {
+    // this.pageEvent = e;
+    // this.length = e.length;
+    // console.log(e.length);
+    // this.pageSize = e.pageSize;
+    // this.pageIndex = e.pageIndex;
   }
 }
 

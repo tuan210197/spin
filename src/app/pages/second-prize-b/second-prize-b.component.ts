@@ -13,6 +13,12 @@ import { firstValueFrom } from 'rxjs';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import Swal from 'sweetalert2';
 import JSConfetti from 'js-confetti';
+
+import {PageEvent} from '@angular/material/paginator';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 interface Second {
   code: string;
   vn_name: string;
@@ -25,7 +31,10 @@ interface Second {
 @Component({
   selector: 'app-second-prize-b',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule, MatSlideToggleModule],
+  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule, MatSlideToggleModule,
+    FormsModule,MatInputModule,MatFormFieldModule
+
+  ],
   templateUrl: './second-prize-b.component.html',
   styleUrl: './second-prize-b.component.css'
 })
@@ -259,13 +268,22 @@ export class SecondPrizeBComponent implements AfterViewInit {
       } else {
         this.visible = false;
         this.playAudio2();
-        this.btnText ='開始';
         const insert2A = await firstValueFrom(this.share.getSecondB());
         const second: Second = { code: '0', vn_name: '', bu: '', working_time: 'B', joins: '', receive: 0 };
         const listWinner = await firstValueFrom(this.share.getListSecond(second));
 
         const count: number = await firstValueFrom(this.share.getCountSecondb()) as number;
         this.totalCountSecond = count;
+        console.log(this.totalCountSecond)
+        if(this.totalCountSecond == 6){
+          this.btnText ='結束';
+          setTimeout(() => {
+            this.loadTable2()
+          }, 3000);
+        }else{
+          this.btnText ='開始';
+        }
+      
         cancelAnimationFrame(this.requestId); // Dừng vòng lặp
         this.isRaffleRunning = true;
         this.showWinnerDiv1 = false
@@ -438,6 +456,7 @@ export class SecondPrizeBComponent implements AfterViewInit {
         reverseButtons: false // Đảo ngược thứ tự nút (nút "Có" sẽ ở bên trái)
       }).then(async (result) => {
         if (result.isConfirmed) {
+          this.btnText ='開始';
           element.status = 0; // Cập nhật giá trị 1 hoặc 0
           element.receive = event.checked ? 1 : 0;
           const update = await firstValueFrom(this.share.onToggleChangeSecond(element));
@@ -452,4 +471,18 @@ export class SecondPrizeBComponent implements AfterViewInit {
     }
 
   }
+   length = 50;
+    pageIndex = 0;
+    pageSizeOptions = [];
+    hidePageSize = true;
+    disabled = false;
+  
+    pageEvent: PageEvent | undefined;
+  
+    handlePageEvent(e: PageEvent) {
+      this.pageEvent = e;
+      this.length = e.length;
+      this.pageSize = e.pageSize;
+      this.pageIndex = e.pageIndex;
+    }
 }

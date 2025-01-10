@@ -13,6 +13,12 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import Swal from 'sweetalert2';
 import JSConfetti from 'js-confetti';
+import {PageEvent} from '@angular/material/paginator';
+import {JsonPipe} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 export interface First {
   vn_name: string;
@@ -24,7 +30,12 @@ export interface First {
 
 @Component({
   selector: 'app-first-prize',
-  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule, MatSlideToggleModule],
+  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule, MatSlideToggleModule,
+    MatFormFieldModule,
+   MatInputModule,
+   FormsModule,
+   MatPaginatorModule,
+  ],
   standalone: true,
   templateUrl: './first-prize.component.html',
   styleUrl: './first-prize.component.css'
@@ -210,12 +221,12 @@ export class FirstPrizeComponent implements AfterViewInit {
       if (count == 12) {
         this.visible = false;
         this.loadTable2();
-  this.btnText = '結束'
+        this.btnText = '結束'
         return;
       }
 
       if (this.isRaffleRunning) {
-        this.btnText ='停止'
+        this.btnText = '停止'
         this.visible = false;
         this.playAudio1();
         this.tableVisible = false;
@@ -251,7 +262,7 @@ export class FirstPrizeComponent implements AfterViewInit {
         }
 
       } else {
-        this.btnText ='開始';
+
         this.visible = false;
         this.playAudio2();
         const insert2A = await firstValueFrom(this.share.getFirst());
@@ -260,7 +271,14 @@ export class FirstPrizeComponent implements AfterViewInit {
 
         const count: number = await firstValueFrom(this.share.getCountFirst()) as number;
         this.totalCountFirst = count;
-
+        if (this.totalCountFirst == 12) {
+          this.btnText = '結束';
+          setTimeout(() => {
+            this.loadTable2()
+          }, 3000);
+        } else {
+          this.btnText = '開始';
+        }
         cancelAnimationFrame(this.requestId); // Dừng vòng lặp
         this.isRaffleRunning = true;
         this.showWinnerDiv1 = false
@@ -314,12 +332,12 @@ export class FirstPrizeComponent implements AfterViewInit {
       this.dataSource.data = this.listWinner;
       this.totalLength = this.listWinner.length; // Tổng số bản ghi
 
-      // Đặt paginator ở trang cuối cùng
-      const totalPages = Math.ceil(this.totalLength / this.pageSize);
-      if (totalPages > 0) {
-        this.paginator.pageIndex = totalPages - 1; // Trang cuối cùng
-        this.paginator._changePageSize(this.pageSize); // Kích hoạt thay đổi
-      }
+      // // Đặt paginator ở trang cuối cùng
+      // const totalPages = Math.ceil(this.totalLength / this.pageSize);
+      // if (totalPages > 0) {
+      //   this.paginator.pageIndex = totalPages - 1; // Trang cuối cùng
+      //   this.paginator._changePageSize(this.pageSize); // Kích hoạt thay đổi
+      // }
     } catch (error) {
       console.error('Lỗi khi gọi API:', error);
     }
@@ -412,6 +430,7 @@ export class FirstPrizeComponent implements AfterViewInit {
 
       }).then(async (result) => {
         if (result.isConfirmed) {
+          this.btnText = '開始';
           await firstValueFrom(this.share.onToggleChangeFirst(element));
           this.loadTable2();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -442,11 +461,24 @@ export class FirstPrizeComponent implements AfterViewInit {
       }));
       console.log(this.listWinner);
       this.dataSource.data = this.listWinner;
-      
+
     } catch (error) {
       console.error('Lỗi khi gọi API:', error);
     }
   }
 
+  length = 50;
+  pageIndex = 0;
+  pageSizeOptions = [];
+  hidePageSize = true;
+  disabled = false;
 
+  pageEvent: PageEvent | undefined;
+
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.length = e.length;
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+  }
 }

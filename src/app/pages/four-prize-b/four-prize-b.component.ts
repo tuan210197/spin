@@ -10,7 +10,10 @@ import { AfterViewInit, Component, ViewChild, ElementRef, OnInit } from '@angula
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import JSConfetti from 'js-confetti';
-
+import {PageEvent} from '@angular/material/paginator';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 interface Four {
   code: string;
   vn_name: string;
@@ -22,7 +25,7 @@ interface Four {
 @Component({
   selector: 'app-four-prize-b',
   standalone: true,
-  imports: [MatTableModule, MatIconModule, CommonModule, MatPaginatorModule],
+  imports: [MatTableModule, MatIconModule, CommonModule, MatPaginatorModule,   FormsModule,MatInputModule,MatFormFieldModule],
   templateUrl: './four-prize-b.component.html',
   styleUrl: './four-prize-b.component.css'
 })
@@ -356,6 +359,19 @@ export class FourPrizeBComponent implements AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
+  length = 50;
+  pageIndex = 0;
+  pageSizeOptions = [];
+  hidePageSize = true;
+  disabled = false;
 
+  pageEvent: PageEvent | undefined;
+
+  handlePageEvent(e: PageEvent) {
+    // this.pageEvent = e;
+    // this.length = e.length;
+    // this.pageSize = e.pageSize;
+    // this.pageIndex = e.pageIndex;
+  }
 }
 
