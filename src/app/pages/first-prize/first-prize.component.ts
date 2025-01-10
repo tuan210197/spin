@@ -341,11 +341,11 @@ export class FirstPrizeComponent implements AfterViewInit {
       this.totalLength = this.listWinner.length; // Tổng số bản ghi
 
       // // Đặt paginator ở trang cuối cùng
-      // const totalPages = Math.ceil(this.totalLength / this.pageSize);
-      // if (totalPages > 0) {
-      //   this.paginator.pageIndex = totalPages - 1; // Trang cuối cùng
-      //   this.paginator._changePageSize(this.pageSize); // Kích hoạt thay đổi
-      // }
+      const totalPages = Math.ceil(this.totalLength / this.pageSize);
+      if (totalPages > 0) {
+        this.paginator.pageIndex = totalPages - 1; // Trang cuối cùng
+        this.paginator._changePageSize(this.pageSize); // Kích hoạt thay đổi
+      }
     } catch (error) {
       console.error('Lỗi khi gọi API:', error);
     }
@@ -439,7 +439,7 @@ export class FirstPrizeComponent implements AfterViewInit {
       }).then(async (result) => {
         if (result.isConfirmed) {
           this.btnText = '開始';
-          await firstValueFrom(this.share.onToggleChangeFirst(element));
+          const update =await firstValueFrom(this.share.onToggleChangeFirst(element));
           this.loadTable2();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           this.loadTable2();
