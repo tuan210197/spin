@@ -285,7 +285,7 @@ export class SecondPrizeBComponent implements AfterViewInit {
           this.btnText ='結束';
           setTimeout(() => {
             this.loadTable2()
-          }, 3000);
+          }, 7000);
         }else{
           this.btnText ='開始';
         }

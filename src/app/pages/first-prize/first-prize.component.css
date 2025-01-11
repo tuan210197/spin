@@ -20,7 +20,7 @@
   display: inline-block;
   background: linear-gradient(45deg, #ff6b6b, #f76d2b);
   color: white;
-  padding: 1rem 2rem;
+  /* padding: 1rem 2rem; */
   font-size: 30px;
   border: none;
   border-radius: 1vw;
@@ -208,7 +208,7 @@ tr:hover {
   position: fixed;
   justify-content: center;
   align-items: center;
-  top: 63%;
+  top: 64%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -238,7 +238,7 @@ tr:hover {
 
 /* Tạo container cho bảng */
 .table-container {
-  width: 55%;
+  width: 60%;
   position: fixed;
   left: 50%;
   top: 60%;
