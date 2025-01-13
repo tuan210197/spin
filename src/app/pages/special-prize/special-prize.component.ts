@@ -464,7 +464,7 @@ export class SpecialPrizeComponent implements AfterViewInit {
         this.btnText = '開始';
         if (result.isConfirmed) {
           const update = await firstValueFrom(this.share.onToggleChangeSpecial(element));
-          this.loadTable2();
+          // this.loadTable2();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           console.log('User clicked No');
           this.loadTable2();

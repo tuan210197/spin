@@ -440,7 +440,7 @@ export class FirstPrizeComponent implements AfterViewInit {
         if (result.isConfirmed) {
           this.btnText = '開始';
           const update =await firstValueFrom(this.share.onToggleChangeFirst(element));
-          this.loadTable2();
+          // this.loadTable2();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           this.loadTable2();
         }

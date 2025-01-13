@@ -465,7 +465,7 @@ export class SecondPrizeComponent implements AfterViewInit {
           element.status = 0; // Cập nhật giá trị 1 hoặc 0
           element.receive = event.checked ? 1 : 0;
           const update = await firstValueFrom(this.share.onToggleChangeSecond(element));
-          this.loadTable2();
+          // this.loadTable2();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           // Nếu người dùng nhấn "Không"
           // swalWithBootstrapButtons.fire('Đã hủy', 'Hành động bị hủy bỏ.', 'error');
